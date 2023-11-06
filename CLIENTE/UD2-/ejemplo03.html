@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='ejemplo03.js'></script>
+</head>
+<body>
+    <form name="frmNumero" >
+        <label>Número: </label>
+        <input type="number" name="numero">  
+        <select name="frmSelect" id="select" onchange="procesarFormulario2()">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>      
+    </form><br>
+    
+    <div id="salida"></div>
+    
+    <button onclick="procesarFormulario2()">Tabla de Multiplicar</button>
+    <script src="tablaMultiplicar.js"></script>
+
+</body>
+
+</html>

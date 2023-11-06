@@ -1,0 +1,7 @@
+.header-bg {
+    background-image: url('../img/header-bg.jpeg'); 
+    background-size: cover;
+    padding: 45%;
+    width: 100%;
+    display: block;
+  }

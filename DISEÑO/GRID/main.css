@@ -1,0 +1,15 @@
+
+div{
+    height: 300px;
+	width: 400px;
+	border: 5px solid #C00;
+	margin: 20px;
+	padding: 20px;
+    border: 5px solid red;
+    box-sizing: border-box;
+    
+}
+div {
+	background: url("Ejercicios Repaso HTML y CSS-20231023/EJ01/f01.png") left bottom repeat-x, url("Ejercicios Repaso HTML y CSS-20231023/EJ01/f02.png") left bottom no-repeat, url("Ejercicios Repaso HTML y CSS-20231023/EJ01/f03.png") left top repeat-x;
+	background-color: #a4d3ff;
+}
