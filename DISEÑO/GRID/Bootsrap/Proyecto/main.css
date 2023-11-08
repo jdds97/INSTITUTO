@@ -1,5 +1,25 @@
-.float{
-    float: right;
+@media (min-width: 992px) {
+    .navbar-fixed {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      background-color: #1d32b8; /* Color de fondo del menú */
+      width: 300px; /* Ancho del menú lateral */
+      z-index: 1000; /* Z-index para que esté por encima del contenido */
+    }
+    .navbar-content {
+        margin-left: 250px; /* Ajusta el margen izquierdo del contenido principal para evitar que se superponga con el menú */
+      }
+    }
+
+    .offcanvas-body {
+      padding: 0;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-list' viewBox='0 0 16 16'%3e%3cpath fill-rule='evenodd' d='M3 2.5a.5.5 0 0 1 .5.5V3h8V2.5a.5.5 0 0 1 1 0V3h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V2.5a.5.5 0 0 1 .5-.5zM1 5v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1z'/%3e%3c/svg%3e");
+      }
 }
 .header-bg {
     background-image: url('img/hero-bg.jpeg'); 
