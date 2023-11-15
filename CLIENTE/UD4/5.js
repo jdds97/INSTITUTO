@@ -3,23 +3,27 @@ class BonoBus{
     constructor(){
         this._fecha=new Date()
     }
-    picarViaje(numLin,dia,mes,anio,hora,minutos){
-        fecha=new Date(anio,mes-1,dia,hora,minutos);
-        devolver=false;
-        if (fecha>this._fecha)
-            devolver=true;
-
-    return devolver;
-    }
+    picarViaje(){};
 }
 class BonoDiezViajes extends BonoBus{
 _numViajes=10;
+dia;
+mes;
+año;
+hora;
+minutos;
 picarViaje10(){
+    fecha=new Date(anio,mes-1,dia,hora,minutos);
+        devolver=false;
+        if (fecha>this._fecha)
+            devolver=true;
+            if(this._numViajes<10 && this._numViajes>0){
+                this._numViajes--;
+            }
+            else
+    return devolver;
     if(this.picarViaje()==true){
-        if(this._numViajes<10 && this._numViajes>0){
-            this._numViajes--;
-        }
-        else{
+        {
             console.log("No te quedan más viajes");
         }
     }
@@ -55,4 +59,5 @@ class BonoTarifaPlana extends BonoBus{
 class BonoDiezViajesConTrasbordo extends BonoDiezViajes{
     _horaTrasbordo;
     _numLineaUltBus;
+    //controlar fecha  y hora despues de que se pique el viaje
 }
