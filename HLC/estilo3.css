@@ -1,0 +1,26 @@
+#contenido {
+    width: 70%; /* Cambiar el ancho del contenido */
+    background-color: #ffd700; /* Cambiar el color de fondo */
+}
+
+#logo {
+    text-align: right; /* Alineación a la derecha */
+    margin-bottom: 10px; /* Menor espacio inferior */
+}
+
+#menu {
+    background-color: #ff4500; /* Cambiar el color del menú */
+}
+
+#informacion {
+    margin-top: 10px; /* Menor margen superior */
+}
+
+#pie {
+    background-color: #ff4500; /* Cambiar el color del pie */
+    color: #fff; /* Cambiar el color del texto en el pie */
+}
+
+#galeria {
+    margin-top: 10px; /* Menor margen superior en la galería */
+}
