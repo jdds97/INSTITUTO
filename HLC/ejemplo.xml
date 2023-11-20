@@ -1,111 +1,103 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<campeonato_ornitologico>
-    <edicion numero="19">
-        <ubicacion>
-            <club_deportivo>Hípica Botafuegos</club_deportivo>
-            <ciudad>Algeciras</ciudad>
-            <provincia>Cádiz</provincia>
-        </ubicacion>
-        <aforo>15000</aforo>
-        <fechas>
-            <inicio>7 de Noviembre</inicio>
-            <admision_hasta>8 de Noviembre</admision_hasta>
-            <enjuiciamientos>9 de Noviembre</enjuiciamientos>
-            <stands_venta>
-                <organizacion>10, 11 y 12 de Noviembre</organizacion>
-                <inauguracion>13 de Noviembre</inauguracion>
-                <apertura_publico>13 al 16 de Noviembre</apertura_publico>
-            </stands_venta>
-            <clausura_entrega>16 de Noviembre</clausura_entrega>
-        </fechas>
-    </edicion>
-    <comite_organizador>
-        <miembro>
-            <nombre>Miguel Ángel López Rodríguez</nombre>
-            <nacimiento>
-                <ciudad>Madrid</ciudad>
-                <pais>España</pais>
-                <fecha>14-06-1965</fecha>
-            </nacimiento>
-            <cargo>Presidente</cargo>
-            <desde>1990</desde>
-            <contacto>
-                <telefono>666777888</telefono>
-                <correo>presidente@foa.es</correo>
-                <direccion>
-                    <calle>Argentina, 1</calle>
-                    <codigo_postal>28086</codigo_postal>
+    <campeonato_ornitologico>
+        <edicion numero="19">
+            <ubicacion>
+                <club_deportivo>Hípica Botafuegos</club_deportivo>
+                <ciudad>Algeciras</ciudad>
+                <provincia>Cádiz</provincia>
+            </ubicacion>
+            <aforo>15000</aforo>
+            <fechas>
+                <inicio>7 de Noviembre</inicio>
+                <admision_hasta>8 de Noviembre</admision_hasta>
+                <enjuiciamientos>9 de Noviembre</enjuiciamientos>
+                <stands_venta>
+                    <organizacion>10, 11 y 12 de Noviembre</organizacion>
+                    <inauguracion>13 de Noviembre</inauguracion>
+                    <apertura_publico>13 al 16 de Noviembre</apertura_publico>
+                </stands_venta>
+                <clausura_entrega>16 de Noviembre</clausura_entrega>
+            </fechas>
+        </edicion>
+        <comite_organizador>
+            <miembro>
+                <nombre>Miguel Ángel López Rodríguez</nombre>
+                <nacimiento>
                     <ciudad>Madrid</ciudad>
-                </direccion>
-            </contacto>
-            <asociaciones>
-                <nombre>Asociación Ornitológica Madrileña</nombre>
+                    <pais>España</pais>
+                    <fecha>14-06-1965</fecha>
+                </nacimiento>
                 <cargo>Presidente</cargo>
-            </asociaciones>
-            <criador>
-                <asociacion>Asociación Roquetera Ornitológica</asociacion>
-                <medallas>
-                    <oro>58</oro>
-                    <plata>40</plata>
-                    <bronce>76</bronce>
-                </medallas>
-            </criador>
-        </miembro>
-        <miembro>
-            <nombre>Alfredo Correa Correa</nombre>
-            <nacimiento>
-                <ciudad>Granada</ciudad>
-                <pais>España</pais>
-                <fecha>24-06-1983</fecha>
-            </nacimiento>
-            <cargo>Secretario</cargo>
-            <desde>2001</desde>
-            <contacto>
-                <telefono>666555444</telefono>
-                <correo>secretario@foa.es</correo>
-                <direccion>
-                    <calle>Carretera de Ronda, 106</calle>
-                    <codigo_postal>18003</codigo_postal>
+                <desde>1990</desde>
+                <contacto>
+                    <telefono>666777888</telefono>
+                    <correo>presidente@foa.es</correo>
+                    <direccion>
+                        <calle>Argentina, 1</calle>
+                        <codigo_postal>28086</codigo_postal>
+                        <ciudad>Madrid</ciudad>
+                    </direccion>
+                </contacto>
+                <asociaciones>
+                    <nombre>Asociación Ornitológica Madrileña</nombre>
+                    <cargo>Presidente</cargo>
+                </asociaciones>
+                <criador>
+                    <asociacion>Asociación Roquetera Ornitológica</asociacion>
+                    <medallas>
+                        <oro>58</oro>
+                        <plata>40</plata>
+                        <bronce>76</bronce>
+                    </medallas>
+                </criador>
+            </miembro>
+            <miembro>
+                <nombre>Alfredo Correa Correa</nombre>
+                <nacimiento>
                     <ciudad>Granada</ciudad>
-                </direccion>
-            </contacto>
+                    <pais>España</pais>
+                    <fecha>24-06-1983</fecha>
+                </nacimiento>
+                <cargo>Secretario</cargo>
+                <desde>2001</desde>
+                <contacto>
+                    <telefono>666555444</telefono>
+                    <correo>secretario@foa.es</correo>
+                    <direccion>
+                        <calle>Carretera de Ronda, 106</calle>
+                        <codigo_postal>18003</codigo_postal>
+                        <ciudad>Granada</ciudad>
+                    </direccion>
+                </contacto>
 
-            <criador>
-                <asociacion>Asociación Ornitológica Alhambra</asociacion>
-                <medallas>
-                    <oro>20</oro>
-                    <plata>10</plata>
-                </medallas>
-            </criador>
-        </miembro>
-        <miembro>
-            <nombre>Antonio Gómez Serrano</nombre>
-            <nacimiento>
-                <ciudad>Almería</ciudad>
-                <pais>España</pais>
-                <fecha>29-10-1979</fecha>
-            </nacimiento>
-            <cargo>Tesorero</cargo>
-            <desde>2023</desde>
-            <contacto>
-                <telefono>666111222</telefono>
-                <correo>tesorero@foa.es</correo>
-                <direccion>
-                    <calle>Avenida de la Legión, s/n</calle>
-                    <codigo_postal>04740</codigo_postal>
-                    <ciudad>Roquetas de Mar (Almería)</ciudad>
-                </direccion>
-            </contacto>
-            <asociaciones>
-                <nombre>Asociación Roquetera Ornitológica</nombre>
-                <cargo>Presidente</cargo>
-            </asociaciones>
-            <criador>
-                <medallas>
-                    <oro>0</oro>
-                    <plata>0</plata>
-                </medallas>
-            </criador>
-        </miembro>
-    </comite_organizador>
-</campeonato_ornitologico>
+                <criador>
+                    <asociacion>Asociación Ornitológica Alhambra</asociacion>
+                    <medallas>
+                        <oro>20</oro>
+                        <plata>10</plata>
+                    </medallas>
+                </criador>
+            </miembro>
+            <miembro>
+                <nombre>Antonio Gómez Serrano</nombre>
+                <nacimiento>
+                    <ciudad>Almería</ciudad>
+                    <pais>España</pais>
+                    <fecha>29-10-1979</fecha>
+                </nacimiento>
+                <cargo>Tesorero</cargo>
+                <desde>2023</desde>
+                <contacto>
+                    <telefono>666111222</telefono>
+                    <correo>tesorero@foa.es</correo>
+                    <direccion>
+                        <calle>Avenida de la Legión, s/n</calle>
+                        <codigo_postal>04740</codigo_postal>
+                        <ciudad>Roquetas de Mar (Almería)</ciudad>
+                    </direccion>
+                </contacto>
+                <asociaciones>
+                    <nombre>Asociación Roquetera Ornitológica</nombre>
+                </asociaciones>
+            </miembro>
+        </comite_organizador>
+    </campeonato_ornitologico>
