@@ -1,5 +1,14 @@
 @media (min-width: 992px) {
-
+  .navbar {
+      position: sticky;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 300px;
+      background-color: #1d32b8; /* Color de fondo del menú */
+       /* Ancho del menú lateral */
+      z-index: 1000; /* Z-index para que esté por encima del contenido */
+    }
     
       .uno{
         background-color:black;
@@ -7,13 +16,19 @@
         width: 100%;
     }
     .dos{
-      background-color: aqua;
+      
       height: 100vh;
     
     }
     }
   
-
+    #botonMenu{
+      background-color: #149ddd;
+    }
+    #botonMenu:focus{
+      background-image: none;
+    }
+    
 
 
 
@@ -25,6 +40,6 @@
     width: 100%;
     height: 100%;
     display: block;
-    z-index: 10000;
+    z-index: 100;
   }
 
