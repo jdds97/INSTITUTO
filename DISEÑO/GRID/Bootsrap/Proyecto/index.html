@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -8,63 +9,75 @@
   <link rel="stylesheet" href="main.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
 </head>
+
 <body>
-        <!--Navbar inicio-->
-        <section class="container-fluid header-bg">
-          <div class="row ">
-            <div class="col-sm-12 col-lg-2 nav-bar">
-                <a class="navbar-brand" href="#"></a>
-                <button class="navbar-toggler rounded-circle d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" id="botonMenu">
-                  <span class="navbar-toggler-icon " id="barrasMenu"></span>
-                </button>
-                <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                  <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                  </div>
-                  <div class="offcanvas-body">
-                    <ul class="justify-content-start  pe-3">
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                      </li>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li>
-                            <hr class="dropdown-divider">
-                          </li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+  <!--Navbar inicio-->
+  <section class="container-fluid header-bg">
+    <header class="row ">
+      <div class="col-sm-12 col-md-2 nav-bar  ">
+        <a class="navbar-brand" href="#"></a>
+        <!-- Botón con el ícono de lista -->
+        <button class="navbar-toggler d-md-none mt-2" id="botonMenu" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <i class="bi bi-list text text-white fs-4" id="iconMenu"></i>
+          <i class="bi bi-x-lg text text-white fs-4 d-none" id="iconCloseMenu"></i>
+        </button>
+
+
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel" >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel"></h5>
+            <div class="perfil py-3 m-lg-2 text-center">
+              <img src="img/profile-img.jpeg" alt="" class="rounded-circle img-fluid " >
             </div>
           </div>
-         
-        </section>
-  
+          
+          <div class="offcanvas-body">
+            
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-0 col-md-10 ">
+        <h2>HOLA</h2>
+      </div>
+    </header>
+  </section>
 
 
 
 
 
-
-        <section class="container-fluid">
-          <header class="row header-bg">
-            <div class="col-sm-12 col-md-2 col-lg-2">
+  <!--<section class="container-fluid header-bg">
+          <header class="row ">
+            <div class="col-sm-12 col-lg-2 nav-bar">
                 <button class="navbar-toggler  bg-primary  rounded-circle d-md-none" type="button" data-bs-toggle="offcanvas"
                   data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -81,7 +94,8 @@
               
             </div>
           </header>
-        </section>
+        </section>-->
+
 </body>
 
 </html>
