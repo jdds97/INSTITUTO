@@ -69,8 +69,22 @@ class Vivero{
     constructor(){
         this.arboles=[];
     }
-    addArbol(arbol){
-        this.arboles.push(arbol);
+    altaArbol(arbol){
+        
+        //let encontrado=this.arboles.includes(arbol)//Devuelve true o false
+        let encontrado=this.arboles.filter((arbol1)=>arbol1.codigo==arbol.codigo).length==1;//Devuelve si el array filtrado es igual a 1,entonces es true si no es false 
+        //let encontrado=this.arboles.find((arbol1)=>arbol1.codigo==arbol.codigo)!=null; // Si es distinto a null encontrado es true si no es false
+        if(!encontrado){//Si encontrado es igual a false
+            this.arboles.push(arbol);
+            return true;
+        }
+        else{
+            alert("El arbol ya existe");
+            return false;
+        }
+    }
+    buscarArbol(arbol){
+
     }
     toHTMLTable(){
 

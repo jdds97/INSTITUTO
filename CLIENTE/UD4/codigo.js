@@ -69,9 +69,10 @@ function aceptarAltaArbol() {
 }
 
 function aceptarTallaje() {
+  // Insertar el nuevo árbol
   let sRespuesta =
     /*Llamada a tallajeArbol*/
-
+ 
     alert(sRespuesta);
 
   if (sRespuesta.includes("Correcto") > 0) {
