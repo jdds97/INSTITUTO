@@ -1,19 +1,34 @@
-@media (min-width: 992px) {
+/* Estilos generales */
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", sans-serif;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Media queries */
+@media (min-width: 768px) {
   .nav-bar {
     position: sticky;
     left: 0;
     top: 0;
     height: 100vh;
+    width: 300px;
     background-color: #040b14; /* Color de fondo del menú */
-    /* Ancho del menú lateral */
     z-index: 1000; /* Z-index para que esté por encima del contenido */
   }
 }
+
+/* Estilos del menú offcanvas */
+
 #offcanvasNavbar {
   background-color: #040b14; /* Color de fondo del menú */
-
 }
-
 #botonMenu {
   background-color: #149ddd;
   border: none;
@@ -21,17 +36,15 @@
   height: 40px; /* Alto */
   border-radius: 20px; /* Si deseas esquinas redondeadas */
 }
-/* Mostrar el ícono de lista por defecto */
+
 #iconMenu {
   display: inline-block; /* Asegura que el ícono se muestre */
 }
 
-/* Ocultar el ícono 'X' por defecto */
 #iconCloseMenu {
   display: none; /* Oculta el ícono 'X' por defecto */
 }
 
-/* Cuando el menú offcanvas está abierto */
 .offcanvas.show #iconMenu {
   display: none; /* Oculta el ícono de lista cuando el menú está abierto */
 }
@@ -40,21 +53,26 @@
   display: inline-block; /* Muestra el ícono 'X' cuando el menú está abierto */
 }
 
-
+/* Estilos del encabezado */
 .header-bg {
   background-image: url("img/hero-bg.jpeg");
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 100vh; /* Establecer altura al 100% del viewport en dispositivos móviles */
+  height: 100vh; /* Establece altura al 100% del viewport en dispositivos móviles */
   display: block;
   z-index: 100;
   padding: 0;
   margin: 0;
 }
-.offcanvas-header .perfil img{
+
+.offcanvas-header .perfil img {
   margin: 15px auto;
   display: block;
   width: 120px;
   border: 8px solid #2c2f3f;
+}
+#miEnlace {
+ text-decoration-color: #149ddd; /* Cambia el color de la línea */
+  text-decoration-style: solid 4px;
 }

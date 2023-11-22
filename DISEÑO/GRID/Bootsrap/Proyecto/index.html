@@ -18,18 +18,18 @@
 <body>
   <!--Navbar inicio-->
   <section class="container-fluid header-bg">
-    <header class="row ">
-      <div class="col-sm-12 col-md-2 nav-bar text-sm-end ">
+    <header class="row  ">
+      <div class="d-flex flex-column col-md-3 nav-bar ">
         <a class="navbar-brand" href="#"></a>
         <!-- Botón con el ícono de lista -->
-        <button class="navbar-toggler d-md-none mt-2" id="botonMenu" type="button" data-bs-toggle="offcanvas"
+        <button class="navbar-toggler d-md-none mt-2 ms-auto" id="botonMenu" type="button" data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <i class="bi bi-list text text-white fs-4" id="iconMenu"></i>
           <i class="bi bi-x-lg text text-white fs-4 " id="iconCloseMenu"></i>
         </button>
 
 
-        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+        <div class="offcanvas-md  offcanvas-start" tabindex="-1" id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel" >
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel"></h5>
@@ -65,8 +65,12 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-0 col-md-10 ">
-        <h2>HOLA</h2>
+      <div class="col-12 col-md-10  text-md-center vh-100 mt-5 py-5 ">
+        <!--<div class="d-flex flex-column justify-content-center align-items-sm-start align-items-center">-->
+        <h1 class= "text-white display-4 fw-bolder">Alex Smith</h1>
+        <p class="text-white fs-2 fw-lighter">I'm <a class="link-offset-3 text-white custom-underline-color " id="miEnlace" href="#">Photographer</a>
+        </p>
+      <!--</div>-->
       </div>
     </header>
   </section>
