@@ -72,7 +72,16 @@ p {
   width: 120px;
   border: 8px solid #2c2f3f;
 }
-#miEnlace {
- text-decoration-color: #149ddd; /* Cambia el color de la línea */
-  text-decoration-style: solid 4px;
+.rayaColorAzul {
+ text-decoration-color: #149ddd; 
+ text-decoration-thickness: 3px;/* Cambia el color de la línea */
+}
+.rayaColorAzulSmall{
+  text-decoration-color: #149ddd;
+  /*Cambia el largo de la linea*/
+  
+}
+#texto-header{
+  min-width: 300px;
+  position: relative;
 }
