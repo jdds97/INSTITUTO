@@ -43,6 +43,7 @@ ul i{
 }
 #skills{
   background-color: #f5f8fd;
+  overflow: hidden;
   
 
 }
