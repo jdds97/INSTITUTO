@@ -37,11 +37,15 @@ ul i{
     background-color: #040b14; /* Color de fondo del menú */
     z-index: 1000; /* Z-index para que esté por encima del contenido */
   }
-  #main{
+#main{
     margin-left: 400px;
-  }
 }
+}
+#skills{
+  background-color: #f5f8fd;
+  
 
+}
 /* Estilos del menú offcanvas */
 
 #offcanvasNavbar {
