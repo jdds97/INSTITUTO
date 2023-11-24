@@ -3,11 +3,14 @@ class Cliente{
     #nombre;
     #Apellidos;
     #usuario;
-        constructor(dniCliente, nombre, Apellidos, usuario) {
+        constructor(dniCliente, nombre, Apellidos) {
             this.dniCliente = dniCliente;
             this.nombre = nombre;
             this.Apellidos = Apellidos;
-            this.usuario = usuario;
+            this.usuario = nombre.trim().charAt(0)+apellido1+apellido2+dniCliente.toString().substring(5,8);
+            let separa=Apellidos.split(" ");
+            let apellido1=separa[0].trim().substring(0,3);
+            let apellido2=separa[1].trim().substring(0,3);
         }
 
         get dniCliente() {
@@ -47,3 +50,46 @@ class Cliente{
             return fila;
         }
     }
+class Vehiculo{
+    #matricula;
+    #marca;
+    #modelo;
+
+    constructor(matricula, marca, modelo) {
+        this.#matricula = matricula;
+        this.#marca = marca;
+        this.#modelo = modelo;
+    }
+
+    get matricula() {
+        return this.#matricula;
+    }
+
+    set matricula(value) {
+        this.#matricula = value;
+    }
+
+    get marca() {
+        return this.#marca;
+    }
+
+    set marca(value) {
+        this.#marca = value;
+    }
+
+    get modelo() {
+        return this.#modelo;
+    }
+
+    set modelo(value) {
+        this.#modelo = value;
+    }
+    toHTMLRow(){
+        let fila="<tr>"
+        fila+="<td>"+this.#matricula+this.#marca+this.#modelo+"</td>"
+        return fila;
+    }
+}
+class Coches extends Vehiculo{
+
+}

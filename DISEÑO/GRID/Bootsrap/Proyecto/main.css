@@ -38,11 +38,11 @@ ul i{
     z-index: 1000; /* Z-index para que esté por encima del contenido */
   }
 #main{
-    margin-left: 400px;
+    margin-left: 300px;
 }
 }
 #skills{
-  background-color: #f5f8fd;
+  background-color: #173b6c;/*f5f8fd*/
   overflow: hidden;
   
 
