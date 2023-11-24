@@ -1,3 +1,26 @@
+/**
+ * Archivo: main.css
+ * Ruta: /g:/DOCUMENTOS DISCO LOCAL C/INSTITUTO 2023-2024/INSTITUTO 23-24/INSTITUTO/DISEÑO/GRID/Bootsrap/Proyecto/main.css
+ * 
+ * Descripción: Este archivo contiene los estilos CSS para un proyecto utilizando Bootstrap.
+ * 
+ * Contenido:
+ * - Importación de fuentes desde Google Fonts.
+ * - Estilos generales para el cuerpo del documento.
+ * - Estilos para encabezados y secciones.
+ * - Estilos para listas y elementos de lista.
+ * - Media queries para estilos responsivos.
+ * - Estilos para la sección de habilidades.
+ * - Estilos para el menú offcanvas.
+ * - Estilos para el encabezado.
+ * 
+ * Autor: Jesús de Dios
+ * Fecha: 28/11/2023
+ */
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
 /* Estilos generales */
 body {
   font-family: "Poppins", sans-serif;
@@ -7,23 +30,22 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
 }
-.seccion-h2{
-  color:#173b6c;
+
+.seccion-h2 {
+  color: #173b6c;
 }
 
 p {
   font-family: "Poppins", sans-serif;
 }
-ul{
+
+#about ul {
   list-style: none;
   padding: 0;
 }
-ul li{
+
+ul li {
   margin-bottom: 15px;
-}
-ul i{
-  left: 0;
-  color: #149ddd;
 }
 
 /* Media queries */
@@ -34,56 +56,60 @@ ul i{
     top: 0;
     height: 100%;
     width: 300px;
-    background-color: #040b14; /* Color de fondo del menú */
-    z-index: 1000; /* Z-index para que esté por encima del contenido */
+    background-color: #040b14;
+    z-index: 1000; 
   }
-#main{
+
+  #main {
     margin-left: 300px;
+  }
 }
-}
-#skills{
-  background-color: #173b6c;/*f5f8fd*/
-  overflow: hidden;
-  
 
+#skills {
+  background-color: #f5f8fd;
+  font-family: "Poppins", sans-serif;
 }
+
+#skills .progress,
+#resume h3 {
+  color: #050d18;
+  border-radius: 0;
+}
+
+#skills .progress-bar,
+#botonMenu {
+  background-color: #149ddd;
+}
+
 /* Estilos del menú offcanvas */
-
 #offcanvasNavbar {
-  background-color: #040b14; /* Color de fondo del menú */
+  background-color: #040b14;
 }
+
 #botonMenu {
   position: fixed;
   right: 15px;
   top: 15px;
   z-index: 9998;
-  border: 0;
-  transition: all 0.4s;
-  outline: none !important;
-  background-color: #149ddd;
   width: 40px;
   height: 40px;
-  display: inline-flex;
-  line-height: 0;
-  border-radius: 50px;
-  cursor: pointer;/* Si deseas esquinas redondeadas */
+  cursor: pointer;
+  
 }
 
-
-
 #botonMenu:focus-visible {
-  display: none; /* Oculta el ícono de lista cuando el menú está abierto */
+  display: none; 
 }
 
 .offcanvas.show #iconCloseMenu {
-  display: inline-block; /* Muestra el ícono 'X' cuando el menú está abierto */
+  display: inline-block; 
 }
 
 /* Estilos del encabezado */
 #header {
   background-image: url("img/hero-bg.jpeg");
   background-size: cover;
-  height: 100vh; /* Establece altura al 100% del viewport en dispositivos móviles */ 
+  height: 100vh;
 }
 
 .offcanvas-header .perfil img {
@@ -92,15 +118,22 @@ ul i{
   width: 120px;
   border: 8px solid #2c2f3f;
 }
+
 .rayaColorAzul {
- text-decoration-color: #149ddd; 
- text-decoration-thickness: 3px;/* Cambia el color de la línea */
-}
-.rayaColorAzulSmall{
   text-decoration-color: #149ddd;
-  /*Cambia el largo de la linea*/
+  text-decoration-thickness: 3px; 
+}
+
+.rayaColorAzulSmall {
+  text-decoration-color: #149ddd;
   
 }
-.fuenteCeleste{
+
+.fuenteCeleste,
+ul i {
   color: #149ddd;
+}
+
+.raya {
+  border-color: #1f5297;
 }
