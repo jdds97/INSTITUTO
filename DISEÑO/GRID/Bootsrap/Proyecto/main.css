@@ -120,13 +120,8 @@ ul li {
   text-decoration-thickness: 3px; 
 }
 
-.rayaColorAzulSmall {
-  text-decoration-color: #149ddd;
-  
-}
-
 .fuenteCeleste,
-ul i {
+#about ul i,.nav-item li:hover>a i {
   color: #149ddd;
 }
 
@@ -140,9 +135,13 @@ ul i {
   height:50px;
 
 }
-.nav-item a{
+.nav-item a, .nav-item i {
   color:#a8a9b4;
 }
-.nav-item a:hover{
-  color:white;
+
+
+/* Estilos al hacer hover en a */
+.nav-item a:hover {
+  color: white;
 }
+

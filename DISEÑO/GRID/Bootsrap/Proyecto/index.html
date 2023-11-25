@@ -22,11 +22,13 @@
     class="nav-bar-toggler d-xl-none bi bi-list d-inline-flex text-white fs-4 rounded-circle align-items-center justify-content-center"
     id="botonMenu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
     aria-label="Toggle navigation"></i>
-    <i class="bi bi-x nav-bar-toggler d-xl-none  d-inline-flex text-white fs-4 rounded-circle align-items-center justify-content-center" id="botonClose"></i>
-    
+  <i class="bi bi-x nav-bar-toggler d-xl-none  d-inline-flex text-white fs-4 rounded-circle align-items-center justify-content-center"
+    id="botonClose"></i>
+
   <!-- Navbar inicio-->
   <nav class="d-flex flex-column nav-bar">
-    <div class="offcanvas-xl  offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-xl  offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel">
 
       <div class=" align-items-center justify-content-center ">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel"></h5>
@@ -45,7 +47,8 @@
       <div class="offcanvas-body ms-3">
         <ul class="navbar-nav mt-3 ">
           <li class="nav-item">
-            <a class="nav-link fs-6" aria-current="page" href="#header"><i class="bi bi-house-door fs-5 p-2"></i>Home</a>
+            <a class="nav-link fs-6" aria-current="page" href="#header"><i class="bi bi-house-door fs-5 p-2"
+                id="icono1"></i>Home</a>
           </li>
           <li class="nav-item ">
             <a class="nav-link fs-6" href="#about"><i class="bi bi-person fs-5 p-2"></i>About</a>
@@ -56,36 +59,39 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link fs-6 " href="#portfolio"><i class="bi bi-journal-text fs-5 p-2"></i>Portfolio</a> 
+            <a class="nav-link fs-6 " href="#portfolio"><i class="bi bi-journal-text fs-5 p-2"></i>Portfolio</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link fs-6 " href="#services"><i class="bi bi-hdd-stack fs-5 p-2"></i>Services</a> 
+            <a class="nav-link fs-6 " href="#services"><i class="bi bi-hdd-stack fs-5 p-2"></i>Services</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link fs-6 " href="#contact"><i class="bi bi-envelope fs-5 p-2"></i>Contact</a> 
+            <a class="nav-link fs-6 " href="#contact"><i class="bi bi-envelope fs-5 p-2"></i>Contact</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <!--Navbar fin-->
+
   <!--Header inicio-->
   <header id="header" class="px-3 d-flex flex-column justify-content-center w-100 text-lg-center ">
     <h1 class="text-white display-3 fw-bold ">Alex Smith</h1>
-    <p class="text-white align-content-start fs-3 fw-lighter">I'm <a class="link-offset-3 text-white custom-underline-color rayaColorAzul  "
-        id="miEnlace" href="#">Photographer</a>
+    <p class="text-white align-content-start fs-3 fw-lighter">I'm <a
+        class="link-offset-3 text-white custom-underline-color rayaColorAzul  " id="miEnlace" href="#">Photographer</a>
       </div>
     </p>
     </div>
   </header>
   <!--Header fin-->
+
   <!--Main inicio-->
   <main class="g-0" id="main">
     <!--Sección About inicio-->
-    <section class="container-fluid" id="about">
+    <section class="container" id="about">
       <div class="row py-5">
         <div class="col-12 ">
           <h2 class="fw-bold mb-5"><a class="link-offset-3 rayaColorAzul seccion-h2" href="#">About</a></h2>
+
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum
             quidem. Sit sint
             consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat
@@ -95,11 +101,11 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-lg-3 ">
-          <img src="img/profile-img.jpeg" alt="" class="img-fluid">
+        <div class="col-12 col-lg-4 order-md-first ">
+          <img src="img/profile-img.jpeg" alt="" class=" w-100">
         </div>
-        <div class="col-12 col-lg-6">
-          <h2 class="fw-bolder seccion-h2 ">UI/UX Designer & Web Developer.</h2>
+        <div class="col-12 col-lg-8">
+          <h3 class="fw-bold seccion-h2 ">UI/UX Designer & Web Developer.</h3>
           <p class="fst-italic">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore
@@ -123,8 +129,6 @@
                   <span>1 May 1995</span>
                 </li>
               </ul>
-
-
             </div>
             <div class="col-lg-6">
               <ul>
@@ -153,10 +157,11 @@
       </div>
       </div>
     </section>
+     <!--Fin sección About -->
 
     <!--Sección Facts-->
     <!--Fila 1 Título y texto-->
-    <section class="container-fluid " id="facts">
+    <section class="container " id="facts">
       <div class="row mt-5">
         <div class="col-12 ">
           <h2 class="fw-bold mb-5"><a class="link-offset-3 rayaColorAzul seccion-h2" href="#">Facts</a></h2>
@@ -166,7 +171,7 @@
         </div>
       </div>
       <!--Fila 2 Iconos-->
-      <div class="row row-gap-5 w-100 my-5">
+      <div class="row row-gap-5 w-100 my-5 ">
         <div class="col-lg-3 col-md-6 col-sm-12  ps-5">
           <i class="bi bi-emoji-smile fuenteCeleste display-2"></i>
           <span class="display-2 fw-bolder ms-3">232</span>
@@ -190,11 +195,11 @@
         <div class="col-12">
         </div>
     </section>
-
     <!--Fin Sección Facts-->
+
     <!--Sección Skills-->
     <!--Fila 1 Título y texto-->
-    <section class="container-fluid w-100" id="skills">
+    <section class="container" id="skills">
       <div class="row mt-5  g-0">
         <div class="col-12">
           <h2 class="fw-bold mb-5"><a class="link-offset-3 rayaColorAzul seccion-h2" href="#">Skills</a></h2>
@@ -204,8 +209,8 @@
         </div>
       </div>
       <!--Fila 2 Barras de progreso -->
-      <div class="row mt-5 g-0">
-        <div class="col-lg-6">
+      <div class="row mt-5 g-0 ">
+        <div class="col-lg-6 ">
           <span class="fw-bold mb-2">HTML <span class="val float-end">100%</span></span>
           <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25"
             aria-valuemin="0" aria-valuemax="100">
@@ -241,7 +246,8 @@
         </div>
       </div>
     </section>
-    <section class="container-fluid" id="resume">
+     <!--Sección Resume-->
+    <section class="container" id="resume">
       <!--Fila 1 Título y texto-->
       <div class="row mt-5">
         <div class="col-12">
@@ -251,89 +257,75 @@
             fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
       </div>
+       <!--Fila 2 Resumen-->
       <div class="row mt-5">
+        <!--Columna 1 del Resumen (Summary,Education)-->
         <div class="col-lg-6">
-          <h3 class="fs-2 fw-bolder">Sumary</h3>
-          <div class="resume-item ps-3 border-2 border-black border-start pb-2 position-relative">
-            <i class="bi bi-circle position-absolute top-0 start-0 translate-middle text-primary"></i>
-            <h4 class="mb-3">ALEX SMITH</h4>
-            <p class="mb-3"><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing
-                and developing user-centered digital/print marketing material from initial concept to final, polished
-                deliverable.</em></p>
-            <ul class="list-unstyled">
+          <h3 class="fs-2 fw-bolder">Summary</h3>
+          <h5 class="fw-bolder"><i class="bi-circle fs-5"></i>ALEX SMITH</h5>
+          <div class="ps-3 border-2 border-primary border-start pb-2  ">
+            <p>
+              <em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and
+                developing user-centered digital/print marketing material from initial concept to final, polished
+                deliverable.</em>
+            </p>
+            <ul>
               <li>Portland par 127, Orlando, FL</li>
               <li>(123) 456-7891</li>
-              <li>alice.barkley@example.com</li>
-            </ul>
+              <li>alice.barkley@example
           </div>
-          <div class="col-lg-6">
-            <h3 class="fs-2 fw-bolder">Summary</h3>
-            <div class="resume-item ps-3 border-2 border-black border-start pb-2 position-relative">
-              <div class="position-absolute mb-5 top-0 start-0 translate-middle rounded-circle border border-primary"
-                style="width: 16px; height: 16px;"></div>
-              <h4 class="mb-3">ALEX SMITH</h4>
-              <p class="mb-3">
-                <em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and
-                  developing user-centered digital/print marketing material from initial concept to final, polished
-                  deliverable.</em>
-              </p>
-              <ul class="list">
-                <li>Portland par 127, Orlando, FL</li>
-                <li>(123) 456-7891</li>
-                <li>alice.barkley@example
-
-                  <h3 class="resume-title">Education</h3>
-                  <div class="resume-item">
-                    <h4>Master of Fine Arts &amp; Graphic Design</h4>
-                    <h5>2015 - 2016</h5>
-                    <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                    <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero
-                      voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-                  </div>
-                  <div class="resume-item">
-                    <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-                    <h5>2010 - 2014</h5>
-                    <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                    <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel
-                      ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque
-                      etlon sader mart dila</p>
-                  </div>
-            </div>
-            <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-              <h3 class="resume-title">Professional Experience</h3>
+          <h3 class="fs-2 fw-bolder">Education</h3>
+          <h5 class="fw-bolder"><i class="bi-circle fs-5"></i>MASTER OF FINE ARTS & GRAPHIC DESIGN</h5>
+          <div class="ps-3 border-2 border-primary border-start pb-2  ">
+            <h5 class="bg-body-secondary">2015 - 2016</h5>
+            <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
+            <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero
+              voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
               <div class="resume-item">
-                <h4>Senior graphic design specialist</h4>
-                <h5>2019 - Present</h5>
-                <p><em>Experion, New York, NY </em></p>
-                <ul>
-                  <li>Lead in the design, development, and implementation of the graphic, layout, and production
-                    communication materials</li>
-                  <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the
-                    project. </li>
-                  <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the
-                    design</li>
-                  <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
-                </ul>
+                <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
+                <h5>2010 - 2014</h5>
+                <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
+                <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel
+                  ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque
+                  etlon sader mart dila</p>
               </div>
-              <div class="resume-item">
-                <h4>Graphic design specialist</h4>
-                <h5>2017 - 2018</h5>
-                <p><em>Stepping Stone Advertising, New York, NY</em></p>
-                <ul>
-                  <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and
-                    advertisements).</li>
-                  <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                  <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                  <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
-                </ul>
-              </div>
-            </div>
           </div>
-
         </div>
+        <!--Columna 2 del Resumen (Proffesional Experience)-->
+      <div class="col-lg-6 ">
+        <h3 class="resume-title">Professional Experience</h3>
+        <div class="resume-item">
+          <h4>Senior graphic design specialist</h4>
+          <h5>2019 - Present</h5>
+          <p><em>Experion, New York, NY </em></p>
+          <ul>
+            <li>Lead in the design, development, and implementation of the graphic, layout, and production
+              communication materials</li>
+            <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the
+              project. </li>
+            <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the
+              design</li>
+            <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
+          </ul>
+        </div>
+        <div class="resume-item">
+          <h4>Graphic design specialist</h4>
+          <h5>2017 - 2018</h5>
+          <p><em>Stepping Stone Advertising, New York, NY</em></p>
+          <ul>
+            <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and
+              advertisements).</li>
+            <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
+            <li>Recommended and consulted with clients on the most appropriate graphic design</li>
+            <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
+          </ul>
+        </div>
+      </div>
+      </di>
     </section>
-    <section id="portfolio" class="container-fluid">
-
+    <!--Fin sección Resume-->
+    <!--Sección Portfolio-->
+    <section id="portfolio" class="container">
       <div class="section-title">
         <h2>Portfolio</h2>
         <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
@@ -721,31 +713,6 @@
   <!--Botón ir hacia arriba-->
   <a href="#" class="d-flex align-items-center justify-content-center active  "><i
       class="bi bi-arrow-up-short bg rounded-circle fs-4 fixed-bottom text-end "></i></a>
-
-
-
-
-  <!--<section class="container-fluid header-bg">
-          <header class="row ">
-            <div class="col-sm-12 col-lg-2 nav-bar">
-                <button class="navbar-toggler  bg-primary  rounded-circle d-md-none" type="button" data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="offcanvas-md offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-                  aria-labelledby="offcanvasNavbarLabel">
-                  <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">HOME</h5>
-                  </div>
-                  <div class="offcanvas-body">
-                    <h2>HOLA</h2>
-                  </div>
-                </div>
-              
-            </div>
-          </header>
-        </section>-->
-
 </body>
 
 </html>
