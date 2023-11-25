@@ -16,50 +16,53 @@
 </head>
 
 <body>
-  <a href="#" class="d-flex align-items-center justify-content-center active  "><i class="bi bi-arrow-up-short rounded-circle fs-4 fixed-bottom text-end to-top"></i></a>
+
   <!-- Botón con el ícono de lista -->
   <i type="button"
-    class="nav-bar-toggler d-md-none bi bi-list d-inline-flex text-white fs-4 rounded-circle align-items-center justify-content-center"
+    class="nav-bar-toggler d-xl-none bi bi-list d-inline-flex text-white fs-4 rounded-circle align-items-center justify-content-center"
     id="botonMenu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
     aria-label="Toggle navigation"></i>
-  <!--Navbar inicio-->
-  <nav class="d-flex flex-column nav-bar ">
-    <div class="offcanvas-lg  offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-      aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
+    <i class="bi bi-x nav-bar-toggler d-xl-none  d-inline-flex text-white fs-4 rounded-circle align-items-center justify-content-center" id="botonClose"></i>
+    
+  <!-- Navbar inicio-->
+  <nav class="d-flex flex-column nav-bar">
+    <div class="offcanvas-xl  offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
+      <div class=" align-items-center justify-content-center ">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel"></h5>
-        <div class="profile text-center">
-          <img src="img/profile-img.jpeg" alt="" class="rounded-circle perfil img-fluid ">
-          <h1 class="text-light">Alex Smith</h1>
-          <div class="mt-3 text-center">
-            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <div class="perfil text-center align-items-center">
+          <img src="img/profile-img.jpeg" alt="" class="rounded-circle " id="perfil">
+          <h1 class="text-light fw-bold fs-4">Alex Smith</h1>
+          <div class="iconos  my-3 pt-2">
+            <a href="#" class="rounded-circle p-2 ms-1"><i class="bi bi-twitter-x fs-6 p-1"></i></a>
+            <a href="#" class="rounded-circle p-2 ms-1"><i class="bi bi-facebook p-1"></i></a>
+            <a href="#" class="rounded-circle p-2 ms-1"><i class="bi bi-instagram p-1"></i></a>
+            <a href="#" class="rounded-circle p-2 ms-1"><i class="bi bi-skype p-1"></i></a>
+            <a href="#" class="rounded-circle p-2 "><i class="bi bi-linkedin p-1"></i></a>
           </div>
         </div>
       </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav">
+      <div class="offcanvas-body ms-3">
+        <ul class="navbar-nav mt-3 ">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link fs-6" aria-current="page" href="#header"><i class="bi bi-house-door fs-5 p-2"></i>Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+          <li class="nav-item ">
+            <a class="nav-link fs-6" href="#about"><i class="bi bi-person fs-5 p-2"></i>About</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+          <li class="nav-item ">
+            <a class="nav-link fs-6 " href="#resume">
+              <i class="bi bi-file-earmark fs-5 p-2"></i>Resume
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link fs-6 " href="#portfolio"><i class="bi bi-journal-text fs-5 p-2"></i>Portfolio</a> 
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link fs-6 " href="#services"><i class="bi bi-hdd-stack fs-5 p-2"></i>Services</a> 
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link fs-6 " href="#contact"><i class="bi bi-envelope fs-5 p-2"></i>Contact</a> 
           </li>
         </ul>
       </div>
@@ -67,22 +70,23 @@
   </nav>
   <!--Navbar fin-->
   <!--Header inicio-->
-  <header id="header" class="px-3 d-flex flex-column justify-content-center w-100 text-lg-center text-">
-    <h1 class="text-white display-4 fw-bold ">Alex Smith</h1>
-    <p class="text-white fs-2 fw-lighter">I'm <a class="link-offset-3 text-white custom-underline-color rayaColorAzul  "
+  <header id="header" class="px-3 d-flex flex-column justify-content-center w-100 text-lg-center ">
+    <h1 class="text-white display-3 fw-bold ">Alex Smith</h1>
+    <p class="text-white align-content-start fs-3 fw-lighter">I'm <a class="link-offset-3 text-white custom-underline-color rayaColorAzul  "
         id="miEnlace" href="#">Photographer</a>
       </div>
     </p>
     </div>
   </header>
   <!--Header fin-->
+  <!--Main inicio-->
   <main class="g-0" id="main">
-    <!--Sección About-->
+    <!--Sección About inicio-->
     <section class="container-fluid" id="about">
-      <div class="row mt-3">
+      <div class="row py-5">
         <div class="col-12 ">
           <h2 class="fw-bold mb-5"><a class="link-offset-3 rayaColorAzul seccion-h2" href="#">About</a></h2>
-          <p class="mt-3">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum
             quidem. Sit sint
             consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat
             sit
@@ -90,12 +94,12 @@
 
         </div>
       </div>
-      <div class="row mt-4 ">
+      <div class="row">
         <div class="col-12 col-lg-3 ">
           <img src="img/profile-img.jpeg" alt="" class="img-fluid">
         </div>
         <div class="col-12 col-lg-6">
-          <h2 class="fw-bold seccion-h2 mt-4">UI/UX Designer & Web Developer.</h2>
+          <h2 class="fw-bolder seccion-h2 ">UI/UX Designer & Web Developer.</h2>
           <p class="fst-italic">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore
@@ -148,13 +152,6 @@
         </div>
       </div>
       </div>
-
-      <div class="row">
-        <div class="col-12">
-
-        </div>
-      </div>
-
     </section>
 
     <!--Sección Facts-->
@@ -205,468 +202,525 @@
             Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
             fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
-
-        <section class="container-fluid" id="skills">
-          <div class="row mt-5 g-0">
-            <div class="col-lg-6">
-              <span class="fw-bold mb-2">HTML <span class="val float-end">100%</span></span>
-              <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0"
-                aria-valuemax="100">
-                <div class="progress-bar" style="width: 100%"></div>
-              </div>
-              <span class="fw-bold mb-2">CSS <span class="val float-end">90%</span></span>
-              <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0"
-                aria-valuemax="100">
-                <div class="progress-bar" style="width: 90%"></div>
-              </div>
-              <span class="fw-bold mb-2">JAVASCRIPT <span class="val float-end">75%</span></span>
-              <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0"
-                aria-valuemax="100">
-                <div class="progress-bar" style="width: 75%"></div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <span class="fw-bold mb-2">PHP <span class="val float-end">80%</span></span>
-              <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0"
-                aria-valuemax="100">
-                <div class="progress-bar" style="width: 80%"></div>
-              </div>
-              <span class="fw-bold mb-2">WORDPRESS/CMS <span class="val float-end">90%</span></span>
-              <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0"
-                aria-valuemax="100">
-                <div class="progress-bar" style="width: 90%"></div>
-              </div>
-              <span class="fw-bold mb-2">PHOTOSHOP <span class="val float-end">55%</span></span>
-              <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0"
-                aria-valuemax="100">
-                <div class="progress-bar" style="width: 55%"></div>
-              </div>
-            </div>
+      </div>
+      <!--Fila 2 Barras de progreso -->
+      <div class="row mt-5 g-0">
+        <div class="col-lg-6">
+          <span class="fw-bold mb-2">HTML <span class="val float-end">100%</span></span>
+          <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" style="width: 100%"></div>
           </div>
-        </section>
-        <section class="container-fluid" id="resume">
-            <div class="row mt-5">
-              <div class="col-12">
-                <h2 class="fw-bold mb-5"><a class="link-offset-3 rayaColorAzul seccion-h2" href="#">Resume</a></h2>
-                <p class="mt-3">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem.
-                  Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-                  fugiat sit in iste officiis commodi quidem hic quas.</p>
-              </div>
-            <div class="row mt-5">
-              <div class="col-lg-6">
-                <h3 class="fs-2 fw-bolder">Sumary</h3>
-                <div class="resume-item ps-3 border-2 border-black border-start pb-2 position-relative">
-                  <i class="bi bi-circle position-absolute top-0 start-0 translate-middle text-primary"></i>
-                  <h4 class="mb-3">ALEX SMITH</h4>
-                  <p class="mb-3"><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
-                  <ul class="list-unstyled">
-                    <li>Portland par 127, Orlando, FL</li>
-                    <li>(123) 456-7891</li>
-                    <li>alice.barkley@example.com</li>
-                  </ul>
-                </div>
-    <div class="col-lg-6">
-    <h3 class="fs-2 fw-bolder">Summary</h3>
-    <div class="resume-item ps-3 border-2 border-black border-start pb-2 position-relative">
-        <div class="position-absolute mb-5 top-0 start-0 translate-middle rounded-circle border border-primary" style="width: 16px; height: 16px;"></div>
-        <h4 class="mb-3">ALEX SMITH</h4>
-        <p class="mb-3">
-            <em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em>
-        </p>
-        <ul class="list">
-            <li>Portland par 127, Orlando, FL</li>
-            <li>(123) 456-7891</li>
-            <li>alice.barkley@example
-
-                <h3 class="resume-title">Education</h3>
-                <div class="resume-item">
-                  <h4>Master of Fine Arts &amp; Graphic Design</h4>
-                  <h5>2015 - 2016</h5>
-                  <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                  <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-                </div>
-                <div class="resume-item">
-                  <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-                  <h5>2010 - 2014</h5>
-                  <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                  <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
-                </div>
-              </div>
-              <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                <h3 class="resume-title">Professional Experience</h3>
-                <div class="resume-item">
-                  <h4>Senior graphic design specialist</h4>
-                  <h5>2019 - Present</h5>
-                  <p><em>Experion, New York, NY </em></p>
-                  <ul>
-                    <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-                    <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
-                    <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-                    <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
-                  </ul>
-                </div>
-                <div class="resume-item">
-                  <h4>Graphic design specialist</h4>
-                  <h5>2017 - 2018</h5>
-                  <p><em>Stepping Stone Advertising, New York, NY</em></p>
-                  <ul>
-                    <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                    <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                    <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                    <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-    
+          <span class="fw-bold mb-2">CSS <span class="val float-end">90%</span></span>
+          <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" style="width: 90%"></div>
           </div>
-        </section>
-        <section id="portfolio" class="portfolio section-bg">
-          <div class="container">
-    
-            <div class="section-title">
-              <h2>Portfolio</h2>
-              <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <span class="fw-bold mb-2">JAVASCRIPT <span class="val float-end">75%</span></span>
+          <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" style="width: 75%"></div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <span class="fw-bold mb-2">PHP <span class="val float-end">80%</span></span>
+          <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" style="width: 80%"></div>
+          </div>
+          <span class="fw-bold mb-2">WORDPRESS/CMS <span class="val float-end">90%</span></span>
+          <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" style="width: 90%"></div>
+          </div>
+          <span class="fw-bold mb-2">PHOTOSHOP <span class="val float-end">55%</span></span>
+          <div class="progress mt-2 mb-5" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" style="width: 55%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container-fluid" id="resume">
+      <!--Fila 1 Título y texto-->
+      <div class="row mt-5">
+        <div class="col-12">
+          <h2 class="fw-bold mb-5"><a class="link-offset-3 rayaColorAzul seccion-h2" href="#">Resume</a></h2>
+          <p class="mt-3">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem.
+            Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
+            fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-lg-6">
+          <h3 class="fs-2 fw-bolder">Sumary</h3>
+          <div class="resume-item ps-3 border-2 border-black border-start pb-2 position-relative">
+            <i class="bi bi-circle position-absolute top-0 start-0 translate-middle text-primary"></i>
+            <h4 class="mb-3">ALEX SMITH</h4>
+            <p class="mb-3"><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing
+                and developing user-centered digital/print marketing material from initial concept to final, polished
+                deliverable.</em></p>
+            <ul class="list-unstyled">
+              <li>Portland par 127, Orlando, FL</li>
+              <li>(123) 456-7891</li>
+              <li>alice.barkley@example.com</li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <h3 class="fs-2 fw-bolder">Summary</h3>
+            <div class="resume-item ps-3 border-2 border-black border-start pb-2 position-relative">
+              <div class="position-absolute mb-5 top-0 start-0 translate-middle rounded-circle border border-primary"
+                style="width: 16px; height: 16px;"></div>
+              <h4 class="mb-3">ALEX SMITH</h4>
+              <p class="mb-3">
+                <em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and
+                  developing user-centered digital/print marketing material from initial concept to final, polished
+                  deliverable.</em>
+              </p>
+              <ul class="list">
+                <li>Portland par 127, Orlando, FL</li>
+                <li>(123) 456-7891</li>
+                <li>alice.barkley@example
+
+                  <h3 class="resume-title">Education</h3>
+                  <div class="resume-item">
+                    <h4>Master of Fine Arts &amp; Graphic Design</h4>
+                    <h5>2015 - 2016</h5>
+                    <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
+                    <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero
+                      voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
+                  </div>
+                  <div class="resume-item">
+                    <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
+                    <h5>2010 - 2014</h5>
+                    <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
+                    <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel
+                      ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque
+                      etlon sader mart dila</p>
+                  </div>
             </div>
-    
-            <div class="row aos-init aos-animate" data-aos="fade-up">
-              <div class="col-lg-12 d-flex justify-content-center">
-                <ul id="portfolio-flters">
-                  <li data-filter="*" class="filter-active">All</li>
-                  <li data-filter=".filter-app" class="">App</li>
-                  <li data-filter=".filter-card" class="">Card</li>
-                  <li data-filter=".filter-web" class="">Web</li>
+            <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+              <h3 class="resume-title">Professional Experience</h3>
+              <div class="resume-item">
+                <h4>Senior graphic design specialist</h4>
+                <h5>2019 - Present</h5>
+                <p><em>Experion, New York, NY </em></p>
+                <ul>
+                  <li>Lead in the design, development, and implementation of the graphic, layout, and production
+                    communication materials</li>
+                  <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the
+                    project. </li>
+                  <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the
+                    design</li>
+                  <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
+                </ul>
+              </div>
+              <div class="resume-item">
+                <h4>Graphic design specialist</h4>
+                <h5>2017 - 2018</h5>
+                <p><em>Stepping Stone Advertising, New York, NY</em></p>
+                <ul>
+                  <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and
+                    advertisements).</li>
+                  <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
+                  <li>Recommended and consulted with clients on the most appropriate graphic design</li>
+                  <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
                 </ul>
               </div>
             </div>
-    
-            <div class="row portfolio-container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100" style="position: relative; height: 755.952px;">
-    
-              <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
-                <div class="portfolio-wrap">
-                  <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-links">
-                    <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-lg-4 col-md-6 portfolio-item filter-web" style="position: absolute; left: 319.984px; top: 0px;">
-                <div class="portfolio-wrap">
-                  <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-links">
-                    <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 639.968px; top: 0px;">
-                <div class="portfolio-wrap">
-                  <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-links">
-                    <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-lg-4 col-md-6 portfolio-item filter-card" style="position: absolute; left: 0px; top: 251.984px;">
-                <div class="portfolio-wrap">
-                  <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-links">
-                    <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-lg-4 col-md-6 portfolio-item filter-web" style="position: absolute; left: 319.984px; top: 251.984px;">
-                <div class="portfolio-wrap">
-                  <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-links">
-                    <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 639.968px; top: 251.984px;">
-                <div class="portfolio-wrap">
-                  <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-links">
-                    <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-lg-4 col-md-6 portfolio-item filter-card" style="position: absolute; left: 0px; top: 503.968px;">
-                <div class="portfolio-wrap">
-                  <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-links">
-                    <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-lg-4 col-md-6 portfolio-item filter-card" style="position: absolute; left: 319.984px; top: 503.968px;">
-                <div class="portfolio-wrap">
-                  <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-links">
-                    <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-lg-4 col-md-6 portfolio-item filter-web" style="position: absolute; left: 639.968px; top: 503.968px;">
-                <div class="portfolio-wrap">
-                  <img src="img/portfolio-9.jpeg" class="img-fluid" alt="">
-                  <div class="portfolio-links">
-                    <a href="assets/img/portfolio/portfolio-9.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-              </div>
-    
-            </div>
-    
           </div>
-        </section>
-        <section id="services" class="services">
-          <div class="container">
-    
-            <div class="section-title">
-              <h2>Services</h2>
-              <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-            </div>
-    
-            <div class="row">
-              <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up">
-                <div class="icon"><i class="bi bi-briefcase"></i></div>
-                <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-              </div>
-              <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                <div class="icon"><i class="bi bi-card-checklist"></i></div>
-                <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-              </div>
-              <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon"><i class="bi bi-bar-chart"></i></div>
-                <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-              </div>
-              <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                <div class="icon"><i class="bi bi-binoculars"></i></div>
-                <h4 class="title"><a href="">Magni Dolores</a></h4>
-                <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-              </div>
-              <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-                <div class="icon"><i class="bi bi-brightness-high"></i></div>
-                <h4 class="title"><a href="">Nemo Enim</a></h4>
-                <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-              </div>
-              <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
-                <div class="icon"><i class="bi bi-calendar4-week"></i></div>
-                <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-                <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-              </div>
-            </div>
-    
-          </div>
-        </section>
-        <section id="testimonials" class="testimonials section-bg">
-          <div class="container">
-    
-            <div class="section-title">
-              <h2>Testimonials</h2>
-              <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-            </div>
-    
-            <div class="testimonials-slider swiper swiper-initialized swiper-horizontal swiper-pointer-events aos-init aos-animate swiper-backface-hidden" data-aos="fade-up" data-aos-delay="100">
-              <div class="swiper-wrapper" id="swiper-wrapper-dedfc3b410618ea24" aria-live="off" style="transform: translate3d(-5736px, 0px, 0px); transition-duration: 600ms;"><div class="swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev" style="width: 936px; margin-right: 20px;" role="group" aria-label="5 / 5" data-swiper-slide-index="4">
-                  <div class="testimonial-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-                    <p>
-                      <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                      Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                      <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                    <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                    <h3>John Larson</h3>
-                    <h4>Entrepreneur</h4>
-                  </div>
-                </div>
-    
-                <div class="swiper-slide swiper-slide-duplicate-active" style="width: 936px; margin-right: 20px;" role="group" aria-label="1 / 5" data-swiper-slide-index="0">
-                  <div class="testimonial-item aos-init aos-animate" data-aos="fade-up">
-                    <p>
-                      <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                      Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                      <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                    <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                    <h3>Saul Goodman</h3>
-                    <h4>Ceo &amp; Founder</h4>
-                  </div>
-                </div><!-- End testimonial item -->
-    
-                <div class="swiper-slide" style="width: 936px; margin-right: 20px;" role="group" aria-label="2 / 5" data-swiper-slide-index="1">
-                  <div class="testimonial-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                    <p>
-                      <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                      Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                      <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                    <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                    <h3>Sara Wilsson</h3>
-                    <h4>Designer</h4>
-                  </div>
-                </div><!-- End testimonial item -->
-    
-                <div class="swiper-slide" style="width: 936px; margin-right: 20px;" role="group" aria-label="3 / 5" data-swiper-slide-index="2">
-                  <div class="testimonial-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                    <p>
-                      <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                      Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                      <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                    <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                    <h3>Jena Karlis</h3>
-                    <h4>Store Owner</h4>
-                  </div>
-                </div><!-- End testimonial item -->
-    
-                <div class="swiper-slide" style="width: 936px; margin-right: 20px;" role="group" aria-label="4 / 5" data-swiper-slide-index="3">
-                  <div class="testimonial-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                    <p>
-                      <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                      Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                      <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                    <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                    <h3>Matt Brandon</h3>
-                    <h4>Freelancer</h4>
-                  </div>
-                </div><!-- End testimonial item -->
-    
-                <div class="swiper-slide swiper-slide-prev swiper-slide-duplicate-next" style="width: 936px; margin-right: 20px;" role="group" aria-label="5 / 5" data-swiper-slide-index="4">
-                  <div class="testimonial-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-                    <p>
-                      <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                      Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                      <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                    <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                    <h3>John Larson</h3>
-                    <h4>Entrepreneur</h4>
-                  </div>
-                </div><!-- End testimonial item -->
-    
-              <div class="swiper-slide swiper-slide-duplicate swiper-slide-active" style="width: 936px; margin-right: 20px;" role="group" aria-label="1 / 5" data-swiper-slide-index="0">
-                  <div class="testimonial-item aos-init aos-animate" data-aos="fade-up">
-                    <p>
-                      <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                      Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                      <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                    <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                    <h3>Saul Goodman</h3>
-                    <h4>Ceo &amp; Founder</h4>
-                  </div>
-                </div></div>
-              <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 5"></span></div>
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-    
-          </div>
-        </section>
-        <section id="contact" class="contact">
-          <div class="container">
-    
-            <div class="section-title">
-              <h2>Contact</h2>
-              <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-            </div>
-    
-            <div class="row aos-init aos-animate" data-aos="fade-in">
-    
-              <div class="col-lg-5 d-flex align-items-stretch">
-                <div class="info">
-                  <div class="address">
-                    <i class="bi bi-geo-alt"></i>
-                    <h4>Location:</h4>
-                    <p>A108 Adam Street, New York, NY 535022</p>
-                  </div>
-    
-                  <div class="email">
-                    <i class="bi bi-envelope"></i>
-                    <h4>Email:</h4>
-                    <p>info@example.com</p>
-                  </div>
-    
-                  <div class="phone">
-                    <i class="bi bi-phone"></i>
-                    <h4>Call:</h4>
-                    <p>+1 5589 55488 55s</p>
-                  </div>
-    
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen=""></iframe>
-                </div>
-    
-              </div>
-    
-              <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label for="name">Your Name</label>
-                      <input type="text" name="name" class="form-control" id="name" required="">
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="name">Your Email</label>
-                      <input type="email" class="form-control" name="email" id="email" required="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="name">Subject</label>
-                    <input type="text" class="form-control" name="subject" id="subject" required="">
-                  </div>
-                  <div class="form-group">
-                    <label for="name">Message</label>
-                    <textarea class="form-control" name="message" rows="10" required=""></textarea>
-                  </div>
-                  <div class="my-3">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                  </div>
-                  <div class="text-center"><button type="submit">Send Message</button></div>
-                </form>
-              </div>
-    
-            </div>
-    
-          </div>
-        </section>
-        <footer id="footer">
-          <div class="container">
-            <div class="copyright">
-              © Copyright <strong><span>iPortfolio</span></strong>
-            </div>
-            <div class="credits">
-              <!-- All the links in the footer should remain intact. -->
-              <!-- You can delete the links only if you purchased the pro version. -->
-              <!-- Licensing information: https://bootstrapmade.com/license/ -->
-              <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-          </div>
-        </footer>
-  </main>
 
+        </div>
+    </section>
+    <section id="portfolio" class="container-fluid">
+
+      <div class="section-title">
+        <h2>Portfolio</h2>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+          consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
+          in iste officiis commodi quidem hic quas.</p>
+      </div>
+
+      <div class="row portfolio-container">
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio-1.jpeg" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="img/portfolio-1.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i
+                  class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio-2.jpeg" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="img/portfolio-2.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i
+                  class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio-3.jpeg" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="img/portfolio-3.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i
+                  class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio-4.jpeg" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="img/portfolio-4.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                title="Card 2"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio-5.jpeg" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="img/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i
+                  class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio-6.jpeg" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="img/portfolio-6.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i
+                  class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio-7.jpeg" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="img/portfolio-7.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                title="Card 1"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio-8.jpeg" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="img/portfolio-8.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                title="Card 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio-9.jpeg" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="img/portfolio-9.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i
+                  class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Services</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+            consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
+            in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up">
+            <div class="icon"><i class="bi bi-briefcase"></i></div>
+            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
+              occaecati cupiditate non provident</p>
+          </div>
+          <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon"><i class="bi bi-card-checklist"></i></div>
+            <h4 class="title"><a href="">Dolor Sitema</a></h4>
+            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat tarad limino ata</p>
+          </div>
+          <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon"><i class="bi bi-bar-chart"></i></div>
+            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur</p>
+          </div>
+          <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon"><i class="bi bi-binoculars"></i></div>
+            <h4 class="title"><a href="">Magni Dolores</a></h4>
+            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum</p>
+          </div>
+          <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon"><i class="bi bi-brightness-high"></i></div>
+            <h4 class="title"><a href="">Nemo Enim</a></h4>
+            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+              voluptatum deleniti atque</p>
+          </div>
+          <div class="col-lg-4 col-md-6 icon-box aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
+            <div class="icon"><i class="bi bi-calendar4-week"></i></div>
+            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum
+              soluta nobis est eligendi</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <section id="testimonials" class="testimonials section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Testimonials</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+            consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
+            in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div
+          class="testimonials-slider swiper swiper-initialized swiper-horizontal swiper-pointer-events aos-init aos-animate swiper-backface-hidden"
+          data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper" id="swiper-wrapper-dedfc3b410618ea24" aria-live="off"
+            style="transform: translate3d(-5736px, 0px, 0px); transition-duration: 600ms;">
+            <div class="swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev"
+              style="width: 936px; margin-right: 20px;" role="group" aria-label="5 / 5" data-swiper-slide-index="4">
+              <div class="testimonial-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa
+                  labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                <h3>John Larson</h3>
+                <h4>Entrepreneur</h4>
+              </div>
+            </div>
+
+            <div class="swiper-slide swiper-slide-duplicate-active" style="width: 936px; margin-right: 20px;"
+              role="group" aria-label="1 / 5" data-swiper-slide-index="0">
+              <div class="testimonial-item aos-init aos-animate" data-aos="fade-up">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium
+                  quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                <h3>Saul Goodman</h3>
+                <h4>Ceo &amp; Founder</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide" style="width: 936px; margin-right: 20px;" role="group" aria-label="2 / 5"
+              data-swiper-slide-index="1">
+              <div class="testimonial-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis
+                  quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                <h3>Sara Wilsson</h3>
+                <h4>Designer</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide" style="width: 936px; margin-right: 20px;" role="group" aria-label="3 / 5"
+              data-swiper-slide-index="2">
+              <div class="testimonial-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim
+                  tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                <h3>Jena Karlis</h3>
+                <h4>Store Owner</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide" style="width: 936px; margin-right: 20px;" role="group" aria-label="4 / 5"
+              data-swiper-slide-index="3">
+              <div class="testimonial-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit
+                  minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                <h3>Matt Brandon</h3>
+                <h4>Freelancer</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide swiper-slide-prev swiper-slide-duplicate-next"
+              style="width: 936px; margin-right: 20px;" role="group" aria-label="5 / 5" data-swiper-slide-index="4">
+              <div class="testimonial-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa
+                  labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                <h3>John Larson</h3>
+                <h4>Entrepreneur</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide swiper-slide-duplicate swiper-slide-active"
+              style="width: 936px; margin-right: 20px;" role="group" aria-label="1 / 5" data-swiper-slide-index="0">
+              <div class="testimonial-item aos-init aos-animate" data-aos="fade-up">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium
+                  quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                <h3>Saul Goodman</h3>
+                <h4>Ceo &amp; Founder</h4>
+              </div>
+            </div>
+          </div>
+          <div
+            class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+            <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button"
+              aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0"
+              role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0"
+              role="button" aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet" tabindex="0"
+              role="button" aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet" tabindex="0"
+              role="button" aria-label="Go to slide 5"></span>
+          </div>
+          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+        </div>
+
+      </div>
+    </section>
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+            consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
+            in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row aos-init aos-animate" data-aos="fade-in">
+
+          <div class="col-lg-5 d-flex align-items-stretch">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>A108 Adam Street, New York, NY 535022</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>info@example.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>+1 5589 55488 55s</p>
+              </div>
+
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+                frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen=""></iframe>
+            </div>
+
+          </div>
+
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="name" required="">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" required="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Subject</label>
+                <input type="text" class="form-control" name="subject" id="subject" required="">
+              </div>
+              <div class="form-group">
+                <label for="name">Message</label>
+                <textarea class="form-control" name="message" rows="10" required=""></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <footer id="footer">
+      <div class="container">
+        <div class="copyright">
+          © Copyright <strong><span>iPortfolio</span></strong>
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <!-- Main fin -->
+  <!--Botón ir hacia arriba-->
+  <a href="#" class="d-flex align-items-center justify-content-center active  "><i
+      class="bi bi-arrow-up-short bg rounded-circle fs-4 fixed-bottom text-end "></i></a>
 
 
 

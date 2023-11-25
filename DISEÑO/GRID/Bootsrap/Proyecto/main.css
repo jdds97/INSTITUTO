@@ -49,7 +49,7 @@ ul li {
 }
 
 /* Media queries */
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .nav-bar {
     position: fixed;
     left: 0;
@@ -86,7 +86,7 @@ ul li {
   background-color: #040b14;
 }
 
-#botonMenu {
+#botonMenu,#botonClose {
   position: fixed;
   right: 15px;
   top: 15px;
@@ -97,22 +97,18 @@ ul li {
   
 }
 
-#botonMenu:focus-visible {
-  display: none; 
+#botonClose::before{
+  display: none;
 }
-
-.offcanvas.show #iconCloseMenu {
-  display: inline-block; 
-}
-
 /* Estilos del encabezado */
 #header {
-  background-image: url("img/hero-bg.jpeg");
+  background: url("img/hero-bg.jpeg") top center fixed;
   background-size: cover;
   height: 100vh;
 }
 
-.offcanvas-header .perfil img {
+
+#perfil {
   margin: 15px auto;
   display: block;
   width: 120px;
@@ -136,4 +132,17 @@ ul i {
 
 .raya {
   border-color: #1f5297;
+}
+.iconos a {
+  color: white;
+  background-color: #212431;
+  width: 100px;
+  height:50px;
+
+}
+.nav-item a{
+  color:#a8a9b4;
+}
+.nav-item a:hover{
+  color:white;
 }
