@@ -58,6 +58,28 @@ function ocultarTodosLosFormularios() {
 
 // aceptarAltaArbol
 function aceptarAltaArbol() {
+  // Recoger los datos del formulario
+  let iTallaje = Number(frmAltaArbol.txtTallaje.value.trim()); //1 validacion
+  let sEspecie = frmAltaArbol.txtEspecie.value.trim(); //2 validación
+  let sFrutal = frmAltaArbol.rbtFrutal; //3
+  let bFrutal = sFrutal == "S" ? true : false; //validacion
+  let sMesFloracion = frmAltaArbol.txtMesFloracion.value; // 4 validacion
+  let oArbol;
+  //Separar codigo y tipo de arbol (para dar de alta un tipo de arbol u otro en el else)
+  if (
+    isNaN(iTallaje) ||
+    sEspecie.length == 0 ||
+    (frmAltaArbol.rbtTipoArbol.value == "caduco" && sMesFloracion.length == 0)
+  ) {
+    alert("Faltan datos por rellenar");
+  } else {
+    let iCodigo = oVivero.siguienteCodigoArbol();
+    if (frmAltaArbol.rbtTipoArbol.value == "caduco") {
+      oArbol = new Caduco(iCodigo, iTallaje, sEspecie, sMesFloracion);
+    } else {
+      oArbol = new Perenne(iCodigo, iTallaje, sEspecie, bFrutal);
+    }
+  }
   // Insertar el nuevo árbol
   if (oVivero.altaArbol(oArbol)) {
     alert("Arbol registrado OK");
@@ -69,11 +91,20 @@ function aceptarAltaArbol() {
 }
 
 function aceptarTallaje() {
-  // Insertar el nuevo árbol
-  let sRespuesta =
+  let iCodigo = Number(frmTallaje.txtCodigoArbol.value.trim());
+  let iTallaje = Number(frmTallaje.txtTallajeArbol.value.trim());
+  if (
+    isNaN(iTallaje) ||
+    iTallaje.length == 0 ||
+    isNaN(iCodigo) ||
+    iCodigo.length == 0
+  ) {
+    alert("Faltan datos por rellenar");
+  } else {
     /*Llamada a tallajeArbol*/
- 
-    alert(sRespuesta);
+    let sRespuesta=oVivero.tallajeArbol(oArbol.codigo,iTallaje);
+  }
+  alert(sRespuesta);
 
   if (sRespuesta.includes("Correcto") > 0) {
     frmTallaje.reset();
@@ -88,7 +119,9 @@ function aceptarListadoPerennes() {
 
   oVentana.document.open();
   oVentana.document.write(
-    "<h1>Listado de árboles perennes de altura mínima: " + iAlturaMinima + " cm</h1>"
+    "<h1>Listado de árboles perennes de altura mínima: " +
+      iAlturaMinima +
+      " cm</h1>"
   );
   oVentana.document.write(/*Listado a mostrar*/);
   oVentana.document.close();
@@ -106,7 +139,9 @@ function aceptarListadoCaducos() {
 
   oVentana.document.open();
   oVentana.document.write(
-    "<h1>Listado de árboles caducos con floración el mes: " + sMesFloracion + "</h1>"
+    "<h1>Listado de árboles caducos con floración el mes: " +
+      sMesFloracion +
+      "</h1>"
   );
   oVentana.document.write(/*listado a mostrar*/);
   oVentana.document.close();
