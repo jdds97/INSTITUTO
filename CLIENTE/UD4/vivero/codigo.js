@@ -58,6 +58,7 @@ function ocultarTodosLosFormularios() {
 
 // aceptarAltaArbol
 function aceptarAltaArbol() {
+<<<<<<< HEAD
   // Recoger los datos del formulario
   let iTallaje = Number(frmAltaArbol.txtTallaje.value.trim()); //1 validacion
   let sEspecie = frmAltaArbol.txtEspecie.value.trim(); //2 validación
@@ -80,6 +81,17 @@ function aceptarAltaArbol() {
       oArbol = new Perenne(iCodigo, iTallaje, sEspecie, bFrutal);
     }
   }
+=======
+  //Pasra quitar los espacios por delante y por detrás
+  let iTallaje=Number(frmAltaArbol.txtTallaje.value);
+  let sEspecie=String(frmAltaArbol.txtEspecie.value.trim());
+  let sMesFloracion=frmAltaArbol.txtMesFloracion.value.trim();
+  let sFrutal=frmAltaArbol.rbtFrutal.value.trim();
+  let bfrutal=sFrutal=="S"?true:false;
+  let oArbol;
+  
+  if (isNaN(iTallaje)||sEspecie.length==0||º) 
+>>>>>>> b5ade577beaa4d99ba334a180eaf93e468221c6b
   // Insertar el nuevo árbol
   if (oVivero.altaArbol(oArbol)) {
     alert("Arbol registrado OK");
