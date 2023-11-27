@@ -58,6 +58,15 @@ function ocultarTodosLosFormularios() {
 
 // aceptarAltaArbol
 function aceptarAltaArbol() {
+  //Pasra quitar los espacios por delante y por detrás
+  let iTallaje=Number(frmAltaArbol.txtTallaje.value);
+  let sEspecie=String(frmAltaArbol.txtEspecie.value.trim());
+  let sMesFloracion=frmAltaArbol.txtMesFloracion.value.trim();
+  let sFrutal=frmAltaArbol.rbtFrutal.value.trim();
+  let bfrutal=sFrutal=="S"?true:false;
+  let oArbol;
+  
+  if (isNaN(iTallaje)||sEspecie.length==0||º) 
   // Insertar el nuevo árbol
   if (oVivero.altaArbol(oArbol)) {
     alert("Arbol registrado OK");
