@@ -71,13 +71,13 @@ ul li {
 }
 
 #skills .progress,
-#resume h3,h6 a {
+h4 a,h6 a {
   color: #050d18;
   border-radius: 0;
 }
 
 #skills .progress-bar,
-#botonMenu,.iconos-services {
+#botonMenu,.iconos-services,#botonForm {
   background-color: #149ddd;
 }
 
@@ -128,7 +128,7 @@ ul li {
 }
 
 .fuenteCeleste,
-#about ul i,.nav-item li:hover>a i {
+#about ul i,.nav-item li:hover>a i ,.iconos-contact {
   color: #149ddd;
 }
 
@@ -151,4 +151,23 @@ ul li {
 .nav-item a:hover {
   color: white;
 }
+.iconos-contact{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#149ddd ;
+  background-color: #149ddd60;
+}
 
+.line {
+  width: 2px;
+  background-color: #173b6c;
+  position: absolute;
+  top: 20px; 
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+}
