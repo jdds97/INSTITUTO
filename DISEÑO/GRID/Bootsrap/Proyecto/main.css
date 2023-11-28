@@ -17,39 +17,64 @@
  * Autor: Jesús de Dios
  * Fecha: 28/11/2023
  */
-/* Importar fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
-/* Estilos generales */
+/* Importar fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+
+/**
+ * Estilos generales
+ */
 body {
   font-family: "Poppins", sans-serif;
   color: #272829;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Raleway", sans-serif;
 }
 
+/**
+ * Estilos de la sección h2
+ */
 .seccion-h2 {
   color: #173b6c;
 }
 
+/**
+ * Estilos de párrafo
+ */
 p {
   font-family: "Poppins", sans-serif;
 }
 
+/**
+ * Estilos de la lista en el elemento con id "about"
+ */
 #about ul {
   list-style: none;
   padding: 0;
 }
 
+/**
+ * Estilos de los elementos de la lista
+ */
 ul li {
   margin-bottom: 15px;
 }
 
-/* Media queries */
+/**
+ * Media queries para pantallas con un ancho mínimo de 1200px
+ */
 @media (min-width: 1200px) {
+  /**
+   * Estilos de la barra de navegación
+   */
   .nav-bar {
     position: fixed;
     left: 0;
@@ -57,36 +82,59 @@ ul li {
     height: 100%;
     width: 300px;
     background-color: #040b14;
-    z-index: 1000; 
+    z-index: 1000;
   }
 
+  /**
+   * Estilos del elemento con id "main"
+   */
   #main {
     margin-left: 300px;
   }
 }
 
-#skills,#portfolio,#testimonials {
+/**
+ * Estilos de las secciones con id "skills", "portfolio" y "testimonials"
+ */
+#skills,
+#portfolio,
+#testimonials {
   background-color: #f5f8fd;
   font-family: "Poppins", sans-serif;
 }
 
+/**
+ * Estilos de los elementos con clase "progress", enlaces h4 y h6
+ */
 #skills .progress,
-h4 a,h6 a {
+h4 a,
+h6 a {
   color: #050d18;
   border-radius: 0;
 }
 
+/**
+ * Estilos de las barras de progreso, botón de menú, iconos de servicios y botón de formulario
+ */
 #skills .progress-bar,
-#botonMenu,.iconos-services,#botonForm {
+#botonMenu,
+.iconos-services,
+#botonForm {
   background-color: #149ddd;
 }
 
-/* Estilos del menú offcanvas */
+/**
+ * Estilos del menú offcanvas
+ */
 #offcanvasNavbar {
   background-color: #040b14;
 }
 
-#botonMenu,#botonClose {
+/**
+ * Estilos del botón de menú y botón de cerrar
+ */
+#botonMenu,
+#botonClose {
   position: fixed;
   right: 15px;
   top: 15px;
@@ -94,9 +142,12 @@ h4 a,h6 a {
   width: 40px;
   height: 40px;
   cursor: pointer;
-  
 }
-.iconos-services{
+
+/**
+ * Estilos de los iconos de servicios
+ */
+.iconos-services {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -104,17 +155,56 @@ h4 a,h6 a {
   justify-content: center;
   align-items: center;
 }
-#botonClose::before{
+/*
+*/
+.resume-titulo {
+  position: relative;
+}
+
+.resume-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 2px;
+  background-color: #000; /* Color del borde */
+  border-radius: 0 50% 50% 0; /* Añade redondez al borde izquierdo */
+}
+
+.circulo {
+  position: relative;
+  top:4%;
+  left:0.2%; /* La posición del círculo se alinea con el borde izquierdo */
+  transform: translate(-50%, -50%);
+  width: 20px; /* Diámetro del círculo */
+  height: 20px; /* Diámetro del círculo */
+  border-radius: 50%;
+  border-color: #173b6c;
+  border:2px solid #173b6c ; /* Color del círculo */
+  z-index: 100; /* Para que esté sobre el borde */
+  background-color: white;
+}
+
+/**
+ * Estilos del botón de cerrar
+ */
+#botonClose::before {
   display: none;
 }
-/* Estilos del encabezado */
+
+/**
+ * Estilos del encabezado
+ */
 #header {
   background: url("img/hero-bg.jpeg") top center fixed;
   background-size: cover;
   height: 100vh;
 }
 
-
+/**
+ * Estilos del elemento con id "perfil"
+ */
 #perfil {
   margin: 15px auto;
   display: block;
@@ -122,52 +212,105 @@ h4 a,h6 a {
   border: 8px solid #2c2f3f;
 }
 
+/**
+ * Estilos de la línea de texto con color azul
+ */
 .rayaColorAzul {
   text-decoration-color: #149ddd;
-  text-decoration-thickness: 3px; 
+  text-decoration-thickness: 3px;
 }
 
+/**
+ * Estilos de la fuente celeste, iconos de la lista en "about", iconos de contacto y elementos de navegación
+ */
 .fuenteCeleste,
-#about ul i,.nav-item li:hover>a i ,.iconos-contact {
+#about ul i,
+.nav-item li:hover > a i,
+.iconos-contact,
+.nav-item a:hover #icono1,
+.nav-item a:hover #icono2,
+.nav-item a:hover #icono3,
+.nav-item a:hover #icono4,
+.nav-item a:hover #icono5,
+.nav-item a:hover #icono6 {
   color: #149ddd;
 }
 
+/**
+ * Estilos de la línea
+ */
 .raya {
   border-color: #1f5297;
 }
+
+/**
+ * Estilos de los iconos
+ */
 .iconos a {
   color: white;
   background-color: #212431;
   width: 50px;
-  height:50px;
-
-}
-.nav-item a, .nav-item i {
-  color:#a8a9b4;
+  height: 50px;
 }
 
+/**
+ * Estilos de los elementos de navegación y sus iconos
+ */
+.nav-item a,
+.nav-item i {
+  color: #a8a9b4;
+}
 
-/* Estilos al hacer hover en a */
+/**
+ * Estilos al hacer hover en los enlaces de navegación
+ */
 .nav-item a:hover {
   color: white;
 }
-.iconos-contact{
+
+/**
+ * Estilos de los iconos de contacto
+ */
+.iconos-contact {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color:#149ddd ;
+  color: #149ddd;
   background-color: #149ddd60;
 }
 
-.line {
-  width: 2px;
-  background-color: #173b6c;
-  position: absolute;
-  top: 20px; 
-  left: 50%;
-  transform: translateX(-50%);
-  display: block;
+
+/**
+ * Estilos de los botones de slide
+ */
+#botonSlide1,
+#botonSlide2,
+#botonSlide3 {
+  border-radius: 80%;
+  width: 15px;
+  height: 15px;
+  background-color: #149ddd;
+}
+
+/**
+ * Estilos del icono "to top"
+ */
+.icono-to-top  {
+  width: 50px;
+  height: 50px;
+  background-color: #149ddd;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+}
+.borde{
+  border-left: 2.5px solid #173b6c;
 }
