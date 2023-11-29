@@ -87,9 +87,8 @@ class Vivero {
     let encontrado = this.arboles.find((arbol1) => arbol1.codigo == iCodigo);
     if (encontrado == undefined) {
       alert("El árbol no existe");
-    } else {
-      return encontrado;
     }
+    return encontrado;
   }
   toHTMLTable() {
     let tabla =
@@ -108,14 +107,25 @@ class Vivero {
   }
   tallajeArbol(iCodigo, iTallaje) {
     let oArbol = this.buscarArbol(iCodigo);
+    let mensaje = "";
     if (oArbol != undefined) {
       if (oArbol.tallaje > iTallaje) {
-        alert("El tallaje introducido es menor que el tallaje actual");
+        mensaje += "El tallaje introducido es menor que el tallaje actual";
       } else {
         oArbol.tallaje = iTallaje;
-        alert("Tallaje actualizado correctamente");
-        return "Correcto";
+        mensaje += "Tallaje actualizado correctamente";
+        mensaje += oArbol instanceof Perenne ? "Perenne" : "Caduco";
       }
     }
+    return mensaje
+  }
+  listadoPerennes(iMinAltura){
+    return tablehtml
+  }
+  listadoCaducos(sMesFloracion){
+    return tablehtml
+  }
+  totatlArbolesVenta(){
+    return numero
   }
 }
