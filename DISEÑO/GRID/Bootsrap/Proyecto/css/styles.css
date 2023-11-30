@@ -1,23 +1,3 @@
-/**
- * Archivo: main.css
- * Ruta: /g:/DOCUMENTOS DISCO LOCAL C/INSTITUTO 2023-2024/INSTITUTO 23-24/INSTITUTO/DISEÑO/GRID/Bootsrap/Proyecto/main.css
- * 
- * Descripción: Este archivo contiene los estilos CSS para un proyecto utilizando Bootstrap.
- * 
- * Contenido:
- * - Importación de fuentes desde Google Fonts.
- * - Estilos generales para el cuerpo del documento.
- * - Estilos para encabezados y secciones.
- * - Estilos para listas y elementos de lista.
- * - Media queries para estilos responsivos.
- * - Estilos para la sección de habilidades.
- * - Estilos para el menú offcanvas.
- * - Estilos para el encabezado.
- * 
- * Autor: Jesús de Dios
- * Fecha: 28/11/2023
- */
-
 /* Importar fuentes */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
@@ -75,21 +55,10 @@ ul li {
   /**
    * Estilos de la barra de navegación
    */
-  .nav-bar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 300px;
+  #navbar {
+    height: 100vh;
     background-color: #040b14;
     z-index: 1000;
-  }
-
-  /**
-   * Estilos del elemento con id "main"
-   */
-  #main {
-    margin-left: 300px;
   }
 }
 
@@ -155,36 +124,6 @@ h6 a {
   justify-content: center;
   align-items: center;
 }
-/*
-*/
-.resume-titulo {
-  position: relative;
-}
-
-.resume-item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 2px;
-  background-color: #000; /* Color del borde */
-  border-radius: 0 50% 50% 0; /* Añade redondez al borde izquierdo */
-}
-
-.circulo {
-  position: relative;
-  top:4%;
-  left:0.2%; /* La posición del círculo se alinea con el borde izquierdo */
-  transform: translate(-50%, -50%);
-  width: 20px; /* Diámetro del círculo */
-  height: 20px; /* Diámetro del círculo */
-  border-radius: 50%;
-  border-color: #173b6c;
-  border:2px solid #173b6c ; /* Color del círculo */
-  z-index: 100; /* Para que esté sobre el borde */
-  background-color: white;
-}
 
 /**
  * Estilos del botón de cerrar
@@ -197,7 +136,7 @@ h6 a {
  * Estilos del encabezado
  */
 #header {
-  background: url("img/hero-bg.jpeg") top center fixed;
+  background: url("../img/hero-bg.jpeg") top center fixed;
   background-size: cover;
   height: 100vh;
 }
@@ -244,6 +183,7 @@ h6 a {
 .nav-item a:checked+#icono6 {
   color: #149ddd;
 }
+
 /**
  * Estilos de la línea
  */
@@ -290,7 +230,6 @@ h6 a {
   background-color: #149ddd60;
 }
 
-
 /**
  * Estilos de los botones de slide
  */
@@ -306,7 +245,7 @@ h6 a {
 /**
  * Estilos del icono "to top"
  */
-.icono-to-top  {
+.icono-to-top {
   width: 50px;
   height: 50px;
   background-color: #149ddd;
@@ -319,22 +258,33 @@ h6 a {
   right: 10px;
   color: white;
 }
-.borde{
+
+/* Estilos para elementos con borde izquierdo */
+.borde {
   border-left: 2.5px solid #173b6c;
 }
-/*
-*/
-.distribucion{
+
+/* Estilos para un contenedor de distribución */
+#distribucion {
   background-color: #ffffff;
   border-radius: 20px;
   align-items: center;
   text-align: center;
-  width: 30%;
+  width: 300px;
   margin-left: auto;
   margin-right: auto;
   display: block;
 }
-.distribucion .btn-check:hover+.btn,.distribucion .btn-check:checked+.btn{
+
+/* Estilos para botones dentro del contenedor de distribución */
+#distribucion .btn-check:hover+.btn,
+#distribucion .btn-check:checked+.btn {
   cursor: pointer;
   color: #149ddd;
+}
+
+/* Estilos para un cuadro con fondo de color */
+.cuadro {
+  background-color: #e4edf9;
+  width: 150px;
 }
