@@ -101,8 +101,7 @@ function aceptarTallaje() {
   ) {
     alert("Faltan datos por rellenar");
   } else {
-
-    let sRespuesta=oVivero.tallajeArbol(oArbol.codigo,iTallaje);
+    let sRespuesta = oVivero.tallajeArbol(oArbol.codigo, iTallaje);
   }
   alert(sRespuesta);
 
@@ -114,11 +113,11 @@ function aceptarTallaje() {
 
 function aceptarListadoPerennes() {
   //Crear el listado
-  let iAlturaMinima=Number(frmListadoPerennes.txtAlturaMinima.value.trim());
-  let listadoAlturaMinima=oVivero.listadoPerennes(iAlturaMinima); 
+  let iAlturaMinima = Number(frmListadoPerennes.txtAlturaMinima.value.trim());
+  let listadoAlturaMinima = oVivero.listadoPerennes(iAlturaMinima);
   let oVentana = open("", "_blank", "");
 
-  oVentana.document.open(); 
+  oVentana.document.open();
   oVentana.document.write(
     "<h1>Listado de árboles perennes de altura mínima: " +
       iAlturaMinima +
@@ -134,9 +133,9 @@ function aceptarListadoPerennes() {
 }
 
 function aceptarListadoCaducos() {
-  let sMesFloracion=frmListadoCaducos.txtMesListado.value.trim();
+  let sMesFloracion = frmListadoCaducos.txtMesListado.value.trim();
   debugger;
-  let listadoCaducos=oVivero.listadoCaducos(sMesFloracion);
+  let listadoCaducos = oVivero.listadoCaducos(sMesFloracion);
 
   let oVentana = open("", "_blank", "");
 
