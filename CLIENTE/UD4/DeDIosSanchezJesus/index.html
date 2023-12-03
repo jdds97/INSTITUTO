@@ -35,7 +35,7 @@
                 </li>
                 <li>
                     <a href="#" onclick="gestionFormularios('frmAltaVehiculo');">Alta Vehiculo</a>
-                </li>
+                </li>''
                 <li>
                     <a href="#" onclick="gestionFormularios('frmAltaAlquiler');">Alta Alquiler</a>
                 </li>
@@ -49,10 +49,13 @@
                     <a href="#" onclick="mostrarListadoVehiculos();">Listado Vehiculos</a>
                 </li>
                 <li>
-                    <a href="#" onclick="mostrarListadoAlquileres('frmFechasInicioYFin');">Listado Alquileres</a>
+                    <a href="#" onclick="gestionFormularios('frmAlquileresPorFecha');">Listado Alquileres
+                        Entre Fechas</a>
                 </li>
                 <li>
-                    <a href="#" onclick="mostrarListadoAlquileresCliente('frmAlquilerCliente');">Listado Alquileres
+                    <a href="#"
+                        onclick="gestionFormularios('frmAlquileresCliente');">Listado
+                        Alquileres
                         Cliente</a>
                 </li>
             </ul>
@@ -137,43 +140,49 @@
                             <label for="rbtMoto">Moto</label>
                         </div>
                         <div class="radio">
-                            <input name="rbtTipoMoto" id="rbtCiclo" value="Ciclo" type="radio
-                            " />
-                            <label for="rbtTipoMotoSi">¿Ciclomotor?</label>
+                            <br>
+                            <h5>¿Ciclomotor?</h5>
+                            <br>
+                            <input name="rbtTipoMoto" id="rbtCiclo" value="Si" type="radio" />
+                            <label for="rbtTipoMotoSi">Si</label>
                             </div>
+                            <div class="radio">
+                                <input name="rbtTipoMoto" id="rbtNoCiclo" value="NoCiclo" type="radio" />
+                                <label for="rbtTipoMotoNo">No</label>
                         </div>
-                        <div class="radio">
-                            <input name="rbtTipoVehiculo" id="rbtCoche" value="Coche" type="radio" />
-                            <label for="rbtCoche">Coche</label>
-                            <!--Verificar si se trata de un coche -->
-                            <div id="cocheOptions" style="display: none;">
-                                <div class="form-group">
-                                    <label class="col-xs-4 control-label" for="selCombustible">Combustible</label>
-                                    <div class="col-xs-4">
-                                        <select id="selCombustible" name="selCombustible" class="form-control">
-                                            <option value="Diesel">Diesel</option>
-                                            <option value="Gasolina">Gasolina</option>
-                                            <option value="Hibrido">Híbrido</option>
-                                            <option value="Electrico">Eléctrico</option>
-                                        </select>
-                                    </div>
+                    </div>
+                    <div class="radio">
+                        <input name="rbtTipoVehiculo" id="rbtCoche" value="Coche" type="radio" />
+                        <label for="rbtCoche">Coche</label>
+                        <!--Verificar si se trata de un coche -->
+                        <div id="cocheOptions" style="display: none;">
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label" for="selCombustible">Combustible</label>
+                                <div class="col-xs-4">
+                                    <select id="selCombustible" name="selCombustible" class="form-control">
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Gasolina">Gasolina</option>
+                                        <option value="Hibrido">Híbrido</option>
+                                        <option value="Electrico">Eléctrico</option>
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-xs-4 control-label" for="selPlazas">Número de
-                                        plazas</label>
-                                    <div class="col-xs-4">
-                                        <select id="selPlazas" name="selPlazas" class="form-control">
-                                            <option value="2">2 plazas</option>
-                                            <option value="4">4 plazas</option>
-                                            <option value="5">5 plazas</option>
-                                            <option value="7">7 plazas</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label" for="selPlazas">Número de
+                                    plazas</label>
+                                <div class="col-xs-4">
+                                    <select id="selPlazas" name="selPlazas" class="form-control">
+                                        <option value="2">2 plazas</option>
+                                        <option value="4">4 plazas</option>
+                                        <option value="5">5 plazas</option>
+                                        <option value="7">7 plazas</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <!--Botón Aceptar input-->
                 <div class="form-group">
                     <label class="col-xs-4 control-label" for="btnAceptarAltaCatalogo"></label>
@@ -241,84 +250,101 @@
                             class="form-control input-md" type="date" />
                     </div>
                 </div>
+                <!--Id del Alquiler-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtIdAlquiler">Id Alquiler</label>
+                    <div class="col-xs-4">
+                        <input id="txtIdAlquiler" name="txtIdAlquiler" placeholder="Id Alquiler"
+                            class="form-control input-md" type="text" />
+                    </div>
+                </div>
+                <!--Si quiere dar de baja nada más que un coche-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="rbtTipoBaja">Tipo de baja</label>
+                    <div class="col-xs-4">
+                        <div class="radio">
+                            <input name="rbtTipoBaja" id="rbtBajaAlquiler" value="BajaAlquiler" checked="checked"
+                                type="radio" />
+                            <label for="rbtBajaAlquiler">Baja Alquiler</label>
+                        </div>
+                        <div class="radio">
+                            <input name="rbtTipoBaja" id="rbtBajaVehiculo" value="BajaVehiculo" type="radio" />
+                            <label for="rbtBajaVehiculo">Baja Vehiculo</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Matrícula input-->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtMatricula">Matrícula</label>
+                    <div class="col-xs-4">
+                        <input id="txtMatricula" name="txtMatricula" placeholder="Matrícula"
+                            class="form-control input-md" type="text" />
+                    </div>
+                </div>
+                <!-- Boton aceptar baja alquiler -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="btnAceptarBajaAlquiler"></label>
+                    <div class="col-xs-4">
+                        <input type="button" id="btnAceptarBajaAlquiler" name="btnAceptarBajaAlquiler"
+                            class="btn btn-primary" value="Aceptar" onclick="aceptarBajaAlquiler();" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <!--frmFechasInicioYFinAlquileres-->
+        <form class="form-horizontal" name="frmAlquileresPorFecha" id="frmAlquileresPorFecha">
+            <fieldset>
+                <!-- Fecha inicio y fin alquileres -->
+                <legend>Listado Alquileres Entre Fechas</legend>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtFechaInicio">Fecha de inicio</label>
+                    <div class="col-xs-4">
+                        <input id="txtFechaInicio" name="txtFechaInicio" placeholder="Fecha de inicio"
+                            class="form-control input-md" type="date" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtFechaFin">Fecha de finalización</label>
+                    <div class="col-xs-4">
+                        <input id="txtFechaFin" name="txtFechaFin" placeholder="Fecha de finalización"
+                            class="form-control input-md" type="date" />
+                    </div>
+                </div>
+                <!-- Boton aceptar listado alquileres -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="btnAceptarListadoAlquileres"></label>
+                    <div class="col-xs-4">
+                        <input type="button" id="btnAceptarListadoAlquileres" name="btnAceptarListadoAlquileres"
+                            class="btn btn-primary" value="Aceptar" onclick="aceptarListadoAlquileres();" />
+                    </div>
+            </fieldset>
+        </form>
+        <!--frmFechasInicioYFinAlquileresCliente-->
+        <form class="form-horizontal" name="frmAlquileresCliente" id="frmAlquileresCliente">
+            <fieldset>
+                <legend>Listado Alquileres Cliente</legend>
+                <!-- Dni Cliente input -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="txtDNICliente">DNI Cliente</label>
+                    <div class="col-xs-4">
+                        <input id="txtDNICliente" name="txtDNICliente" placeholder="DNI Cliente"
+                            class="form-control input-md" type="text" />
+                    
+                </div>
+                </div>
+                <!-- Boton aceptar listado alquileres -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="btnAceptarListadoAlquileresClientes"></label>
+                    <div class="col-xs-4">
+                        <input type="button" id="btnAceptarListadoAlquileresClientes" name="btnAceptarListadoAlquileresClientes"
+                            class="btn btn-primary" value="Aceptar" onclick="aceptarListadoAlquileresCliente();" />
+                    </div>
             </fieldset>
         </form>
     </div>
-
-
-
-
-
-
-
-
-    <!-- Text input-->
-    <div class="form-group">
-        <label class="col-xs-4 control-label" for="txtUnidades">Unidades añadidas</label>
-        <div class="col-xs-4">
-            <input id="txtUnidades" name="txtUnidades" placeholder="Unidades" class="form-control input-md"
-                type="text" />
-        </div>
-    </div>
-
-    <!-- Input Button -->
-    <div class="form-group">
-        <label class="col-xs-4 control-label" for="btnAceptarEntradaStock"></label>
-        <div class="col-xs-4">
-            <input type="button" id="btnAceptarEntradaStock" name="btnAceptarEntradaStock" class="btn btn-primary"
-                value="Aceptar" onclick="aceptarEntradaStock();" />
-        </div>
-    </div>
-    </fieldset>
-    </form>
-
-    <form class="form-horizontal" name="frmSalidaStock" id="frmSalidaStock">
-        <fieldset>
-            <!-- Form Name -->
-            <legend>Salida de Stock</legend>
-
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-xs-4 control-label" for="txtMarca">Marca</label>
-                <div class="col-xs-4">
-                    <input id="txtMarca" name="txtMarca" placeholder="Marca" class="form-control input-md"
-                        type="text" />
-                </div>
-            </div>
-
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-xs-4 control-label" for="txtModelo">Modelo</label>
-                <div class="col-xs-4">
-                    <input id="txtModelo" name="txtModelo" placeholder="Modelo" class="form-control input-md"
-                        type="text" />
-                </div>
-            </div>
-
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-xs-4 control-label" for="txtUnidades">Unidades eliminadas</label>
-                <div class="col-xs-4">
-                    <input id="txtUnidades" name="txtUnidades" placeholder="Unidades" class="form-control input-md"
-                        type="text" />
-                </div>
-            </div>
-
-            <!-- Input Button -->
-            <div class="form-group">
-                <label class="col-xs-4 control-label" for="btnAceptarSalidaStock"></label>
-                <div class="col-xs-4">
-                    <input type="button" id="btnAceptarSalidaStock" name="btnAceptarSalidaStock" class="btn btn-primary"
-                        value="Aceptar" onclick="aceptarSalidaStock();" />
-                </div>
-            </div>
-        </fieldset>
-    </form>
-    </div>
     <script src="js/objetos.js"></script>
-    <script src="js/codigo.js"></script>
+    <script src="js/principal.js"></script>
 </body>
-<script src="js/objetos.js"></script>
-<script src="js/principal.js"></script>
+
 
 </html>

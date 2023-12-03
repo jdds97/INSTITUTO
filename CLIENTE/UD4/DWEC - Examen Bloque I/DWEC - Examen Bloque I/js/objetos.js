@@ -180,7 +180,7 @@ class Tienda {
     }
     listadoCatalogo() {
         let tabla =
-            "<table border='1'><thead><th>Tipo</th><th>Marca</th><th>Modelo</th><th>Precio</th><th>Tarjeta Grafica</th></thead><tbody>";
+            "<table class='table' border='1'><thead><th>Tipo</th><th>Marca</th><th>Modelo</th><th>Precio</th><th>Tarjeta Grafica</th></thead><tbody>";
         let listadoCatalogo = this._catalogo;
         for (let ordenador of listadoCatalogo) {
             tabla += ordenador.toHtmlRow();
