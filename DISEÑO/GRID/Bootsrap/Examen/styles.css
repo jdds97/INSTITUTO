@@ -1,0 +1,19 @@
+.header-bg{
+    background-image: url(https://demo.bestpixels.net/klank-html/preview/travel-lead/images/banner.jpg);
+    background-size: cover;
+    height: 100vh;
+    box-shadow: inset 0 0 0 1000px rgba(255, 192, 203, 0.5);
+}
+#header{
+    background-color: aqua;
+}
+#titulo {
+    color: deeppink;
+}
+#boton{
+    background-color: rgb(252, 51, 158);
+}
+#imagen1,#imagen2,#imagen3,#imagen4{
+    margin-top: -30px;
+}
+
