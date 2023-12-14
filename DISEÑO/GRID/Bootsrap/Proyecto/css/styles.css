@@ -175,12 +175,12 @@ h6 a {
   color: #149ddd;
 }
 
-.nav-item a:checked+#icono1,
-.nav-item a:checked+#icono2,
-.nav-item a:checked+#icono3,
-.nav-item a:checked+#icono4,
-.nav-item a:checked+#icono5,
-.nav-item a:checked+#icono6 {
+.nav-item a:checked + #icono1,
+.nav-item a:checked + #icono2,
+.nav-item a:checked + #icono3,
+.nav-item a:checked + #icono4,
+.nav-item a:checked + #icono5,
+.nav-item a:checked + #icono6 {
   color: #149ddd;
 }
 
@@ -277,8 +277,8 @@ h6 a {
 }
 
 /* Estilos para botones dentro del contenedor de distribución */
-#distribucion .btn-check:hover+.btn,
-#distribucion .btn-check:checked+.btn {
+#distribucion .btn-check:hover + .btn,
+#distribucion .btn-check:checked + .btn {
   cursor: pointer;
   color: #149ddd;
 }
