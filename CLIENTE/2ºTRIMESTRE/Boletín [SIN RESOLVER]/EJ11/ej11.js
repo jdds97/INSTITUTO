@@ -1,3 +1,3 @@
-event.target.addEventListener("click", (event) => {
-  event.target.innerHTML = event.target.tagName;
+parrafo.addEventListener("click", (event) => {
+  alert(event.currentTarget.tagName);
 });
