@@ -1,2 +1,12 @@
-{% extends 'tienda/base.html'%} {%block content%} {%block title%}{%endblock %}{%
-block other_content %}{% endblock %} {%endfor%} {%endblock %}
+{% extends 'tienda/base.html'%} {%block content%} {%block title%}{%endblock
+%}{%block other_content %} Eliminar producto {{producto.nombre}}{% endblock %}
+<form method="post">
+  {% csrf_token %}
+  <p>
+    ¿Estas seguro de que quieres eliminar el producto? {{ producto.nombre}}?
+  </p>
+  {{ form.as_p }}
+  <input type="submit" value="Confirmar Eliminación" class="btn btn-danger" />
+  <a href="{% url 'listar_productos' %}" class="btn btn-primary">Cancelar</a>
+</form>
+{%endfor%} {%endblock %}

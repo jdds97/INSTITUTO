@@ -1,3 +1,6 @@
+"""
+Urls accesibles para la tienda virtual 
+"""
 from django.urls import path
 from .views import (
     CrearProducto,
@@ -9,7 +12,9 @@ from .views import (
 
 urlpatterns = [
     path(
-        "tienda/admin/productos/nuevo/", CrearProducto.as_view(), name="crear_producto"
+        "tienda/admin/productos/nuevo/",
+        CrearProducto.as_view(),
+        name="crear_producto",
     ),
     path(
         "tienda/admin/productos/listado/",

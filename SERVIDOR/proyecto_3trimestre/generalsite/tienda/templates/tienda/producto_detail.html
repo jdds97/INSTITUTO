@@ -7,4 +7,12 @@ content%}
 <h3>Precio - {{producto.precio}}</h3>
 <h3>Stock - {{producto.unidades}}</h3>
 <h3>¿Es vip? :{{producto.vip |yesno:"Si,No,En proceso" }}</h3>
+
+<a class="btn btn-warning" href="{% url 'editar_producto' producto.pk %}">
+  Editar_producto
+</a>
+
+<a class="btn btn-warning" href="{% url 'eliminar_producto' producto.pk %}">
+  Eliminar producto
+</a>
 {%endblock %}
