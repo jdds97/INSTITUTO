@@ -1,0 +1,30 @@
+<div class="col-md-6">
+  <form action="{% url  'buscar_productos' %}" method="GET" class="d-flex mt-4">
+    <input
+      type="text"
+      name="titulo"
+      class="form-control"
+      placeholder="Buscar"
+    />
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Buscar</button>
+  </form>
+  <a
+    href="{% url 'productos_disponibles' usuario=request.user %}"
+    class="btn btn-primary text-end"
+  >
+    Productos Disponibles
+  </a>
+  <a href="{% url 'crear_productos'%}" class="btn btn-primary">
+    Crear producto
+  </a>
+  <a
+    href="{% url 'mis_libros' usuario=request.user.username %}"
+    class="btn btn-primary"
+  >
+    Mis Productos
+  </a>
+  <a href="{% url 'listar_productos' %}" class="btn btn-warning">
+    Volver a los libros
+  </a>
+</div>

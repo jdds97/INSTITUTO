@@ -1,0 +1,10 @@
+{% extends 'tienda/base.html'%}{%block title%}Lista Productos{%endblock %}
+{%block other_content %}Listado Productos{% endblock %} {%block content%} 
+{%for producto in producto_list%}
+<h2>Nombre - {{producto.nombre}}</h2>
+<h3>Marca - {{producto.marca}}</h3>
+<h3>Modelo -{{producto.modelo}}</h3>
+<h3>Precio - {{producto.precio}}</h3>
+<h3>Stock - {{producto.unidades}}</h3>
+<h3>¿Es vip? :{{producto.vip |yesno:"Si,No,En proceso" }}</h3>
+{%endfor%} {%endblock %}
