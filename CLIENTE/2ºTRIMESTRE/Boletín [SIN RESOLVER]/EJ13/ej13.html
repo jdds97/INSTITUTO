@@ -11,28 +11,45 @@
     <h1>Validación de formularios con expresiones regulares</h1>
     <form action="formularioProcesado.html" name="formulario">
       <label>Apellidos: </label>
-      <input type="text" name="apellidos" />
+      <input
+        type="text"
+        name="apellidos"
+        pattern="(^[AÁEÉIÍOÓUÚÑ-Z][aáeéiíoóuúñ-z]+)(\s)\1*"
+        required
+      />
       <br />
       <label>Nombre: </label>
-      <input type="text" name="nombre" />
+      <input
+        type="text"
+        name="nombre"
+        pattern="(^[AÁEÉIÍOÓUÚÑ-Z][aáeéiíoóuúñ-z]+)(\s)\1*"
+        required
+      />
       <br />
       <label>Fecha de nacimiento: </label>
-      <input type="text" name="fechaNacimiento" placeholder="DD/MM/AAAA" />
+      <input
+        type="text"
+        name="fechaNacimiento"
+        placeholder="DD/MM/AAAA"
+        pattern="(\d{2}\/\)\1\/\\d{4}"
+        required
+      />
       <br />
       <label>DNI: </label>
-      <input type="text" name="dni" />
+      <input type="text" name="dni" pattern="\d{7,8}[A-Z]" required />
       <br />
       <label>Correo electrónico: </label>
-      <input type="text" name="email" />
+      <input type="text" name="email" pattern="\w+@."
+       />
       <br />
       <label>Usuario IDEA: </label>
-      <input type="text" name="usuario" />
+      <input type="text" name="usuario"  />
       <br />
       <label>Teléfono: </label>
-      <input type="text" name="telefono" />
+      <input type="text" name="telefono"  />
       <br />
       <label>Usuario de Twitter: </label>
-      <input type="text" name="twitter" />
+      <input type="text" name="twitter"  />
       <br />
       <input type="submit" name="submit" value="Procesar Formulario" />
     </form>
