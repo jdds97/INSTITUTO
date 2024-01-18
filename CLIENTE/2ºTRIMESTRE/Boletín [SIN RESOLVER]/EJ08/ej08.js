@@ -1,5 +1,5 @@
 function cancelarDigitos() {
-  if (!isNaN(txtEntrada.value)) alert("No se pueden introducir dígitos");
+  if (!isNaN(txtEntrada.value)) 
   txtEntrada.value = "";
 }
 txtEntrada.addEventListener("input", cancelarDigitos);
