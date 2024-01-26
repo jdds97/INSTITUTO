@@ -3,9 +3,9 @@
 <!DOCTYPE club-padel [
 <!ELEMENT club-padel (cliente+)>
 <!ELEMENT cliente (persona+,nombre,apellido1,apellido2?,telefono*,correo?,socio)+>
-<!ELEMENT persona (genero+,id+)>
-<!ELEMENT genero (#PCDATA)>
-<!ELEMENT id (#PCDATA)>
+<!ELEMENT persona (#PCDATA)>
+<!ATTLIST persona genero CDATA #REQUIRED>
+<!ATTLIST persona id CDATA #REQUIRED>
 <!ELEMENT nombre (#PCDATA)>
 <!ELEMENT apellido1 (#PCDATA)>
 <!ELEMENT apellido2 (#PCDATA)>
@@ -15,9 +15,7 @@
 ]>
 <club-padel>
     <cliente>
-        <persona>
-            <genero>Femenino</genero>
-            <id>1</id>
+        <persona genero="femenino" id="1">
         </persona>
         <nombre>
             Alberto
@@ -36,9 +34,7 @@
         <socio>SÍ</socio>
     </cliente>
     <cliente>
-        <persona>
-            <genero>Masculino</genero>
-            <id>2</id>
+        <persona genero="Masculino" id="2">
         </persona>
         <nombre>
             Antonio
