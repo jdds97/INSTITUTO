@@ -1,0 +1,45 @@
+const comerciales = ["Carmen Gómez", "Lucía Gil", "Andrés Martínez", "Antonio Salinas"];
+const clientes = [
+  [
+    "Alimentación Daniel",
+    "Cash El Puerto",
+    "Ultramarinos Claudia",
+    "Supermercado Nazareno",
+    "Alimentación Guzmán",
+    "Supermercado Superprecio",
+    "Kiosko La Espera",
+    "M&B Alimentación",
+    "Ultramarinos Vistabella",
+  ],
+  [
+    "Ultramarinos La Delicia",
+    "Supermercado La Esquinita",
+    "Alimentación Gómez",
+    "Supermercado El Veloz",
+    "Kiosko 24h Desavío",
+    "Tienda La Manchega",
+    "Ultramarinos Tajo",
+    "Alimentación Víctor",
+  ],
+  [
+    "Alimentación Millán",
+    "Supermercado La Guinda",
+    "Kiosko Callejón",
+    "Tienda Cantero",
+    "Ultramarinos Mérida",
+    "Alimentación Moreno",
+    "Cash El Hostelero",
+  ],
+  [
+    "Kiosko La Lumbre",
+    "Tienda Abad",
+    "Ultramarinos Hernández",
+    "Alimentación Cervantes",
+    "Cash El Panal",
+    "CyR Alimentación",
+    "Supermercado Los Mosqueteros",
+    "Alimentación Carpanta",
+    "Supermercado El Percebe",
+  ],
+];
+const categorias = ["Aceite", "Encurtidos", "Salsas"];
