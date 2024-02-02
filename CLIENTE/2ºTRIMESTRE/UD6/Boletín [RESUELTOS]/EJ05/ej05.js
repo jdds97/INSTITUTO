@@ -11,7 +11,9 @@ function crearTablero() {
     let idColumna = 65; //charCode de la A
     for (let j = 0; j < columnas; j++) {
       let celda = fila.insertCell();
-      let textoCelda = document.createTextNode(String.fromCharCode(idColumna) + idFila);
+      let textoCelda = document.createTextNode(
+        String.fromCharCode(idColumna) + idFila
+      );
       celda.appendChild(textoCelda);
       idColumna += 1;
       if (celdaNegra) {
