@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet href="./style.css" type="text/css"?>
+<!DOCTYPE club-padel [
+<!ELEMENT club-padel (cliente+)>
+<!ELEMENT cliente (persona+,nombre,apellido1,apellido2?,telefono*,correo?,socio)+>
+<!ELEMENT persona (#PCDATA)>
+<!ATTLIST persona genero CDATA #REQUIRED>
+<!ATTLIST persona id CDATA #REQUIRED>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT apellido1 (#PCDATA)>
+<!ELEMENT apellido2 (#PCDATA)>
+<!ELEMENT telefono (#PCDATA)>
+<!ELEMENT correo (#PCDATA) >
+<!ELEMENT socio (#PCDATA) >
+]>
+<club-padel>
+    <cliente>
+        <persona genero="femenino" id="1">
+        </persona>
+        <nombre>
+            Alberto
+        </nombre>
+        <apellido1>
+            Ruiz
+        </apellido1>
+        <apellido2></apellido2>
+        <telefono>
+            650596413
+            609453423
+        </telefono>
+        <correo>aruiz@gmail.com
+            aruiz@hotmail.com
+        </correo>
+        <socio>SÍ</socio>
+    </cliente>
+    <cliente>
+        <persona genero="Masculino" id="2">
+        </persona>
+        <nombre>
+            Antonio
+        </nombre>
+        <apellido1>
+            Pérez
+        </apellido1>
+        <apellido2>Chicón</apellido2>
+        <telefono>
+
+        </telefono>
+        <correo>aperez@gmail.com</correo>
+        <socio>No</socio>
+    </cliente>
+</club-padel>

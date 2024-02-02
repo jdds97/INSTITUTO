@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet href="./style.css" type="text/css"?>
+<!DOCTYPE empresa [
+<!ELEMENT empresa (departamento+,nombre,apellidos,cargo,telefono-movil,telefono-fijo)>
+<!ELEMENT departamento (#PCDATA)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT apellidos (#PCDATA)>
+<!ELEMENT cargo (#PCDATA)>
+<!ELEMENT telefono-movil (#PCDATA)>
+<!ELEMENT telefono-fijo (#PCDATA) >
+]>
+<empresa>
+    <departamento>
+        Nombre del departamento
+    </departamento>
+    <nombre>
+        Nombre y
+    </nombre>
+    <apellidos>
+        apellidos
+    </apellidos>
+    <cargo>
+        Cargo
+    </cargo>
+    <telefono-movil>
+        Teléfono móvil
+    </telefono-movil>
+    <telefono-fijo>
+        Teléfono fijo
+    </telefono-fijo>
+</empresa>

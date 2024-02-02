@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE pokémon [
+    <!ELEMENT pokémon (name,moves,types,weight,sprites)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT moves (move*)>
+<!ELEMENT move (#PCDATA)>
+<!ELEMENT types (type*)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT weight (#PCDATA)>
+<!ELEMENT sprites (front_default,back_default)>
+<!ELEMENT front_default (#PCDATA)>
+<!ELEMENT back_default (#PCDATA)>
+]>
+<pokémon>
+    <name>Machoke</name>
+    <moves>
+        <move>
+            <name>karate-chop</name>
+        </move>
+    </moves>
+    <types>
+        <type>
+            <name>Fighting</name>
+        </type>
+    </types>
+    <weight>705</weight>
+    <sprites>
+        <front_default>https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/67.png</front_default>
+        <back_default>
+            https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/67.png
+        </back_default>
+    </sprites>
+</pokémon>

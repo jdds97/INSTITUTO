@@ -1,0 +1,11 @@
+/* Quiero que los siguientes nombres sean columnas th  : Persona,nombre,apellido1,apellido2,teĺefono,correo,socio
+persona,
+nombre,
+apellido1,
+apellido2,
+teĺefono,
+correo,
+socio {
+  display: table-row;
+}
+ */
