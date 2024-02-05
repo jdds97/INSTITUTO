@@ -67,8 +67,8 @@ class Gestor {
   }
   añadirClientesComerciales(clientes) {
     this.comerciales.forEach((comercial, i) => {
-      comercial = new Array(...clientes[i]);
-      this.clientes.push(comercial);
+      let clientesComercial = new Array(...clientes[i]);
+      this.clientes[comercial] = clientesComercial;
     });
   }
 }

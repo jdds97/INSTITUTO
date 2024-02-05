@@ -93,16 +93,41 @@ function cargaDatosIniciales() {
 //
 let formComercial = document.getElementById("frmComercial");
 formComercial.addEventListener("change", cargarComerciales);
-function cargarComerciales(comerciales) {
-  comerciales.forEach((comercial) => {
+
+function cargarComerciales(gestor) {
+  for (let comercial in gestor.clientes) {
     let option = document.createElement("option");
     option.value = comercial;
     option.text = comercial;
     formComercial.comerciales.add(option);
-    let clientes = gestor.clientes.filter(
-      (comercialCliente) => comercialCliente === comercial
-    );
-  
+  }
+  // Cargar los clientes del primer comercial
+  let primerComercial = formComercial.comerciales.options[0].value;
+  cargarClientes(primerComercial, gestor);
+}
+
+formComercial.comerciales.addEventListener("change", () => {
+  let comercialSeleccionado = formComercial.comerciales.value;
+
+  // Primero, eliminar los clientes antiguos
+  document.querySelectorAll(".cliente").forEach((cliente) => cliente.remove());
+
+  // Luego, cargar los clientes del nuevo comercial
+  cargarClientes(comercialSeleccionado, gestor);
+});
+
+function cargarClientes(comercialSeleccionado, gestor) {
+  gestor.clientes[comercialSeleccionado].forEach((cliente) => {
+    let cuadroCliente = document.createElement("div");
+    cuadroCliente.innerHTML = cliente;
+    cuadroCliente.classList.add("pagado");
+    cuadroCliente.classList.add("cliente");
+    formComercial.parentNode.append(cuadroCliente);
+    // Añadir un manejador de eventos de clic al cliente
+    cuadroCliente.addEventListener("click", function () {
+      this.classList.toggle("pendiente");
+    });
   });
 }
-cargarComerciales(comerciales, gestor);
+
+cargarComerciales(gestor);
