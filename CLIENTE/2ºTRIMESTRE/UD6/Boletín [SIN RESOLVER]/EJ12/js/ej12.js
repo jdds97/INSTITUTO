@@ -27,12 +27,12 @@ function aplicar() {
     imagen.classList.contains("seleccionado")
   );
   let botonClonar = document.querySelector('input[name="clonar"]').value;
-
+  let imagenClonada;
   //Quitarla del contenedor donde esta con replace u otro metodo el nodo a el contenedor
   //donde se elija
   if (botonClonar) {
     imagenesSeleccionadas.forEach((imagen) => {
-      let imagenClonada = imagen.cloneNode(true);
+      imagenClonada = imagen.cloneNode(true);
     });
   } else {
     imagenesSeleccionadas.forEach((imagen) => {
