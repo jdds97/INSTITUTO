@@ -125,7 +125,7 @@ function cargarClientes(comercialSeleccionado, gestor) {
     formComercial.parentNode.append(cuadroCliente);
     // Añadir un manejador de eventos de clic al cliente
     cuadroCliente.addEventListener("click", function () {
-      this.classList.toggle("pendiente");
+      cuadroCliente.classList.toggle("pendiente");
     });
   });
 }
