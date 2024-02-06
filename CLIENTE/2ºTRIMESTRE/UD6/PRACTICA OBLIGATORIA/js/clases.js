@@ -170,12 +170,11 @@ class Catalogo {
     this._productos = value;
   }
   addProducto(idProducto, nombreProducto, precioUnidad, idCategoria) {
-    let productoExiste =
-      this._productos.filter(
-        (producto) => producto.idProducto === idProducto
-      ) == length;
+    let productoExiste = this._productos.filter(
+      (producto) => producto.idProducto === idProducto
+    ).length;
 
-    if (!productoExiste === 0) {
+    if (productoExiste === 0) {
       this._productos.push(
         new Producto(idProducto, nombreProducto, precioUnidad, idCategoria)
       );

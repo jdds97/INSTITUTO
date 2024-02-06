@@ -51,7 +51,24 @@ const categorias = ["Aceite", "Encurtidos", "Salsas"];
 
 const catalogo = new Catalogo();
 const gestor = new Gestor(comerciales, clientes, categorias);
+//Agregamos el titulo de pedido al 3 cuadro
+let cuadroPedido = document.getElementById("pedido");
+let h1 = document.createElement("h1");
+let formComercial = document.getElementById("frmComercial");
+formComercial.addEventListener("change", cargarComerciales);
+formComercial.comerciales.addEventListener("change", limpiarClientes);
+h1.innerText = "Pedido";
+cuadroPedido.prepend(h1);
 
+/**
+ * Carga los datos iniciales en el catálogo.
+ * @function cargaDatosIniciales
+ * @memberof catalogo
+ * @returns {void}
+ */
+/**
+ * Carga los datos iniciales en el catálogo.
+ */
 function cargaDatosIniciales() {
   catalogo.addProducto(1, "Aceite Oliva Virgen Extra 1l (Caja 20)", 178.15, 0);
   catalogo.addProducto(
@@ -90,10 +107,11 @@ function cargaDatosIniciales() {
   catalogo.addProducto(15, "Salsa Alioli 350 gr (Caja de 50)", 113.75, 2);
   catalogo.addProducto(16, "Salsa Barbacoa 500gr (Caja de 30)", 67.5, 2);
 }
-//
-let formComercial = document.getElementById("frmComercial");
-formComercial.addEventListener("change", cargarComerciales);
-
+cargaDatosIniciales();
+/**
+ * Carga los comerciales en el formulario y carga los clientes del primer comercial.
+ * @param {object} gestor - El objeto gestor que contiene la lista de clientes.
+ */
 function cargarComerciales(gestor) {
   for (let comercial in gestor.clientes) {
     let option = document.createElement("option");
@@ -106,28 +124,72 @@ function cargarComerciales(gestor) {
   cargarClientes(primerComercial, gestor);
 }
 
-formComercial.comerciales.addEventListener("change", () => {
+/**
+ * Limpia los clientes antiguos y carga nuevos clientes según el comercial seleccionado.
+ * @function limpiarClientes
+ */
+function limpiarClientes() {
   let comercialSeleccionado = formComercial.comerciales.value;
-
   // Primero, eliminar los clientes antiguos
   document.querySelectorAll(".cliente").forEach((cliente) => cliente.remove());
-
-  // Luego, cargar los clientes del nuevo comercial
   cargarClientes(comercialSeleccionado, gestor);
-});
-
+  primerTitulo(comercialSeleccionado, gestor);
+}
+/**
+ * Añade un título h2 al cuadro de pedido con el nombre del cliente seleccionado.
+ * @param {number} comercialSeleccionado - El índice del cliente seleccionado en el arreglo de clientes del gestor.
+ * @param {object} gestor - El objeto gestor que contiene el arreglo de clientes.
+ */
+function primerTitulo(comercialSeleccionado, gestor) {
+  debugger;
+  let h2 = document.createElement("h2");
+  h2.innerText = gestor.clientes[comercialSeleccionado][0];
+  cuadroPedido.firstChild.after(h2);
+}
+/**
+ * Carga los clientes del gestor seleccionado en el cuadro de pedido.
+ * @param {string} comercialSeleccionado - El nombre del comercial seleccionado.
+ * @param {object} gestor - El objeto gestor que contiene la lista de clientes.
+ */
 function cargarClientes(comercialSeleccionado, gestor) {
+  cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
   gestor.clientes[comercialSeleccionado].forEach((cliente) => {
     let cuadroCliente = document.createElement("div");
     cuadroCliente.innerHTML = cliente;
     cuadroCliente.classList.add("pagado");
     cuadroCliente.classList.add("cliente");
     formComercial.parentNode.append(cuadroCliente);
-    // Añadir un manejador de eventos de clic al cliente
-    cuadroCliente.addEventListener("click", function () {
-      cuadroCliente.classList.toggle("pendiente");
-    });
+    cuadroCliente.addEventListener("click", pendiente);
   });
 }
+/**
+ * Función que marca un cliente como pendiente y muestra su título en el cuadro de pedido.
+ * @param {Event} event - El evento que desencadena la función.
+ */
+function pendiente(event) {
+  cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
+  let tituloCliente = document.createElement("h2");
+  tituloCliente.innerText = "Cliente " + event.target.innerText;
+  cuadroPedido.append(tituloCliente);
+  event.target.classList.add("pendiente");
+  event.target.addEventListener("click", pagado);
+}
+/**
+ * Función que se ejecuta cuando se marca un elemento como pagado.
+ * Elimina el texto de todos los elementos h2 dentro de cuadroPedido si cuadroCliente no tiene la clase 'pendiente'.
+ *
+ * @param {Event} event - El evento que desencadenó la función.
+ */
+function pagado(event) {
+  // Obtener todos los elementos h2 dentro de cuadroPedido
+  let h2Elements = cuadroPedido.querySelectorAll("h2");
 
+  // Iterar sobre cada elemento h2
+  h2Elements.forEach((h2) => {
+    // Si cuadroCliente tiene la clase 'pagado', eliminar el texto del elemento h2
+    if (!event.target.classList.contains("pendiente")) {
+      h2.innerText = "";
+    }
+  });
+}
 cargarComerciales(gestor);
