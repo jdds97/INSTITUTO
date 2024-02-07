@@ -1,4 +1,4 @@
-/**
+/*
  * Datos iniciales
  */
 const comerciales = [
@@ -130,14 +130,13 @@ function contentLoaded() {
  */
 function cargaComerciales() {
   for (let comercial in gestor.clientes) {
-    gestor.pedidos.push([]);
     let option = document.createElement("option");
     option.value = comercial;
     option.text = comercial;
     frmComercial.comerciales.add(option);
   }
 }
-frmComercial.comerciales.addEventListener("change", limpiarClientes);
+
 /**
  * Carga los clientes del comercial seleccionado en el cuadro de pedido.
  */
@@ -145,9 +144,6 @@ function cargaClientes() {
   document.querySelectorAll(".cliente").forEach((cliente) => cliente.remove());
   let comercialSeleccionado = frmComercial.comerciales.value;
   gestor.clientes[comercialSeleccionado].forEach((cliente) => {
-    gestor.pedidos.forEach((comercial) => {
-      comercial.push([]);
-    });
     let cuadroCliente = document.createElement("div");
     cuadroCliente.innerHTML = cliente;
     cuadroCliente.classList.add("pagado");
@@ -194,7 +190,7 @@ function cargaProductos() {
   });
 }
 /**
- * Función que marca un cliente como seleccionado y muestra su título en el cuadro de pedido.
+ * Función que marca un cliente como pendiente y muestra su título en el cuadro de pedido.
  * @param {Event} event - El evento que desencadena la función.
  */
 
@@ -223,6 +219,28 @@ function pagado(event) {
     }
   });
 }
+/**
+ *
+ */
+// function cargarProductos(categoria, gestor) {
+//   frmControles
+//     .querySelector('select[name="productos"]')
+//     .getElementsByTagName("option")
+//     .forEach((producto) => cliente.remove());
+//   gestor.clientes[categoria].forEach((cliente) => {
+//     let cuadroCliente = document.createElement("div");
+//     .addEventListener("click", pendiente);
+//   });
+// }
+
+// let unidades = document.getElementById("teclado");
+// unidades.addEventListener("click", cargarUnidades);
+// function cargarUnidades(event) {
+//   let unidad = event.target.value;
+//   let unidadesTabla += unidad;
+//   let pedido =
+//   gestor.pedidos[comercialSeleccionado][clienteSeleccionado].push(producto);
+// }
 contentLoaded();
 cargaComerciales();
 cargaDatosIniciales();
