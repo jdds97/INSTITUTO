@@ -54,12 +54,11 @@ const gestor = new Gestor(comerciales, clientes, categorias);
 //Agregamos el titulo de pedido al 3 cuadro
 let cuadroPedido = document.getElementById("pedido");
 let h1 = document.createElement("h1");
-let formComercial = document.getElementById("frmComercial");
-formComercial.addEventListener("change", cargarComerciales);
-formComercial.comerciales.addEventListener("change", limpiarClientes);
+let frmComercial = document.getElementById("frmComercial");
+
 h1.innerText = "Pedido";
 cuadroPedido.prepend(h1);
-
+let frmControles = document.getElementById("frmControles");
 /**
  * Carga los datos iniciales en el catálogo.
  * @function cargaDatosIniciales
@@ -112,24 +111,28 @@ cargaDatosIniciales();
  * Carga los comerciales en el formulario y carga los clientes del primer comercial.
  * @param {object} gestor - El objeto gestor que contiene la lista de clientes.
  */
+frmComercial.addEventListener("change", cargarComerciales);
+
 function cargarComerciales(gestor) {
   for (let comercial in gestor.clientes) {
+    gestor.pedidos.push([]);
     let option = document.createElement("option");
     option.value = comercial;
     option.text = comercial;
-    formComercial.comerciales.add(option);
+    frmComercial.comerciales.add(option);
   }
   // Cargar los clientes del primer comercial
-  let primerComercial = formComercial.comerciales.options[0].value;
+  let primerComercial = frmComercial.comerciales.options[0].value;
   cargarClientes(primerComercial, gestor);
 }
-
+frmComercial.comerciales.addEventListener("change", limpiarClientes);
 /**
  * Limpia los clientes antiguos y carga nuevos clientes según el comercial seleccionado.
  * @function limpiarClientes
  */
 function limpiarClientes() {
-  let comercialSeleccionado = formComercial.comerciales.value;
+  debugger;
+  let comercialSeleccionado = frmComercial.comerciales.value;
   // Primero, eliminar los clientes antiguos
   document.querySelectorAll(".cliente").forEach((cliente) => cliente.remove());
   cargarClientes(comercialSeleccionado, gestor);
@@ -141,10 +144,10 @@ function limpiarClientes() {
  * @param {object} gestor - El objeto gestor que contiene el arreglo de clientes.
  */
 function primerTitulo(comercialSeleccionado, gestor) {
-  debugger;
   let h2 = document.createElement("h2");
-  h2.innerText = gestor.clientes[comercialSeleccionado][0];
-  cuadroPedido.firstChild.after(h2);
+  h2.innerHTML = gestor.clientes[comercialSeleccionado][0];
+  h2.innerHTML += "Hola";
+  cuadroPedido.prepend(h2);
 }
 /**
  * Carga los clientes del gestor seleccionado en el cuadro de pedido.
@@ -154,24 +157,27 @@ function primerTitulo(comercialSeleccionado, gestor) {
 function cargarClientes(comercialSeleccionado, gestor) {
   cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
   gestor.clientes[comercialSeleccionado].forEach((cliente) => {
+    gestor.pedidos.forEach((comercial) => {
+      comercial.push([]);
+    });
     let cuadroCliente = document.createElement("div");
     cuadroCliente.innerHTML = cliente;
     cuadroCliente.classList.add("pagado");
     cuadroCliente.classList.add("cliente");
-    formComercial.parentNode.append(cuadroCliente);
-    cuadroCliente.addEventListener("click", pendiente);
+    frmComercial.parentNode.append(cuadroCliente);
+    cuadroCliente.addEventListener("click", clienteSeleccionado);
   });
 }
 /**
- * Función que marca un cliente como pendiente y muestra su título en el cuadro de pedido.
+ * Función que marca un cliente como seleccionado y muestra su título en el cuadro de pedido.
  * @param {Event} event - El evento que desencadena la función.
  */
-function pendiente(event) {
+function clienteSeleccionado(event) {
   cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
   let tituloCliente = document.createElement("h2");
-  tituloCliente.innerText = "Cliente " + event.target.innerText;
+  tituloCliente.innerText = "Cliente " + event.currentTarget.innerText;
   cuadroPedido.append(tituloCliente);
-  event.target.classList.add("pendiente");
+
   event.target.addEventListener("click", pagado);
 }
 /**
@@ -193,3 +199,42 @@ function pagado(event) {
   });
 }
 cargarComerciales(gestor);
+/***
+ *
+ */
+function cargarCategorias(gestor) {
+  gestor.categorias.forEach((categoria, i) => {
+    let option = document.createElement("option");
+    option.value = i;
+    option.text = categoria;
+    frmControles.categorias.add(option);
+  });
+
+  // Cargar los clientes del primer comercial
+  let primeraCategoria = frmControles.categorias.options[0].value;
+  cargarProductos(primeraCategoria, gestor);
+}
+frmControles.addEventListener("change", cargarCategorias);
+frmComercial.comerciales.addEventListener("change", limpiarCategorias);
+/**
+ *
+ */
+// function cargarProductos(categoria, gestor) {
+//   frmControles
+//     .querySelector('select[name="productos"]')
+//     .getElementsByTagName("option")
+//     .forEach((producto) => cliente.remove());
+//   gestor.clientes[categoria].forEach((cliente) => {
+//     let cuadroCliente = document.createElement("div");
+//     .addEventListener("click", pendiente);
+//   });
+// }
+cargarCategorias(gestor);
+// let unidades = document.getElementById("teclado");
+// unidades.addEventListener("click", cargarUnidades);
+// function cargarUnidades(event) {
+//   let unidad = event.target.value;
+//   let unidadesTabla += unidad;
+//   let pedido =
+//   gestor.pedidos[comercialSeleccionado][clienteSeleccionado].push(producto);
+// }
