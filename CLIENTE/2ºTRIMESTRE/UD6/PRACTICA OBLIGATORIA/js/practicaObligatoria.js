@@ -1,3 +1,6 @@
+/**
+ * Datos iniciales
+ */
 const comerciales = [
   "Carmen Gómez",
   "Lucía Gil",
@@ -51,23 +54,22 @@ const categorias = ["Aceite", "Encurtidos", "Salsas"];
 
 const catalogo = new Catalogo();
 const gestor = new Gestor(comerciales, clientes, categorias);
-//Agregamos el titulo de pedido al 3 cuadro
+/**
+ * Francotirador y addEventListener principales
+ */
 let cuadroPedido = document.getElementById("pedido");
-let h1 = document.createElement("h1");
-let formComercial = document.getElementById("frmComercial");
-formComercial.addEventListener("change", cargarComerciales);
-formComercial.comerciales.addEventListener("change", limpiarClientes);
-h1.innerText = "Pedido";
-cuadroPedido.prepend(h1);
-
+let frmComercial = document.getElementById("frmComercial");
+frmComercial.comerciales.addEventListener("change", cargaClientes);
+let frmControles = document.getElementById("frmControles");
+frmControles.categorias.addEventListener("change", cargaProductos);
+/**
+ * Funciones
+ */
 /**
  * Carga los datos iniciales en el catálogo.
  * @function cargaDatosIniciales
  * @memberof catalogo
  * @returns {void}
- */
-/**
- * Carga los datos iniciales en el catálogo.
  */
 function cargaDatosIniciales() {
   catalogo.addProducto(1, "Aceite Oliva Virgen Extra 1l (Caja 20)", 178.15, 0);
@@ -107,71 +109,96 @@ function cargaDatosIniciales() {
   catalogo.addProducto(15, "Salsa Alioli 350 gr (Caja de 50)", 113.75, 2);
   catalogo.addProducto(16, "Salsa Barbacoa 500gr (Caja de 30)", 67.5, 2);
 }
-cargaDatosIniciales();
+/**
+ * Función que se ejecuta cuando el contenido del documento HTML ha sido cargado.
+ * Comprueba si existe un objeto gestor y si tiene comerciales registrados.
+ * Si se cumplen las condiciones, establece el valor del primer comercial en el formulario y carga los clientes.
+ */
+function contentLoaded() {
+  document.addEventListener("DOMContentLoaded", () => {
+    if (gestor && gestor.comerciales && gestor.comerciales.length > 0) {
+      frmComercial.comerciales.value = gestor.comerciales[0];
+      cargaClientes();
+      cargaProductos();
+    }
+  });
+}
+
 /**
  * Carga los comerciales en el formulario y carga los clientes del primer comercial.
- * @param {object} gestor - El objeto gestor que contiene la lista de clientes.
+ *
  */
-function cargarComerciales(gestor) {
+function cargaComerciales() {
   for (let comercial in gestor.clientes) {
     let option = document.createElement("option");
     option.value = comercial;
     option.text = comercial;
-    formComercial.comerciales.add(option);
+    frmComercial.comerciales.add(option);
   }
-  // Cargar los clientes del primer comercial
-  let primerComercial = formComercial.comerciales.options[0].value;
-  cargarClientes(primerComercial, gestor);
 }
 
 /**
- * Limpia los clientes antiguos y carga nuevos clientes según el comercial seleccionado.
- * @function limpiarClientes
+ * Carga los clientes del comercial seleccionado en el cuadro de pedido.
  */
-function limpiarClientes() {
-  let comercialSeleccionado = formComercial.comerciales.value;
-  // Primero, eliminar los clientes antiguos
+function cargaClientes() {
   document.querySelectorAll(".cliente").forEach((cliente) => cliente.remove());
-  cargarClientes(comercialSeleccionado, gestor);
-  primerTitulo(comercialSeleccionado, gestor);
-}
-/**
- * Añade un título h2 al cuadro de pedido con el nombre del cliente seleccionado.
- * @param {number} comercialSeleccionado - El índice del cliente seleccionado en el arreglo de clientes del gestor.
- * @param {object} gestor - El objeto gestor que contiene el arreglo de clientes.
- */
-function primerTitulo(comercialSeleccionado, gestor) {
-  debugger;
-  let h2 = document.createElement("h2");
-  h2.innerText = gestor.clientes[comercialSeleccionado][0];
-  cuadroPedido.firstChild.after(h2);
-}
-/**
- * Carga los clientes del gestor seleccionado en el cuadro de pedido.
- * @param {string} comercialSeleccionado - El nombre del comercial seleccionado.
- * @param {object} gestor - El objeto gestor que contiene la lista de clientes.
- */
-function cargarClientes(comercialSeleccionado, gestor) {
-  cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
+  let comercialSeleccionado = frmComercial.comerciales.value;
   gestor.clientes[comercialSeleccionado].forEach((cliente) => {
     let cuadroCliente = document.createElement("div");
     cuadroCliente.innerHTML = cliente;
     cuadroCliente.classList.add("pagado");
     cuadroCliente.classList.add("cliente");
-    formComercial.parentNode.append(cuadroCliente);
-    cuadroCliente.addEventListener("click", pendiente);
+    frmComercial.parentNode.append(cuadroCliente);
+    cuadroCliente.addEventListener("click", nuevoPedido);
+  });
+  primerTitulo();
+}
+
+/**
+ * Añade un título h2 al cuadro de pedido con el nombre del cliente seleccionado.
+ */
+function primerTitulo() {
+  cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
+  let comercialSeleccionado = frmComercial.comerciales.value;
+  let h2 = document.createElement("h2");
+  h2.innerText = "Cliente " + gestor.clientes[comercialSeleccionado][0];
+  cuadroPedido.firstElementChild.after(h2);
+}
+
+function cargaCategorias() {
+  gestor.categorias.forEach((categoria, indice) => {
+    let option = document.createElement("option");
+    option.index = indice;
+    option.value = indice;
+    option.textContent = categoria;
+    frmControles.categorias.add(option);
+  });
+}
+function cargaProductos() {
+  frmControles.productos
+    .querySelectorAll("option")
+    .forEach((producto) => producto.remove());
+  let categoriaSeleccionada = frmControles.categorias.value;
+  let productos = catalogo.productos.filter(
+    (producto) => producto.idCategoria === parseInt(categoriaSeleccionada)
+  );
+  productos.forEach((producto) => {
+    let option = document.createElement("option");
+    option.value = producto;
+    option.textContent = producto.nombreProducto;
+    frmControles.productos.add(option);
   });
 }
 /**
  * Función que marca un cliente como pendiente y muestra su título en el cuadro de pedido.
  * @param {Event} event - El evento que desencadena la función.
  */
-function pendiente(event) {
+
+function nuevoPedido(event) {
   cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
   let tituloCliente = document.createElement("h2");
-  tituloCliente.innerText = "Cliente " + event.target.innerText;
+  tituloCliente.innerText = "Cliente " + event.currentTarget.innerText;
   cuadroPedido.append(tituloCliente);
-  event.target.classList.add("pendiente");
   event.target.addEventListener("click", pagado);
 }
 /**
@@ -192,4 +219,7 @@ function pagado(event) {
     }
   });
 }
-cargarComerciales(gestor);
+contentLoaded();
+cargaComerciales();
+cargaDatosIniciales();
+cargaCategorias();
