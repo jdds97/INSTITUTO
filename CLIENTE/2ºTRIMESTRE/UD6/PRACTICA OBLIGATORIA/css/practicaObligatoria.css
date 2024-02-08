@@ -87,4 +87,5 @@ th {
 .boton {
   background-color: lightskyblue;
   margin-bottom: 5px;
+  cursor: pointer;
 }

@@ -123,7 +123,13 @@ function contentLoaded() {
   document.addEventListener("DOMContentLoaded", () => {
     if (gestor && gestor.comerciales && gestor.comerciales.length > 0) {
       frmComercial.comerciales.value = gestor.comerciales[0];
+      frmControles.categorias.value = gestor.categorias[0];
+      gestor.comercialActual = gestor.comerciales[0];
+      let cliente = gestor.clientes[gestor.comerciales[0]][0];
+      let indice = gestor.clientes[gestor.comerciales[0]].indexOf(cliente);
+      gestor.clienteActual = indice;
       cargaClientes();
+      cargaCategorias();
       cargaProductos();
     }
   });
@@ -202,12 +208,14 @@ function cargaProductos() {
 
 function clienteSeleccionado(event) {
   debugger;
+  limpiarClienteAnterior();
   gestor.clienteActual = event.target.value;
   console.log(gestor.clienteActual);
   cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
   let tituloCliente = document.createElement("h2");
   tituloCliente.innerText = "Cliente " + event.currentTarget.innerText;
   cuadroPedido.append(tituloCliente);
+  pintarPedido();
 
   // event.target.addEventListener("click", pagado);
 }
@@ -231,20 +239,65 @@ function pagado(event) {
 }
 function añadirPedido(event) {
   debugger;
+
+  let divClienteActual =
+    document.querySelectorAll(".cliente")[gestor.clienteActual];
+  divClienteActual.classList.add("pendiente");
   let unidades = event.target.value;
-  let total = document.createElement("h1");
+  let idProducto = frmControles.productos.value;
+
+  gestor.añadirPedidos(unidades, idProducto);
+
+  pintarPedido();
+}
+function limpiarClienteAnterior() {
+  for (let i = 1; i < cuadroPedido.children; i++) {
+    cuadroPedido.remove(i);
+  }
+}
+function añadirTablas() {}
+function pintarPedido() {
+  debugger;
+  let pedidos = gestor.pedidos[gestor.comercialActual][gestor.clienteActual];
+  let precio = 0;
+  pedidos.forEach((pedido) => {
+    precio += catalogo.calcularPrecio(pedido.idProducto, pedido.unidades);
+  });
+  let total = document.createElement("h4");
+  total.innerHTML = "TOTAL : ";
   let enviadoYCobrado = document.createElement("div");
   enviadoYCobrado.innerText = "PEDIDO ENVIADO Y COBRADO";
-  enviadoYCobrado.classList.add("tecla");
-  enviadoYCobrado.addEventListener("click", terminarPedido);
-  let idProducto = frmControles.productos.value;
-  gestor.añadirPedidos(unidades, idProducto);
-  let precio = catalogo.calcularPrecio(idProducto, unidades);
-  total.innerHTML = "TOTAL" + precio;
-  let h2Pedido = cuadroPedido.querySelector("h2");
-  h2Pedido.after(total);
+  enviadoYCobrado.classList.add("boton");
+  if (precio > 0) {
+    //limpiarPedido();
+    cuadroPedido.querySelectorAll("h4").forEach((total) => total.remove());
+    cuadroPedido.querySelectorAll(".boton").forEach((boton) => boton.remove());
+    total.innerHTML += precio + "€";
+    let h2Pedido = cuadroPedido.querySelector("h2");
+    h2Pedido.append(total);
+    total.append(enviadoYCobrado);
+    enviadoYCobrado.addEventListener("click", terminarPedido);
+  }
+  let tabla = document.createElement("table");
+
+  // enviadoYCobrado.addEventListener("click", pagado);
 }
-function terminarPedido() {}
+
+function terminarPedido() {
+  let respuesta = confirm(
+    "¿Estás seguro que quieres dar por finalizado este pedido?"
+  );
+  if (respuesta) {
+    limpiarClientes();
+    limpiarClienteAnterior();
+    // limpiarPedido();
+    gestor.clienteActual.cuentaAbierta = false;
+    // eliminarPedido();
+  } else {
+    // El usuario hizo clic en Cancelar, puedes cancelar la operación
+  }
+}
+
 /**
  *
  */

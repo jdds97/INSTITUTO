@@ -83,11 +83,18 @@ class Gestor {
   }
 
   añadirPedidos(unidades, idProducto) {
-    this.pedidos[this.comercialActual][this.clienteActual].forEach(
-      (pedidos) => {
-        pedidos.push(new LineaPedido(unidades, idProducto));
-      }
-    );
+    let productoExiste = this.pedidos[this.comercialActual][
+      this.clienteActual
+    ].some((lineaPedido) => lineaPedido.idProducto == parseInt(idProducto));
+    if (productoExiste) {
+      alert(
+        "Ya existe este producto en el pedido, si quiere modificar la cantidad utilice los controles de la cuenta"
+      );
+    } else {
+      this.pedidos[this.comercialActual][this.clienteActual].push(
+        new LineaPedido(unidades, idProducto)
+      );
+    }
   }
 }
 class LineaPedido {
@@ -179,7 +186,7 @@ class Catalogo {
     this._productos = value;
   }
   addProducto(idProducto, nombreProducto, precioUnidad, idCategoria) {
-    let productoExiste = this._productos.filter(
+    let productoExiste = this.productos.filter(
       (producto) => producto.idProducto === idProducto
     ).length;
 
@@ -190,9 +197,17 @@ class Catalogo {
     }
   }
   calcularPrecio(idProducto, unidades) {
-    let producto = this.productos.find((producto) => {
-      producto.idProducto == idProducto;
-    });
-    return producto.precioUnidad * unidades;
+    let productoEncontrado = this.productos.find(
+      (producto) => producto.idProducto === parseInt(idProducto)
+    );
+
+    if (productoEncontrado) {
+      return productoEncontrado.precioUnidad * unidades;
+    } else {
+      console.error(
+        `El producto con id ${idProducto} no existe en el catálogo`
+      );
+      return 0;
+    }
   }
 }
