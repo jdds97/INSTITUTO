@@ -14,6 +14,7 @@ class Gestor {
     this._clienteActual = null;
     this._pedidos = [];
     this.añadirClientesComerciales(clientes);
+    this.inicializarPedidos();
   }
 
   // Getters
@@ -69,18 +70,26 @@ class Gestor {
     this.comerciales.forEach((comercial, i) => {
       let clientesComercial = new Array(...clientes[i]);
       this.clientes[comercial] = clientesComercial;
+      this.pedidos[comercial] = [];
     });
   }
+  inicializarPedidos() {
+    for (let comerciales in this.clientes) {
+      this.pedidos[comerciales] = [];
+      this.clientes[comerciales].forEach(() => {
+        this.pedidos[comerciales].push([]);
+      });
+    }
+  }
+
+  añadirPedidos(unidades, idProducto) {
+    this.pedidos[this.comercialActual][this.clienteActual].forEach(
+      (pedidos) => {
+        pedidos.push(new LineaPedido(unidades, idProducto));
+      }
+    );
+  }
 }
-// añadirCategorias(categorias){
-
-//     this.productos.filter((producto)=>producto.idCategoria===categoria[i])}
-
-// }
-// actualizarPedidos() {
-
-// }
-
 class LineaPedido {
   _unidades;
   _idProducto;
@@ -179,5 +188,11 @@ class Catalogo {
         new Producto(idProducto, nombreProducto, precioUnidad, idCategoria)
       );
     }
+  }
+  calcularPrecio(idProducto, unidades) {
+    let producto = this.productos.find((producto) => {
+      producto.idProducto == idProducto;
+    });
+    return producto.precioUnidad * unidades;
   }
 }

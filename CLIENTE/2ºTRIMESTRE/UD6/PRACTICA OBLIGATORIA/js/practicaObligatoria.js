@@ -62,6 +62,11 @@ let frmComercial = document.getElementById("frmComercial");
 frmComercial.comerciales.addEventListener("change", cargaClientes);
 let frmControles = document.getElementById("frmControles");
 frmControles.categorias.addEventListener("change", cargaProductos);
+let unidades = document.getElementById("teclado").querySelectorAll(".tecla");
+unidades.forEach((unidad) => {
+  unidad.addEventListener("click", añadirPedido);
+});
+
 /**
  * Funciones
  */
@@ -142,14 +147,15 @@ function cargaComerciales() {
  */
 function cargaClientes() {
   document.querySelectorAll(".cliente").forEach((cliente) => cliente.remove());
-  let comercialSeleccionado = frmComercial.comerciales.value;
-  gestor.clientes[comercialSeleccionado].forEach((cliente) => {
+  gestor.comercialActual = frmComercial.comerciales.value;
+  gestor.clientes[gestor.comercialActual].forEach((cliente, i) => {
     let cuadroCliente = document.createElement("div");
     cuadroCliente.innerHTML = cliente;
     cuadroCliente.classList.add("pagado");
     cuadroCliente.classList.add("cliente");
+    cuadroCliente.value = i;
     frmComercial.parentNode.append(cuadroCliente);
-    cuadroCliente.addEventListener("click", nuevoPedido);
+    cuadroCliente.addEventListener("click", clienteSeleccionado);
   });
   primerTitulo();
 }
@@ -184,7 +190,7 @@ function cargaProductos() {
   );
   productos.forEach((producto) => {
     let option = document.createElement("option");
-    option.value = producto;
+    option.value = producto.idProducto;
     option.textContent = producto.nombreProducto;
     frmControles.productos.add(option);
   });
@@ -194,12 +200,16 @@ function cargaProductos() {
  * @param {Event} event - El evento que desencadena la función.
  */
 
-function nuevoPedido(event) {
+function clienteSeleccionado(event) {
+  debugger;
+  gestor.clienteActual = event.target.value;
+  console.log(gestor.clienteActual);
   cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
   let tituloCliente = document.createElement("h2");
   tituloCliente.innerText = "Cliente " + event.currentTarget.innerText;
   cuadroPedido.append(tituloCliente);
-  event.target.addEventListener("click", pagado);
+
+  // event.target.addEventListener("click", pagado);
 }
 /**
  * Función que se ejecuta cuando se marca un elemento como pagado.
@@ -219,6 +229,22 @@ function pagado(event) {
     }
   });
 }
+function añadirPedido(event) {
+  debugger;
+  let unidades = event.target.value;
+  let total = document.createElement("h1");
+  let enviadoYCobrado = document.createElement("div");
+  enviadoYCobrado.innerText = "PEDIDO ENVIADO Y COBRADO";
+  enviadoYCobrado.classList.add("tecla");
+  enviadoYCobrado.addEventListener("click", terminarPedido);
+  let idProducto = frmControles.productos.value;
+  gestor.añadirPedidos(unidades, idProducto);
+  let precio = catalogo.calcularPrecio(idProducto, unidades);
+  total.innerHTML = "TOTAL" + precio;
+  let h2Pedido = cuadroPedido.querySelector("h2");
+  h2Pedido.after(total);
+}
+function terminarPedido() {}
 /**
  *
  */
@@ -233,8 +259,6 @@ function pagado(event) {
 //   });
 // }
 
-// let unidades = document.getElementById("teclado");
-// unidades.addEventListener("click", cargarUnidades);
 // function cargarUnidades(event) {
 //   let unidad = event.target.value;
 //   let unidadesTabla += unidad;
