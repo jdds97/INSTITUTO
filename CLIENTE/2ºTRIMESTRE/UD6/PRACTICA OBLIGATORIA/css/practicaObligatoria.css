@@ -45,6 +45,7 @@
   font-weight: bold;
   margin: 3px;
   background-color: lightskyblue;
+  cursor: pointer;
 }
 
 select {

@@ -152,18 +152,22 @@ function cargaComerciales() {
  * Carga los clientes del comercial seleccionado en el cuadro de pedido.
  */
 function cargaClientes() {
+  debugger;
+  primerTitulo();
+  if (cuadroPedido.querySelector("table") !== null)
+    cuadroPedido.querySelector("table").remove();
   document.querySelectorAll(".cliente").forEach((cliente) => cliente.remove());
   gestor.comercialActual = frmComercial.comerciales.value;
   gestor.clientes[gestor.comercialActual].forEach((cliente, i) => {
     let cuadroCliente = document.createElement("div");
-    cuadroCliente.innerHTML = cliente;
+    cuadroCliente.innerHTML = cliente.nombre;
     cuadroCliente.classList.add("pagado");
     cuadroCliente.classList.add("cliente");
     cuadroCliente.value = i;
     frmComercial.parentNode.append(cuadroCliente);
+    if (cliente.cuentaAbierta) cuadroCliente.classList.add("pendiente");
     cuadroCliente.addEventListener("click", clienteSeleccionado);
   });
-  primerTitulo();
 }
 
 /**
@@ -173,8 +177,9 @@ function primerTitulo() {
   cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
   let comercialSeleccionado = frmComercial.comerciales.value;
   let h2 = document.createElement("h2");
-  h2.innerText = "Cliente " + gestor.clientes[comercialSeleccionado][0];
+  h2.innerText = "Cliente " + gestor.clientes[comercialSeleccionado][0].nombre;
   cuadroPedido.firstElementChild.after(h2);
+  pintarPedido();
 }
 
 function cargaCategorias() {
@@ -209,6 +214,9 @@ function cargaProductos() {
 function clienteSeleccionado(event) {
   debugger;
   limpiarClienteAnterior();
+  if (!event.target.classList.contains("pendiente")) {
+    cuadroPedido.querySelectorAll("table")[0].remove();
+  }
   gestor.clienteActual = event.target.value;
   console.log(gestor.clienteActual);
   cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
@@ -239,15 +247,16 @@ function pagado(event) {
 }
 function añadirPedido(event) {
   debugger;
-
+  gestor.clientes[gestor.comercialActual][
+    gestor.clienteActual
+  ].cuentaAbierta = true;
+  comprobarCuentaClienteActual();
   let divClienteActual =
     document.querySelectorAll(".cliente")[gestor.clienteActual];
   divClienteActual.classList.add("pendiente");
   let unidades = event.target.value;
   let idProducto = frmControles.productos.value;
-
   gestor.añadirPedidos(unidades, idProducto);
-
   pintarPedido();
 }
 function limpiarClienteAnterior() {
@@ -255,7 +264,7 @@ function limpiarClienteAnterior() {
     cuadroPedido.remove(i);
   }
 }
-function añadirTablas() {}
+
 function pintarPedido() {
   debugger;
   let pedidos = gestor.pedidos[gestor.comercialActual][gestor.clienteActual];
@@ -265,9 +274,6 @@ function pintarPedido() {
   });
   let total = document.createElement("h4");
   total.innerHTML = "TOTAL : ";
-  let enviadoYCobrado = document.createElement("div");
-  enviadoYCobrado.innerText = "PEDIDO ENVIADO Y COBRADO";
-  enviadoYCobrado.classList.add("boton");
   if (precio > 0) {
     //limpiarPedido();
     cuadroPedido.querySelectorAll("h4").forEach((total) => total.remove());
@@ -275,12 +281,103 @@ function pintarPedido() {
     total.innerHTML += precio + "€";
     let h2Pedido = cuadroPedido.querySelector("h2");
     h2Pedido.append(total);
-    total.append(enviadoYCobrado);
-    enviadoYCobrado.addEventListener("click", terminarPedido);
+    creacionTabla();
   }
+}
+function creacionTabla() {
+  debugger;
+  if (cuadroPedido.querySelector("table") !== null)
+    cuadroPedido.querySelector("table").remove();
   let tabla = document.createElement("table");
-
-  // enviadoYCobrado.addEventListener("click", pagado);
+  let thead = document.createElement("thead");
+  let tbody = document.createElement("tbody");
+  let caption = tabla.createCaption();
+  caption.innerHTML = "PEDIDO ENVIADO Y COBRADO";
+  caption.classList.add("boton");
+  caption.addEventListener("click", terminarPedido);
+  let modificadorTh = document.createElement("th");
+  modificadorTh.textContent = "Modificar";
+  thead.append(modificadorTh);
+  let unidadesTh = document.createElement("th");
+  unidadesTh.textContent = "Uds.";
+  thead.append(unidadesTh);
+  let idProductoTh = document.createElement("th");
+  idProductoTh.textContent = "Id.";
+  thead.append(idProductoTh);
+  let productoTh = document.createElement("th");
+  productoTh.textContent = "Producto";
+  thead.append(productoTh);
+  let precioTh = document.createElement("th");
+  precioTh.textContent = "Precio";
+  thead.append(precioTh);
+  tabla.append(thead);
+  tabla.append(tbody);
+  cuadroPedido.append(tabla);
+  añadirPedidos(tabla);
+}
+function añadirPedidos(tabla) {
+  let pedidos = gestor.pedidos[gestor.comercialActual][gestor.clienteActual];
+  pedidos.forEach((pedido) => {
+    let fila = tabla.insertRow(0);
+    let modificador = fila.insertCell(0);
+    let unidades = fila.insertCell(1);
+    let idProducto = fila.insertCell(2);
+    let productoTd = fila.insertCell(3);
+    let precio = fila.insertCell(4);
+    let mas = document.createElement("td");
+    mas.classList.add("modificador");
+    mas.innerText = "+";
+    mas.addEventListener("click", sumarPedido);
+    let menos = document.createElement("td");
+    menos.classList.add("modificador");
+    menos.innerText = "-";
+    menos.addEventListener("click", restarPedido);
+    modificador.append(mas);
+    modificador.append(menos);
+    let producto = catalogo.buscarProducto(pedido.idProducto);
+    productoTd.textContent =
+      producto.nombreProducto + "(ud:" + producto.precioUnidad + " €)";
+    unidades.textContent = pedido.unidades;
+    idProducto.textContent = pedido.idProducto;
+    precio.textContent =
+      catalogo.calcularPrecio(pedido.idProducto, pedido.unidades) + "€";
+  });
+}
+function sumarPedido() {
+  debugger;
+  let pedido = gestor.pedidos[gestor.comercialActual][gestor.clienteActual];
+  pedido.forEach((lineaPedido) => {
+    if (
+      lineaPedido.idProducto ==
+      this.parentElement.parentElement.cells[2].innerText
+    ) {
+      lineaPedido.unidades++;
+    }
+  });
+  pintarPedido();
+}
+function restarPedido(event) {
+  debugger;
+  let pedido = gestor.pedidos[gestor.comercialActual][gestor.clienteActual];
+  pedido.forEach((lineaPedido) => {
+    if (
+      lineaPedido.idProducto ==
+      this.parentElement.parentElement.cells[2].innerText
+    ) {
+      if (lineaPedido.unidades == 1) {
+        let respuesta = confirm(
+          "¿Estás seguro que quieres eliminar este producto del pedido?"
+        );
+        if (respuesta) {
+          let indice = pedido.indexOf(lineaPedido);
+          pedido.splice(indice, 1);
+          event.target.parentElement.parentElement.remove();
+        }
+      }
+      lineaPedido.unidades--;
+    }
+  });
+  pintarPedido();
 }
 
 function terminarPedido() {
@@ -288,16 +385,21 @@ function terminarPedido() {
     "¿Estás seguro que quieres dar por finalizado este pedido?"
   );
   if (respuesta) {
-    limpiarClientes();
-    limpiarClienteAnterior();
-    // limpiarPedido();
+    cuadroPedido.querySelectorAll("h4").forEach((total) => total.remove());
+    cuadroPedido.querySelectorAll(".boton").forEach((boton) => boton.remove());
+    cuadroPedido.querySelectorAll("table")[0].remove();
     gestor.clienteActual.cuentaAbierta = false;
-    // eliminarPedido();
-  } else {
-    // El usuario hizo clic en Cancelar, puedes cancelar la operación
+    comprobarCuentaClienteActual();
+    gestor.eliminarPedidos();
   }
 }
-
+function comprobarCuentaClienteActual() {
+  let divClienteActual =
+    document.querySelectorAll(".cliente")[gestor.clienteActual];
+  if (!gestor.clienteActual.cuentaAbierta) {
+    divClienteActual.classList.remove("pendiente");
+  }
+}
 /**
  *
  */

@@ -68,7 +68,7 @@ class Gestor {
   }
   añadirClientesComerciales(clientes) {
     this.comerciales.forEach((comercial, i) => {
-      let clientesComercial = new Array(...clientes[i]);
+      let clientesComercial = clientes[i].map((nombre) => new Cliente(nombre));
       this.clientes[comercial] = clientesComercial;
       this.pedidos[comercial] = [];
     });
@@ -95,6 +95,12 @@ class Gestor {
         new LineaPedido(unidades, idProducto)
       );
     }
+  }
+  eliminarPedidos() {
+    this.pedidos[this.comercialActual][this.clienteActual].splice(
+      0,
+      this.pedidos[this.comercialActual][this.clienteActual].length
+    );
   }
 }
 class LineaPedido {
@@ -195,6 +201,11 @@ class Catalogo {
         new Producto(idProducto, nombreProducto, precioUnidad, idCategoria)
       );
     }
+  }
+  buscarProducto(idProducto) {
+    return this.productos.find(
+      (producto) => producto.idProducto === parseInt(idProducto)
+    );
   }
   calcularPrecio(idProducto, unidades) {
     let productoEncontrado = this.productos.find(
