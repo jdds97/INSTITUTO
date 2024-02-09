@@ -155,10 +155,12 @@ function cargaComerciales() {
  * Carga los clientes del comercial seleccionado en el cuadro de pedido.
  */
 function cargaClientes() {
-  // Eliminar el título h2 del cuadro de pedido si lo hay y pintar el primero del primer comercial
+  // Elimina el título h2 del cuadro de pedido si lo hay y pintar el primero del primer comercial
   primerTitulo();
-  // Eliminar los clientes anteriores
+  // Elimina los clientes anteriores
   limpiarClienteAnterior();
+  //Quitar total
+  cuadroPedido.querySelectorAll("h4").forEach((total) => total.remove());
   if (cuadroPedido.querySelector("table") !== null)
     cuadroPedido.querySelector("table").remove();
   document.querySelectorAll(".cliente").forEach((cliente) => cliente.remove());
@@ -247,9 +249,13 @@ function cargaProductos() {
 
 function clienteSeleccionado(event) {
   limpiarClienteAnterior();
-  gestor.clienteActual = event.target.value;
   cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
   cuadroPedido.querySelectorAll("table").forEach((tabla) => tabla.remove());
+  
+  let cliente = gestor.clientes[gestor.comerciales[0]][0];
+  let indice = gestor.clientes[gestor.comerciales[0]].indexOf(cliente);
+  gestor.clienteActual = indice;
+  gestor.clienteActual = event.currentTarget.value;
   let tituloCliente = document.createElement("h2");
   tituloCliente.innerText = "Cliente " + event.currentTarget.innerText;
   cuadroPedido.append(tituloCliente);
@@ -311,7 +317,7 @@ function pintarPedido() {
     let h2Pedido = cuadroPedido.querySelector("h2");
     h2Pedido.append(total);
     creacionTabla();
-  } else {
+  } else if (precio === 0) {
     cuadroPedido.querySelectorAll("h4").forEach((total) => total.remove());
     cuadroPedido.querySelectorAll(".boton").forEach((boton) => boton.remove());
     total.innerHTML += precio + "€";
@@ -331,7 +337,7 @@ function creacionTabla() {
   caption.classList.add("boton");
   caption.addEventListener("click", terminarPedido);
   let modificadorTh = document.createElement("th");
-  modificadorTh.textContent = "Modificar";
+  modificadorTh.textContent = "Modificar ";
   thead.append(modificadorTh);
   let unidadesTh = document.createElement("th");
   unidadesTh.textContent = "Uds.";
@@ -348,6 +354,8 @@ function creacionTabla() {
   tabla.append(thead);
   tabla.append(tbody);
   cuadroPedido.append(tabla);
+
+  
   añadirPedidos(tabla);
 }
 function añadirPedidos(tabla) {
@@ -359,11 +367,11 @@ function añadirPedidos(tabla) {
     let idProducto = fila.insertCell(2);
     let productoTd = fila.insertCell(3);
     let precio = fila.insertCell(4);
-    let mas = document.createElement("td");
+    let mas = document.createElement("button");
     mas.classList.add("modificador");
-    mas.innerText = "+";
+    mas.innerHTML = "+";
     mas.addEventListener("click", sumarPedido);
-    let menos = document.createElement("td");
+    let menos = document.createElement("button");
     menos.classList.add("modificador");
     menos.innerText = "-";
     menos.addEventListener("click", restarPedido);
@@ -407,6 +415,10 @@ function restarPedido(event) {
           let indice = pedido.indexOf(lineaPedido);
           pedido.splice(indice, 1);
           event.target.parentElement.parentElement.remove();
+          pintarPedido();
+          comprobarCuentaClienteActual();
+        } else {
+          return;
         }
       }
       lineaPedido.unidades--;
@@ -438,4 +450,3 @@ function comprobarCuentaClienteActual() {
 contentLoaded();
 cargaComerciales();
 cargaDatosIniciales();
-cargaCategorias();
