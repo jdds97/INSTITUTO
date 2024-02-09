@@ -251,7 +251,7 @@ function clienteSeleccionado(event) {
   limpiarClienteAnterior();
   cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
   cuadroPedido.querySelectorAll("table").forEach((tabla) => tabla.remove());
-  
+
   let cliente = gestor.clientes[gestor.comerciales[0]][0];
   let indice = gestor.clientes[gestor.comerciales[0]].indexOf(cliente);
   gestor.clienteActual = indice;
@@ -300,8 +300,10 @@ function limpiarClienteAnterior() {
     cuadroPedido.remove(i);
   }
 }
-
+//si la cuenta esta a false no pinta el pedido
 function pintarPedido() {
+  debugger;
+
   limpiarClienteAnterior();
   let pedidos = gestor.pedidos[gestor.comercialActual][gestor.clienteActual];
   let precio = 0;
@@ -317,12 +319,16 @@ function pintarPedido() {
     let h2Pedido = cuadroPedido.querySelector("h2");
     h2Pedido.append(total);
     creacionTabla();
-  } else if (precio === 0) {
+  } else if (
+    precio === 0 &&
+    gestor.clientes[gestor.comercialActual][gestor.clienteActual].cuentaAbierta
+  ) {
     cuadroPedido.querySelectorAll("h4").forEach((total) => total.remove());
     cuadroPedido.querySelectorAll(".boton").forEach((boton) => boton.remove());
     total.innerHTML += precio + "€";
     let h2Pedido = cuadroPedido.querySelector("h2");
     h2Pedido.append(total);
+    creacionTabla();
   }
 }
 function creacionTabla() {
@@ -355,7 +361,6 @@ function creacionTabla() {
   tabla.append(tbody);
   cuadroPedido.append(tabla);
 
-  
   añadirPedidos(tabla);
 }
 function añadirPedidos(tabla) {
@@ -413,30 +418,31 @@ function restarPedido(event) {
         );
         if (respuesta) {
           let indice = pedido.indexOf(lineaPedido);
+
           pedido.splice(indice, 1);
           event.target.parentElement.parentElement.remove();
           pintarPedido();
-          comprobarCuentaClienteActual();
         } else {
-          return;
+          return; //No hace nada NO ELIMINA
         }
       }
       lineaPedido.unidades--;
     }
   });
-  pintarPedido();
+  creacionTabla();
 }
 
 function terminarPedido() {
+  debugger;
   let respuesta = confirm(
     "¿Estás seguro que quieres dar por finalizado este pedido?"
   );
   if (respuesta) {
-    cuadroPedido.querySelectorAll("h4").forEach((total) => total.remove());
-    cuadroPedido.querySelectorAll(".boton").forEach((boton) => boton.remove());
-    cuadroPedido.querySelectorAll("table")[0].remove();
     gestor.clienteActual.cuentaAbierta = false;
     comprobarCuentaClienteActual();
+    cuadroPedido.querySelectorAll("h4").forEach((total) => total.remove());
+    cuadroPedido.querySelectorAll(".boton").forEach((boton) => boton.remove());
+    cuadroPedido.querySelector("table").remove();
     gestor.eliminarPedidos();
   }
 }
