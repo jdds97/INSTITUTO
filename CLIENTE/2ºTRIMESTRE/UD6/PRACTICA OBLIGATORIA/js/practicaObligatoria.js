@@ -76,6 +76,9 @@ unidades.forEach((unidad) => {
  * @memberof catalogo
  * @returns {void}
  */
+/**
+ * Carga los datos iniciales del catálogo.
+ */
 function cargaDatosIniciales() {
   catalogo.addProducto(1, "Aceite Oliva Virgen Extra 1l (Caja 20)", 178.15, 0);
   catalogo.addProducto(
@@ -152,8 +155,10 @@ function cargaComerciales() {
  * Carga los clientes del comercial seleccionado en el cuadro de pedido.
  */
 function cargaClientes() {
-  debugger;
+  // Eliminar el título h2 del cuadro de pedido si lo hay y pintar el primero del primer comercial
   primerTitulo();
+  // Eliminar los clientes anteriores
+  limpiarClienteAnterior();
   if (cuadroPedido.querySelector("table") !== null)
     cuadroPedido.querySelector("table").remove();
   document.querySelectorAll(".cliente").forEach((cliente) => cliente.remove());
@@ -165,15 +170,30 @@ function cargaClientes() {
     cuadroCliente.classList.add("cliente");
     cuadroCliente.value = i;
     frmComercial.parentNode.append(cuadroCliente);
-    if (cliente.cuentaAbierta) cuadroCliente.classList.add("pendiente");
+    if (cliente.cuentaAbierta) {
+      cuadroCliente.classList.add("pendiente");
+    }
     cuadroCliente.addEventListener("click", clienteSeleccionado);
   });
 }
 
 /**
  * Añade un título h2 al cuadro de pedido con el nombre del cliente seleccionado.
+ *
+ * @function primerTitulo
+ * @memberof frmComercial
+ * @returns {void}
+ * @todo Eliminar los títulos h2 anteriores.
+ * @todo Crear un nuevo título h2 con el nombre del cliente seleccionado.
+ * @todo Llamar a la función pintarPedido.
+ * @todo Añadir un evento 'click' a cuadroCliente que llame a la función pagado.
+ * @todo Añadir un evento 'click' a cuadroCliente que llame a la función clienteSeleccionado.
+ * @todo Añadir la clase 'pendiente' a cuadroCliente si el cliente tiene la cuenta abierta.
+ * @todo Añadir la clase 'pagado' a cuadroCliente si el cliente no tiene la cuenta abierta.
  */
+
 function primerTitulo() {
+  // Eliminar los títulos h2 anteriores
   cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
   let comercialSeleccionado = frmComercial.comerciales.value;
   let h2 = document.createElement("h2");
@@ -181,7 +201,12 @@ function primerTitulo() {
   cuadroPedido.firstElementChild.after(h2);
   pintarPedido();
 }
-
+/**
+ * Carga las categorías en el formulario.
+ * @function cargaCategorias
+ * @memberof frmControles
+ * @returns {void}
+ */
 function cargaCategorias() {
   gestor.categorias.forEach((categoria, indice) => {
     let option = document.createElement("option");
@@ -191,6 +216,15 @@ function cargaCategorias() {
     frmControles.categorias.add(option);
   });
 }
+
+/**
+ * Carga los productos de la categoría seleccionada en el formulario.
+ *
+ * @function cargaProductos
+ * @memberof frmControles
+ * @returns {void}
+ *
+ */
 function cargaProductos() {
   frmControles.productos
     .querySelectorAll("option")
@@ -212,14 +246,10 @@ function cargaProductos() {
  */
 
 function clienteSeleccionado(event) {
-  debugger;
   limpiarClienteAnterior();
-  if (!event.target.classList.contains("pendiente")) {
-    cuadroPedido.querySelectorAll("table")[0].remove();
-  }
   gestor.clienteActual = event.target.value;
-  console.log(gestor.clienteActual);
   cuadroPedido.querySelectorAll("h2").forEach((cliente) => cliente.remove());
+  cuadroPedido.querySelectorAll("table").forEach((tabla) => tabla.remove());
   let tituloCliente = document.createElement("h2");
   tituloCliente.innerText = "Cliente " + event.currentTarget.innerText;
   cuadroPedido.append(tituloCliente);
@@ -266,7 +296,7 @@ function limpiarClienteAnterior() {
 }
 
 function pintarPedido() {
-  debugger;
+  limpiarClienteAnterior();
   let pedidos = gestor.pedidos[gestor.comercialActual][gestor.clienteActual];
   let precio = 0;
   pedidos.forEach((pedido) => {
@@ -275,13 +305,18 @@ function pintarPedido() {
   let total = document.createElement("h4");
   total.innerHTML = "TOTAL : ";
   if (precio > 0) {
-    //limpiarPedido();
     cuadroPedido.querySelectorAll("h4").forEach((total) => total.remove());
     cuadroPedido.querySelectorAll(".boton").forEach((boton) => boton.remove());
     total.innerHTML += precio + "€";
     let h2Pedido = cuadroPedido.querySelector("h2");
     h2Pedido.append(total);
     creacionTabla();
+  } else {
+    cuadroPedido.querySelectorAll("h4").forEach((total) => total.remove());
+    cuadroPedido.querySelectorAll(".boton").forEach((boton) => boton.remove());
+    total.innerHTML += precio + "€";
+    let h2Pedido = cuadroPedido.querySelector("h2");
+    h2Pedido.append(total);
   }
 }
 function creacionTabla() {
@@ -400,26 +435,6 @@ function comprobarCuentaClienteActual() {
     divClienteActual.classList.remove("pendiente");
   }
 }
-/**
- *
- */
-// function cargarProductos(categoria, gestor) {
-//   frmControles
-//     .querySelector('select[name="productos"]')
-//     .getElementsByTagName("option")
-//     .forEach((producto) => cliente.remove());
-//   gestor.clientes[categoria].forEach((cliente) => {
-//     let cuadroCliente = document.createElement("div");
-//     .addEventListener("click", pendiente);
-//   });
-// }
-
-// function cargarUnidades(event) {
-//   let unidad = event.target.value;
-//   let unidadesTabla += unidad;
-//   let pedido =
-//   gestor.pedidos[comercialSeleccionado][clienteSeleccionado].push(producto);
-// }
 contentLoaded();
 cargaComerciales();
 cargaDatosIniciales();
