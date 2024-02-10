@@ -213,11 +213,9 @@ class Catalogo {
     );
 
     if (productoEncontrado) {
-      return productoEncontrado.precioUnidad * unidades;
+      return Number((productoEncontrado.precioUnidad * unidades).toFixed(2));
     } else {
-      console.error(
-        `El producto con id ${idProducto} no existe en el catálogo`
-      );
+      alert.error(`El producto con id ${idProducto} no existe en el catálogo`);
       return 0;
     }
   }
