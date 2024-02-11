@@ -1,0 +1,3 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+14:47:37	43081/43081	---M-Z	-1	error ('Error%20when%20decompressing')	text/html	date:Sun,%2011%20Feb%202024%2012:45:36%20GMT	https://www.w3schools.com/js/default.asp	G:/DOCUMENTOS%20DISCO%20LOCAL%20C/INSTITUTO%202023-2024/INSTITUTO%2023-24/INSTITUTO/CLIENTE/2%c2%baTRIMESTRE/CONTENIDO%20EXAMEN/WEBS/EXAMEN%20JS/www.w3schools.com/js/default.html	(from )
+14:47:38	166/166	---M-Z	200	added ('OK')	text/plain	etag:%2208bea5615bda1:0%22	https://www.w3schools.com/robots.txt		(from )
