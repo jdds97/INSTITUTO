@@ -37,7 +37,7 @@ class Gestor {
   get clienteActual() {
     return this._clienteActual;
   }
-
+¡'
   get pedidos() {
     return this._pedidos;
   }
