@@ -345,30 +345,7 @@ function w3_getStyleValue(elmnt,style) {
       ></i>
     </a>
 
-    <div
-      id="tnb-google-search-container"
-      class="w3-bar-item"
-    >
-      <div id="tnb-google-search-inner-container">
-        <label
-          for="tnb-google-search-input"
-          class="tnb-soft-hide"
-        >
-          Search field
-        </label>
-
-        <input
-          id="tnb-google-search-input"
-          type="text"
-          placeholder="Search..."
-          autocomplete="off"
-          onkeydown="TopNavBar.googleSearchAttachKeyPressHandler(event)"
-          aria-label="Search field"
-          oninput="TopNavBar.searchWithSuggestions(this)"
-          onfocus="TopNavBar.searchWithSuggestions(this)"
-          onblur="TopNavBar.searchFieldLostFocus(event)"
-        />
-
+    
         <div
           id="tnb-google-search-submit-btn"
           class="tnb-button-light"
