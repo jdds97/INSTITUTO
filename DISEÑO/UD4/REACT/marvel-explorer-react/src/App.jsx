@@ -1,54 +1,58 @@
 // import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
-import SearchBar from './SearchBar'
-// import { Card } from '@mui/material'
-function App() {
-  // const [personaje, setPersonaje] = useState(null);
-  // const [imagen, setImagen] = useState('');
-  // const [titulo, setTitulo] = useState('');
-  // function tituloPersonaje(titulo) {
-  //   const personajeEncontrado = personaje.find((personaje) => personaje.titulo === titulo);
-  //   if (personajeEncontrado) {
-  //     setPersonaje(personajeEncontrado);
-  //     setTitulo(personajeEncontrado.titulo);
-  //   } else { 
-  //     setPersonaje(null);
-  //   }
-  // }
-  // const [titulo, setTitulo] = useState('');
-  // const [imagen, setImagen] = useState('');
-  // const buscarPersonaje = async (titulo) => {
-  //   const datosPersonaje = await fetch(`https://gateway.marvel.com:443/v1/public/characters?name=${titulo}&apikey=6c6852c85207adba9e725a4d7e5de26e`);
-  //   const data = await response.json();
-  //   return data.results[0];
-  // }
-  // const cambiarTitulo = async (nuevoTitulo) => {
-  //   // Aquí debes buscar los datos del personaje basado en el nuevoTitulo
-  //   const datosPersonaje = await buscarPersonaje(nuevoTitulo);
-  //   setPersonaje(datosPersonaje);
-  // };
-  
-  
- 
-  // const cambiarImagen = async (nuevaImagen) => {
-  //   const datosPersonaje = await fetch('https://gateway.marvel.com/v1/public/character?ts=1&apikey=6c6852c85207adba9e725a4d7e5de26e&hash=c9cc816ada6d0dc3e7ac6b58a167e2e6');
-  //   let blob = await response.blob();
-  //   nuevaImagen = URL.createObjectURL(blob);
-  //   setImagen(nuevaImagen);
-  // }
+import SearchBar from './SearchBar.jsx'
+import Card from './Card.jsx'
+import { useState } from "react";
 
-  return (
+function App() {  
+  //Hooks para personaje
+ const[id,setId]=useState("");
+ const [nombre,setNombrePersonaje]=useState("");
+ const [imagen,setImagen]=useState("");
+ const[descripcion,setDescripcion]=useState("");
+ //Hooks para comics
+ const [nombreComic,setNombreComic]=useState("");
+ const [sinopsis,setSinopsis]=useState("");
+ 
+ const[cardVisiblePersonaje,setcardVisiblePersonaje]=useState(false);
+ const[cardVisibleComic,setcardVisibleComic]=useState(false);
+ 
+ 
+  function obtenerDatosPersonaje(personaje){
+    setNombrePersonaje(personaje.name);
+    let imagenUrl = personaje.thumbnail.path + '.' + personaje.thumbnail.extension;
+    setImagen(imagenUrl);
+    if(personaje.description){
+      setDescripcion(personaje.description);
+    }
+    else{
+      setDescripcion("El personaje no tiene descripcion");
+    }
+    setId(personaje.id);
+    setCardVisiblePersonaje(true);
+    
+  }
+  function obtenerDatosComic(comic){
+    setNombreComic(comic.title);
+    setCardVisibleComic(true);
+
+  }
+  function limpiarInfo(){
+    setCardVisible(false);
+  }
+    return (
     <>
-      <div>
+     
       <h1 className="logoMarvel">MARVEL EXPLORER</h1>
       <h2 className="tituloBuscador">BUSCA TUS PERSONAJES FAVORITOS</h2>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
-      </div>
-      <SearchBar  />
-      {/* <Card titulo={titulo} imagen={imagen} /> */}
+        
+      <SearchBar onSearch={[obtenerDatosPersonaje,obtenerComic]} onReset={limpiarInfo}/>
+      {cardVisiblePersonaje?<Card nombre={nombre} imagen={imagen} descripcion={descripcion} id={id} />:<></>}
+      {cardVisibleComic?<Card nombre={nombreComic} imagen={imagenComic} descripcion={descripcionComic} id={idComic} />:<></>}
     </>
   )
 }
