@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import md5 from "md5";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
@@ -18,7 +18,7 @@ function SearchBar({ onSearch, onReset }) {
   const clavePrivada = "ed1eb9958e767573a19ff94480cd0cb8c55b6ea9";
   const timestamp = `&ts=${ts}`;
   const hash = md5(`${ts}${clavePrivada}${clavePublica}`);
-
+  const cardRef = useRef(null); // Referencia al elemento de la tarjeta
   // Definición de fetchData
   const fetchData = async (url) => {
     console.log(url);
@@ -34,11 +34,13 @@ function SearchBar({ onSearch, onReset }) {
         if (resultados.length === 0) {
           // Si la búsqueda por nombre no devuelve resultados, cambia a buscar por cómic
           buscarComic();
+          setError(false);
         } else {
           const datos = resultados[0];
           onSearch(datos);
           setError(false);
         }
+        cardRef.current.scrollIntoView({ behavior: "smooth" });
       })
       .catch((error) => {
         console.error("Error:", error);

@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import PropTypes from "prop-types";
+import "./Card.css";
 ActionAreaCard.propTypes = {
   fechaLanzamiento: PropTypes.string,
   creadores: PropTypes.array,
@@ -31,6 +32,7 @@ export default function ActionAreaCard({
           image={imagen}
           alt="Superhéroe/Cómic de Marvel"
         />
+        {/*el código dentro de los paréntesis (...) solo se renderizará si fechaLanzamiento es verdadero (o "truthy").*/}
         {fechaLanzamiento && (
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
