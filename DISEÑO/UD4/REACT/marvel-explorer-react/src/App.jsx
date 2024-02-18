@@ -3,7 +3,7 @@ import reactLogo from "./assets/react.svg";
 import "./App.css";
 import SearchBar from "./SearchBar.jsx";
 import Card from "./Card.jsx";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function App() {
   //Hooks para personaje
@@ -20,7 +20,9 @@ function App() {
   //Hooks para visibilidad de las cards
   const [cardVisiblePersonaje, setCardVisiblePersonaje] = useState(false);
   const [cardVisibleComic, setCardVisibleComic] = useState(false);
-
+  //Referencia al elemento de la tarjeta
+  const cardRefPersonaje = useRef(null);
+  const cardRefComic = useRef(null);
   function obtenerDatosPersonaje(personaje) {
     if (!personaje || !personaje.name || !personaje.thumbnail) {
       return;
@@ -36,6 +38,7 @@ function App() {
     }
     setId(personaje.id);
     setCardVisiblePersonaje(true);
+    setCardVisibleComic(false);
   }
 
   function obtenerDatosComic(comic) {
@@ -57,6 +60,7 @@ function App() {
     setCardVisibleComic(true);
     setFechaLanzamiento(comic.dates[0].date);
     setCardVisibleComic(true);
+    setCardVisiblePersonaje(false);
   }
   function handleSearch(datos) {
     obtenerDatosPersonaje(datos);
@@ -67,6 +71,17 @@ function App() {
     setCardVisiblePersonaje(false);
     setCardVisibleComic(false);
   }
+  useEffect(() => {
+    if (cardVisiblePersonaje && cardRefPersonaje.current) {
+      cardRefPersonaje.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [cardVisiblePersonaje]);
+
+  useEffect(() => {
+    if (cardVisibleComic && cardRefComic.current) {
+      cardRefComic.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [cardVisibleComic]);
   return (
     <>
       <h1 className="logoMarvel">MARVEL EXPLORER</h1>
@@ -78,6 +93,7 @@ function App() {
       <SearchBar onSearch={handleSearch} onReset={handleClear} />
       {cardVisiblePersonaje ? (
         <Card
+          ref={cardRefPersonaje}
           nombre={nombre}
           imagen={imagen}
           descripcion={descripcion}
@@ -88,6 +104,7 @@ function App() {
       )}
       {cardVisibleComic ? (
         <Card
+          ref={cardRefComic}
           nombre={nombreComic}
           imagen={imagenComic}
           descripcion={sinopsis}

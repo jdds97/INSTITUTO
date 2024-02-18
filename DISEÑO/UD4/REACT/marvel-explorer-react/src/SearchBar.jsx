@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import md5 from "md5";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
@@ -18,10 +18,8 @@ function SearchBar({ onSearch, onReset }) {
   const clavePrivada = "ed1eb9958e767573a19ff94480cd0cb8c55b6ea9";
   const timestamp = `&ts=${ts}`;
   const hash = md5(`${ts}${clavePrivada}${clavePublica}`);
-  const cardRef = useRef(null); // Referencia al elemento de la tarjeta
   // Definición de fetchData
   const fetchData = async (url) => {
-    console.log(url);
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -34,13 +32,12 @@ function SearchBar({ onSearch, onReset }) {
         if (resultados.length === 0) {
           // Si la búsqueda por nombre no devuelve resultados, cambia a buscar por cómic
           buscarComic();
-          setError(false);
+          if (error) setError(false);
         } else {
           const datos = resultados[0];
           onSearch(datos);
-          setError(false);
+          if (error) setError(false);
         }
-        cardRef.current.scrollIntoView({ behavior: "smooth" });
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -54,7 +51,7 @@ function SearchBar({ onSearch, onReset }) {
       const url = `https://gateway.marvel.com/v1/public/${termino}${timestamp}&apikey=${clavePublica}&hash=${hash}`;
       fetchData(url);
     }
-  }, [termino]);
+  }, [termino, input]);
 
   const handleSearch = () => {
     setTermino(`characters?name=${encodeURIComponent(input)}`);
@@ -69,7 +66,7 @@ function SearchBar({ onSearch, onReset }) {
     let inputEntero = input;
     let terminoParcial =
       "comics?titleStartsWith=" +
-      input.toLowerCase().split(" ").slice(0, 2).join(" ");
+      input.toLowerCase().split(" ").slice(0, 1).join(" ");
     const urlParcial = `https://gateway.marvel.com/v1/public/${terminoParcial}${timestamp}&apikey=${clavePublica}&hash=${hash}`;
     fetch(urlParcial)
       .then((response) => response.json())
@@ -80,7 +77,7 @@ function SearchBar({ onSearch, onReset }) {
         );
         if (comicExacto) {
           // Si se encuentra el cómic exacto, busca por su ID
-          let terminoExacto = `comics/${comicExacto.id}`;
+          let terminoExacto = `comics/${comicExacto.id}?`;
           setTermino(terminoExacto);
         }
       });
@@ -105,7 +102,7 @@ function SearchBar({ onSearch, onReset }) {
       {error && (
         <Stack sx={{ width: "100%" }} spacing={2}>
           <Alert variant="filled" severity="error">
-            El personaje con el nombre no existe
+            El personaje/comic con ese nombre no existe
           </Alert>
         </Stack>
       )}

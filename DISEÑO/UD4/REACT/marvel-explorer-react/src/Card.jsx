@@ -1,4 +1,4 @@
-// import * as React from 'react';
+import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -6,32 +6,41 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import PropTypes from "prop-types";
 import "./Card.css";
-ActionAreaCard.propTypes = {
-  fechaLanzamiento: PropTypes.string,
-  creadores: PropTypes.array,
-  descripcion: PropTypes.string,
-  imagen: PropTypes.string,
-  nombre: PropTypes.string,
-  id: PropTypes.number,
-};
 
-export default function ActionAreaCard({
-  id,
-  nombre,
-  imagen,
-  descripcion,
-  creadores,
-  fechaLanzamiento,
-}) {
+const ActionAreaCard = React.forwardRef(function ActionAreaCard(
+  { id, nombre, imagen, descripcion, creadores, fechaLanzamiento },
+  ref
+) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} ref={ref}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="345"
           image={imagen}
           alt="Superhéroe/Cómic de Marvel"
+          sx={{
+            display: "flex",
+            position: "relative",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         />
+
+        <CardContent>
+          <Typography gutterBottom variant="h4" component="div">
+            {nombre}
+          </Typography>
+
+          {id && (
+            <Typography variant="h5" color="text.secondary">
+              Id {id}
+            </Typography>
+          )}
+          <Typography variant="body2" color="text.secondary">
+            {descripcion}
+          </Typography>
+        </CardContent>
         {/*el código dentro de los paréntesis (...) solo se renderizará si fechaLanzamiento es verdadero (o "truthy").*/}
         {fechaLanzamiento && (
           <CardContent>
@@ -53,18 +62,18 @@ export default function ActionAreaCard({
             </Typography>
           </CardContent>
         )}
-        <CardContent>
-          <Typography gutterBottom variant="h4" component="div">
-            {nombre}
-          </Typography>
-          <Typography variant="h5" color="text.secondary">
-            Id {id}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {descripcion}
-          </Typography>
-        </CardContent>
       </CardActionArea>
     </Card>
   );
-}
+});
+
+ActionAreaCard.propTypes = {
+  fechaLanzamiento: PropTypes.string,
+  creadores: PropTypes.array,
+  descripcion: PropTypes.string,
+  imagen: PropTypes.string,
+  nombre: PropTypes.string,
+  id: PropTypes.number,
+};
+
+export default ActionAreaCard;
