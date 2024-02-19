@@ -3,17 +3,9 @@ import md5 from "md5";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import PropTypes from "prop-types";
+//PropTypes es una librería que nos permite validar las propiedades que recibe un componente.
 SearchBar.propTypes = {
-  /**
-   * Función de búsqueda.
-   * @type {Function}
-   */
   onSearch: PropTypes.func.isRequired,
-
-  /**
-   * Función de reinicio.
-   * @type {Function}
-   */
   onReset: PropTypes.func.isRequired,
 };
 
@@ -54,6 +46,7 @@ function SearchBar({ onSearch, onReset }) {
   const fetchData = async (url) => {
     fetch(url)
       .then((response) => {
+        console.log(url);
         if (!response.ok) {
           throw new Error("No se pudo realizar la solicitud");
         }
@@ -67,9 +60,9 @@ function SearchBar({ onSearch, onReset }) {
           buscarComic();
           if (errorComic) setErrorComic(false);
         } else {
+          const personaje = resultados[0];
           setErrorComic(true);
-          const datos = resultados[0];
-          onSearch(datos);
+          onSearch(personaje);
           if (errorPersonaje) setErrorPersonaje(false);
         }
       })
@@ -80,10 +73,10 @@ function SearchBar({ onSearch, onReset }) {
       });
   };
 
-  // Uso de useEffect para observar 'termino' cada vez que cambie
+  // Uso de useEffect para observar 'termino' cada vez que cambie y realizar la solicitud correspondiente con la url generada
   useEffect(() => {
     if (termino) {
-      const url = `https://gateway.marvel.com/v1/public/${termino}${ts}&apikey=${clavePublica}&hash=${hash}`;
+      const url = `https://gateway.marvel.com/v1/public/${termino}&ts=${ts}&apikey=${clavePublica}&hash=${hash}`;
       fetchData(url);
     }
   }, [termino]);
@@ -92,6 +85,8 @@ function SearchBar({ onSearch, onReset }) {
    * Maneja el evento de búsqueda.
    */
   const handleSearch = () => {
+    // El encodamiento del input es necesario para que la solicitud funcione correctamente con espacios y otros caracteres
+
     setTermino(`characters?name=${encodeURIComponent(input)}`);
   };
 
@@ -106,10 +101,12 @@ function SearchBar({ onSearch, onReset }) {
   };
 
   /**
-   * Busca el cómic correspondiente al input de búsqueda.
+   * Busca el cómic correspondiente al input de búsqueda
    */
   const buscarComic = () => {
+    // Guarda el input en una variable para usarlo en la solicitud de despues
     let inputEntero = input;
+    // Realiza una solicitud para buscar cómics que empiecen con el primer término del input
     let terminoParcial =
       "comics?titleStartsWith=" +
       input.toLowerCase().split(" ").slice(0, 1).join(" ");
@@ -117,10 +114,11 @@ function SearchBar({ onSearch, onReset }) {
     fetch(urlParcial)
       .then((response) => response.json())
       .then((datos) => {
-        // Filtra los resultados para encontrar el cómic que coincide exactamente con el input completo
+        // Filtra los resultados para encontrar el cómic que coincide exactamente con el inputEntero
         let comicExacto = datos.data.results.find(
           (comic) => comic.title.toLowerCase() === inputEntero.toLowerCase()
         );
+        // Si encuentra un cómic exacto, realiza la solicitud con ese comic
         if (comicExacto) {
           onSearch(comicExacto);
           setErrorComic(false);
@@ -151,6 +149,7 @@ function SearchBar({ onSearch, onReset }) {
           </button>
         </div>
       </div>
+      {/* Muestra un mensaje de error si no se encuentra el cómic o el personaje */}
       {errorComic && (
         <Stack sx={{ width: "100%" }} spacing={2}>
           <Alert variant="filled" severity="warning">
