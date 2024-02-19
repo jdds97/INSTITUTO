@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="actividad1.xsd">
+    <recepcion>
+        <producto>Arroz</producto>
+        <cantidad>100</cantidad>
+        <codigoreceptor>123-ABC</codigoreceptor>
+    </recepcion>
+    <entrega receptor="XYZ" coste="500">
+        <transportista>T2</transportista>
+        <distancia unidad="km">150.5</distancia>
+    </entrega>
+    <recepcion>
+        <producto>Aceite</producto>
+        <cantidad>50</cantidad>
+        <codigoreceptor>456-DEF</codigoreceptor>
+    </recepcion>
+    <entrega receptor="LMN" coste="750">
+        <transportista>T1</transportista>
+        <distancia unidad="km">200</distancia>
+    </entrega>
+</portes>

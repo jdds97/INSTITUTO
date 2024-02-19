@@ -1,5 +1,12 @@
-const apiRest = "https://api-ejercicios-default-rtdb.europe-west1.firebasedatabase.app/";
-document.getElementById("recuperarDatos").addEventListener("click", recuperarDatos);
+const apiRest =
+  "https://api-ejercicios-default-rtdb.europe-west1.firebasedatabase.app/";
+document
+  .getElementById("recuperarDatos")
+  .addEventListener("click", insertarDatos);
+
+document
+  .getElementById("recuperarDatos")
+  .addEventListener("click", recuperarDatos);
 frmActualizaRegistro.addEventListener("submit", actualizarAlumno);
 
 function recuperarDatos() {
@@ -16,7 +23,8 @@ function mostrarAlumnos(listaAlumnos) {
   let tabla = document.createElement("table");
   let cabecera = document.createElement("thead");
   let fila, celda;
-  cabecera.innerHTML = "<th>Id</th><th>Apellidos</th><th>Nombre</th><th>Edad</th>";
+  cabecera.innerHTML =
+    "<th>Id</th><th>Apellidos</th><th>Nombre</th><th>Edad</th>";
   tabla.append(cabecera);
   for (let alumno of listaAlumnos) {
     fila = tabla.insertRow();

@@ -1,5 +1,5 @@
 /*Centra el componente Typography*/
-Card {
+.card {
   display: flex;
   justify-content: center;
   align-items: center;

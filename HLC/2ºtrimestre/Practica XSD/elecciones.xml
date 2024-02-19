@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elecciones xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="actividad2.xsd">
+    <descripcion>ELementos locales</descripcion>
+    <datos>
+        <fecha>2020-06-29</fecha>
+        <censados>500</censados>
+        <abstenciones>450</abstenciones>
+        <blancos>12</blancos>
+    </datos>
+    <resultados>
+        <partido local="si">
+            <nombre>Partido Central</nombre>
+            <votos>8</votos>
+            <representante>si</representante>
+        </partido>
+        <partido>
+            <nombre>Los Verdes</nombre>
+            <votos>14</votos>
+        </partido>
+        <partido local="no">
+            <nombre>Partido Unido</nombre>
+            <votos>5</votos>
+            <representante>no</representante>
+        </partido>
+        <partido>
+            <nombre>Partido Liberal</nombre>
+            <votos>5</votos>
+        </partido>
+        <partido>
+            <nombre>Partido Independiente</nombre>
+            <votos>6</votos>
+        </partido>
+    </resultados>
+</elecciones>

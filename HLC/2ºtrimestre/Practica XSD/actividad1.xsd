@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Definición de los elementos y atributos -->
+
+  <!-- Elemento raíz -->
+  <xs:element name="portes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="recepcion">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="producto" type="xs:string"/>
+                <xs:element name="cantidad" type="xs:positiveInteger"/>
+                <xs:element name="codigoreceptor" type="CodigoReceptorType" minOccurs="0"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="entrega">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="transportista">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:enumeration value="T1"/>
+                      <xs:enumeration value="T2"/>
+                      <xs:enumeration value="T3"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="distancia">
+                  <xs:complexType>
+                    <xs:simpleContent>
+                      <xs:extension base="xs:decimal">
+                        <xs:attribute name="unidad" type="xs:string" use="required"/>
+                      </xs:extension>
+                    </xs:simpleContent>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+              <xs:attribute name="receptor" type="xs:string" use="required"/>
+              <xs:attribute name="coste" type="xs:positiveInteger" use="required"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Definición del tipo para codigoreceptor -->
+  <xs:simpleType name="CodigoReceptorType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{3}-[A-Z]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Definición de los elementos y atributos -->
+
+  <!-- Elemento raíz -->
+  <xs:element name="elecciones">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="descripcion" type="xs:string"/>
+        <xs:element name="datos" type="datosType"/>
+        <xs:element name="resultados" type="resultadosType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Tipo para datos -->
+  <xs:complexType name="datosType">
+    <xs:sequence>
+      <xs:element name="fecha" type="xs:date"/>
+      <xs:element name="censados" type="xs:integer"/>
+      <xs:element name="abstenciones" type="xs:integer"/>
+      <xs:element name="blancos" type="xs:integer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo para resultados -->
+  <xs:complexType name="resultadosType">
+    <xs:sequence>
+      <xs:element name="partido" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="votos" type="xs:integer"/>
+            <xs:element name="representante" type="xs:string" minOccurs="0"/>
+          </xs:sequence>
+          <xs:attribute name="local" type="xs:string" use="optional"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

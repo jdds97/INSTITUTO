@@ -4,7 +4,8 @@ import "./App.css";
 import SearchBar from "./SearchBar.jsx";
 import Card from "./Card.jsx";
 import { useState, useEffect, useRef } from "react";
-
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 function App() {
   //Hooks para personaje
   const [id, setId] = useState("");
@@ -57,7 +58,7 @@ function App() {
     }
     setCreadores(creadores);
     setImagenComic(imagenUrl);
-    setCardVisibleComic(true);
+
     setFechaLanzamiento(comic.dates[0].date);
     setCardVisibleComic(true);
     setCardVisiblePersonaje(false);
@@ -85,32 +86,46 @@ function App() {
   return (
     <>
       <h1 className="logoMarvel">MARVEL EXPLORER</h1>
-      <h2 className="tituloBuscador">BUSCA TUS PERSONAJES FAVORITOS</h2>
+      <h2 className="tituloBuscador">BUSCA TUS PERSONAJES/COMICS FAVORITOS</h2>
       <a href="https://react.dev" target="_blank">
         <img src={reactLogo} className="logo react" alt="React logo" />
       </a>
 
       <SearchBar onSearch={handleSearch} onReset={handleClear} />
       {cardVisiblePersonaje ? (
-        <Card
-          ref={cardRefPersonaje}
-          nombre={nombre}
-          imagen={imagen}
-          descripcion={descripcion}
-          id={id}
-        />
+        <>
+          <Stack sx={{ width: "100%" }} spacing={2}>
+            <Alert variant="filled" severity="success">
+              El personaje con ese nombre existe
+            </Alert>
+          </Stack>
+          <Card
+            ref={cardRefPersonaje}
+            nombre={nombre}
+            imagen={imagen}
+            descripcion={descripcion}
+            id={id}
+          />
+        </>
       ) : (
         <></>
       )}
       {cardVisibleComic ? (
-        <Card
-          ref={cardRefComic}
-          nombre={nombreComic}
-          imagen={imagenComic}
-          descripcion={sinopsis}
-          creadores={creadores}
-          fechaLanzamiento={fechaLanzamiento}
-        />
+        <>
+          <Stack sx={{ width: "100%" }} spacing={2}>
+            <Alert variant="filled" severity="success">
+              El comic con ese nombre existe
+            </Alert>
+          </Stack>
+          <Card
+            ref={cardRefComic}
+            nombre={nombreComic}
+            imagen={imagenComic}
+            descripcion={sinopsis}
+            creadores={creadores}
+            fechaLanzamiento={fechaLanzamiento}
+          />
+        </>
       ) : (
         <></>
       )}

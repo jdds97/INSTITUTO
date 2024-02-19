@@ -12,58 +12,54 @@ const ActionAreaCard = React.forwardRef(function ActionAreaCard(
   ref
 ) {
   return (
-    <Card sx={{ maxWidth: 345 }} ref={ref}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="345"
-          image={imagen}
-          alt="Superhéroe/Cómic de Marvel"
-          sx={{
-            display: "flex",
-            position: "relative",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        />
+    <div className="card">
+      <Card sx={{ maxWidth: 345 }} ref={ref}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="345"
+            image={imagen}
+            alt="Superhéroe/Cómic de Marvel"
+          />
 
-        <CardContent>
-          <Typography gutterBottom variant="h4" component="div">
-            {nombre}
-          </Typography>
-
-          {id && (
-            <Typography variant="h5" color="text.secondary">
-              Id {id}
+          <CardContent>
+            <Typography gutterBottom variant="h4" component="div">
+              {nombre}
             </Typography>
+
+            {id && (
+              <Typography variant="h5" color="text.secondary">
+                Id {id}
+              </Typography>
+            )}
+            <Typography variant="body2" color="text.secondary">
+              {descripcion}
+            </Typography>
+          </CardContent>
+          {/*el código dentro de los paréntesis (...) solo se renderizará si fechaLanzamiento es verdadero (o "truthy").*/}
+          {fechaLanzamiento && (
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Fecha de lanzamiento
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {fechaLanzamiento}
+              </Typography>
+            </CardContent>
           )}
-          <Typography variant="body2" color="text.secondary">
-            {descripcion}
-          </Typography>
-        </CardContent>
-        {/*el código dentro de los paréntesis (...) solo se renderizará si fechaLanzamiento es verdadero (o "truthy").*/}
-        {fechaLanzamiento && (
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Fecha de lanzamiento
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {fechaLanzamiento}
-            </Typography>
-          </CardContent>
-        )}
-        {creadores && (
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Creado por
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {creadores.join(", ")}
-            </Typography>
-          </CardContent>
-        )}
-      </CardActionArea>
-    </Card>
+          {creadores && (
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Creado por
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {creadores.join(", ")}
+              </Typography>
+            </CardContent>
+          )}
+        </CardActionArea>
+      </Card>
+    </div>
   );
 });
 

@@ -11,7 +11,8 @@ SearchBar.propTypes = {
 
 function SearchBar({ onSearch, onReset }) {
   const [input, setInput] = useState("");
-  const [error, setError] = useState(false);
+  const [errorComic, setErrorComic] = useState(false);
+  const [errorPersonaje, setErrorPersonaje] = useState(false);
   const [termino, setTermino] = useState(""); // Inicialmente busca por nombre
   const ts = 1;
   const clavePublica = "6c6852c85207adba9e725a4d7e5de26e";
@@ -31,17 +32,21 @@ function SearchBar({ onSearch, onReset }) {
         const resultados = data.data.results;
         if (resultados.length === 0) {
           // Si la búsqueda por nombre no devuelve resultados, cambia a buscar por cómic
+
+          setErrorPersonaje(true);
           buscarComic();
-          if (error) setError(false);
+          if (errorComic) setErrorComic(false);
         } else {
+          setErrorComic(true);
           const datos = resultados[0];
           onSearch(datos);
-          if (error) setError(false);
+          if (errorPersonaje) setErrorPersonaje(false);
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        setError(true);
+        setErrorPersonaje(true);
+        setErrorComic(true);
       });
   };
 
@@ -51,7 +56,7 @@ function SearchBar({ onSearch, onReset }) {
       const url = `https://gateway.marvel.com/v1/public/${termino}${timestamp}&apikey=${clavePublica}&hash=${hash}`;
       fetchData(url);
     }
-  }, [termino, input]);
+  }, [termino]);
 
   const handleSearch = () => {
     setTermino(`characters?name=${encodeURIComponent(input)}`);
@@ -60,7 +65,8 @@ function SearchBar({ onSearch, onReset }) {
   const handleClear = () => {
     setInput("");
     onReset(false);
-    setError(false);
+    setErrorComic(false);
+    setErrorPersonaje(false);
   };
   const buscarComic = () => {
     let inputEntero = input;
@@ -76,10 +82,15 @@ function SearchBar({ onSearch, onReset }) {
           (comic) => comic.title.toLowerCase() === inputEntero.toLowerCase()
         );
         if (comicExacto) {
-          // Si se encuentra el cómic exacto, busca por su ID
-          let terminoExacto = `comics/${comicExacto.id}?`;
-          setTermino(terminoExacto);
+          onSearch(comicExacto);
+          setErrorComic(false);
+        } else {
+          setErrorComic(true);
         }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setErrorComic(true);
       });
   };
   return (
@@ -99,10 +110,17 @@ function SearchBar({ onSearch, onReset }) {
           </button>
         </div>
       </div>
-      {error && (
+      {errorComic && (
         <Stack sx={{ width: "100%" }} spacing={2}>
-          <Alert variant="filled" severity="error">
-            El personaje/comic con ese nombre no existe
+          <Alert variant="filled" severity="warning">
+            El comic con ese nombre exacto no existe
+          </Alert>
+        </Stack>
+      )}
+      {errorPersonaje && (
+        <Stack sx={{ width: "100%", marginTop: "20px" }} spacing={2}>
+          <Alert variant="filled" severity="warning">
+            El personaje con ese nombre no existe
           </Alert>
         </Stack>
       )}
