@@ -2,57 +2,115 @@
  * Datos iniciales
  */
 let frmComercial = document.getElementById("frmComercial");
-frmComercial.comerciales.addEventListener("change", cargaDatosIniciales);
-frmComercial.comerciales.addEventListener("change", cargaClientes);
+frmComercial.comerciales.addEventListener("change", limpiarClientes);
+frmComercial.comerciales.addEventListener("change", cargarClientes);
 
-function cargaDatosIniciales() {
-  fetch(
-    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/.json"
-  )
-    .then((response) => response.json())
-    .then(
-      (data) => {
-        cargaComerciales(Object.values(data.comerciales)),
-          cargaClientes(Object.values(data.clientes));
-      }
-      // cargaClientes(data.clientes),
-      // añadirProductos(data.productos)
-    );
+let frmControles = document.getElementById("frmControles");
+frmControles.categorias.addEventListener("change", cargarCategorias);
+frmControles.categorias.addEventListener("change", limpiarCategorias);
+frmControles.categorias.addEventListener("change", limpiarProductos);
+
+function cargaDatos() {
+  cargarComerciales();
+  cargarClientes();
+  cargarCategorias();
+  cargarProductos();
 }
 
-// function actualizarDatos(entrada,respuesta,event) {
+function cargarComerciales() {
+  fetch(
+    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/comerciales.json"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      cargaComerciales(data);
+    });
+}
+
+function cargarClientes() {
+  fetch(
+    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/clientes.json"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      cargaClientes(data);
+    });
+}
+
+function cargarCategorias() {
+  fetch(
+    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/categorias.json"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      cargaCategorias(data);
+    });
+}
+
+function cargarProductos() {
+  fetch(
+    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/productos.json"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      cargaProductos(data);
+    });
+}
+
+// let formularioNuevaCategoria = document.getElementById("frmNuevaCategoria");
+// formularioNuevaCategoria.addEventListener(
+//   "submit",
+//   actualizarDatos("categorias", "POST", event)
+// );
+// let formularioBorrarCategoria = document.getElementById("frmBorrarCategoria");
+// formularioBorrarCategoria.addEventListener(
+//   "submit",
+//   actualizarDatos("categorias", "DELETE")
+// );
+// let formularioNuevoProducto = document.getElementById("frmNuevoProducto");
+// formularioNuevoProducto.addEventListener(
+//   "submit",
+//   actualizarDatos("productos", "POST")
+// );
+// let formularioBorrarProducto = document.getElementById("frmBorrarProducto");
+// formularioBorrarProducto.addEventListener(
+//   "submit",
+//   actualizarDatos("productos", "DELETE")
+// );
+// let formularioNuevoCliente = document.getElementById("frmNuevoCliente");
+// formularioNuevoCliente.addEventListener(
+//   "submit",
+//   actualizarDatos("clientes", "POST")
+// );
+// let formularioBorrarCliente = document.getElementById("frmBorrarCliente");
+// formularioBorrarCliente.addEventListener(
+//   "submit",
+//   actualizarDatos("clientes", "DELETE")
+// );
+// let formularioNuevoComercial = document.getElementById("frmNuevoComercial");
+// formularioNuevoComercial.addEventListener(
+//   "submit",
+//   actualizarDatos("comerciales", "POST")
+// );
+// let formularioBorrarComercial = document.getElementById("frmBorrarComercial");
+// formularioBorrarComercial.addEventListener(
+//   "submit",
+//   actualizarDatos("comerciales", "DELETE")
+// );
+
+// function actualizarDatos(entrada, respuesta, event) {
 //   event.preventDefault();
+//   let datos = event.target.value;
 //   let url = `https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/${entrada}.json`;
 //   fetch(url, {
-//     method: `${respuesta}`,//PATH O DELETE
+//     method: `${respuesta}`, //PATH O DELETE
 //     headers: {
 //       "Content-Type": "application/json;charset=utf-8",
 //     },
 //     body: JSON.stringify(datos),
-//   })
+//   });
 //   setTimeout(recuperarDatos, 800);
 // }
-
-// .then((response) => response.json())
-//     .then(cargarDatos);
-//   fetch(apiRest + fichero + idFirebase, {
-//     method: "PATCH",
-//     headers: {
-//       "Content-Type": "application/json;charset=utf-8",
-//     },
-//   }).then((res) => res.json());
-//   const options = {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(update),
-//   };
-// }
-
-/**
- * Francotirador y addEventListener principales
- */
 
 /*
 /**
@@ -61,35 +119,46 @@ function cargaDatosIniciales() {
 /**
  * Carga los comerciales en el formulario .
  */
-function cargaComerciales(comerciales) {
+function cargaComerciales(objetoComerciales) {
+  let comerciales = Object.values(objetoComerciales);
   comerciales.forEach((comercial, i) => {
     let option = document.createElement("option");
     option.value = i;
+    option.setAttribute("id", Object.keys(objetoComerciales)[i]);
     option.text = comercial;
-    if (frmComercial.comerciales.options.length <= comerciales.length)
-      frmComercial.comerciales.add(option);
+    frmComercial.comerciales.add(option);
   });
 }
+
 /**
  * Carga los clientes del comercial seleccionado en el cuadro de pedido.
  */
-function cargaClientes(clientes) {
-  let clientesComercial = Object.values(
-    clientes[frmComercial.comerciales.value]
-  );
+function cargaClientes(objetoClientes) {
+  let clientesComercial =
+    Object.values(objetoClientes)[frmComercial.comerciales.value];
+  
   clientesComercial.forEach((cliente, i) => {
     let cuadroCliente = document.createElement("div");
-    cuadroCliente.innerHTML = cliente;
+    cuadroCliente.innerHTML = Object.values(clientesComercial)[i];
     cuadroCliente.value = i;
-    if (
-      frmComercial.parentNode.querySelectorAll(".cliente").length <=
-        clientesComercial.length &&
-      frmComercial.parentElement
-    ) {
-      frmComercial.parentNode.append(cuadroCliente);
-      cuadroCliente.classList.add("cliente");
-      cuadroCliente.classList.add("pagado");
-    }
+
+    frmComercial.parentNode.append(cuadroCliente);
+    cuadroCliente.classList.add("cliente");
+    cuadroCliente.classList.add("pagado");
+  });
+}
+
+/**
+ * Carga las categorías en el formulario.
+ */
+function cargaCategorias(categorias) {
+  categorias.forEach((categoria, indice) => {
+    let option = document.createElement("option");
+    option.index = indice;
+    option.value = indice;
+    option.textContent = categoria;
+    if (frmControles.categorias.options.length < categorias.length)
+      frmControles.categorias.add(option);
   });
 }
 
@@ -97,12 +166,13 @@ function cargaClientes(clientes) {
  * Carga los productos de la categoría seleccionada en el formulario.
  */
 
-function cargaProductos() {
+function cargaProductos(productos) {
   let categoriaSeleccionada = frmControles.categorias.value;
-  let productos = catalogo.productos.filter(
-    (producto) => producto.idCategoria === parseInt(categoriaSeleccionada)
-  );
-  productos.forEach((producto) => {
+  let productosSeleccionados = Object.values(productos).filter((producto) => {
+    return producto.idCategoria == categoriaSeleccionada;
+  });
+  console.log(productosSeleccionados);
+  productosSeleccionados.forEach((producto) => {
     let option = document.createElement("option");
     option.value = producto.idProducto;
     option.textContent = producto.nombreProducto;
@@ -110,23 +180,27 @@ function cargaProductos() {
   });
 }
 /**
- * Carga las categorías en el formulario.
+ * Limpia los comerciales del formulario.
  */
-function cargaCategorias() {
-  gestor.categorias.forEach((categoria, indice) => {
-    let option = document.createElement("option");
-    option.index = indice;
-    option.value = indice;
-    option.textContent = categoria;
-    frmControles.categorias.add(option);
-  });
+function limpiarComerciales() {
+  frmComercial.comerciales
+    .querySelectorAll("option")
+    .forEach((comercial) => comercial.remove());
 }
 /**
  * Limpia el pedido y el cliente anterior.
  */
-function limpiarClienteAnteriores() {
+function limpiarClientes() {
   let clientes = document.querySelectorAll(".cliente");
   clientes.forEach((cliente) => cliente.remove());
+}
+/**
+ * Limpia las categorías del formulario.
+ */
+function limpiarCategorias() {
+  frmControles.categorias
+    .querySelectorAll("option")
+    .forEach((categoria) => categoria.remove());
 }
 /**
  * Limpia los productos del formulario.
@@ -137,20 +211,4 @@ function limpiarProductos() {
     .forEach((producto) => producto.remove());
 }
 
-/**
- * Funciones de cliente actual
- */
-/**
- * Añade un título h2 al cuadro de pedido con el nombre del cliente seleccionado.
- */
-
-function primerTitulo() {
-  let comercialSeleccionado = frmComercial.comerciales.value;
-  let h2 = document.createElement("h2");
-  h2.innerText = "Cliente " + gestor.clientes[comercialSeleccionado][0].nombre;
-  cuadroPedido.firstElementChild.after(h2);
-}
-
-// // Ejecución de funciones
-// contentLoaded();
-cargaDatosIniciales();
+cargaDatos();
