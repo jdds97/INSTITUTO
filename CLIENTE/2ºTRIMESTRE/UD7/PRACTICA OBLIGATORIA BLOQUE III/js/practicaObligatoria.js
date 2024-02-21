@@ -136,12 +136,13 @@ function cargaComerciales(objetoComerciales) {
 function cargaClientes(objetoClientes) {
   let clientesComercial =
     Object.values(objetoClientes)[frmComercial.comerciales.value];
-  
+
   clientesComercial.forEach((cliente, i) => {
     let cuadroCliente = document.createElement("div");
     cuadroCliente.innerHTML = Object.values(clientesComercial)[i];
     cuadroCliente.value = i;
-
+    cuadroCliente.setAttribute("idComercial", Object.keys(objetoClientes));
+    cuadroCliente.setAttribute("id", i);
     frmComercial.parentNode.append(cuadroCliente);
     cuadroCliente.classList.add("cliente");
     cuadroCliente.classList.add("pagado");
@@ -151,11 +152,14 @@ function cargaClientes(objetoClientes) {
 /**
  * Carga las categorías en el formulario.
  */
-function cargaCategorias(categorias) {
+function cargaCategorias(objetoCategorias) {
+  let categorias = Object.values(objetoCategorias);
   categorias.forEach((categoria, indice) => {
     let option = document.createElement("option");
     option.index = indice;
     option.value = indice;
+    console.log(Object.keys(objetoCategorias)[indice]);
+    option.setAttribute("id", Object.keys(objetoCategorias)[indice]);
     option.textContent = categoria;
     if (frmControles.categorias.options.length < categorias.length)
       frmControles.categorias.add(option);
@@ -171,7 +175,6 @@ function cargaProductos(productos) {
   let productosSeleccionados = Object.values(productos).filter((producto) => {
     return producto.idCategoria == categoriaSeleccionada;
   });
-  console.log(productosSeleccionados);
   productosSeleccionados.forEach((producto) => {
     let option = document.createElement("option");
     option.value = producto.idProducto;
