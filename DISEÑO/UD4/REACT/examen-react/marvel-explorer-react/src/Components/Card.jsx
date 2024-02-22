@@ -24,6 +24,9 @@ const ActionAreaCard = React.forwardRef(function ActionAreaCard( //forwardRef es
   { id, nombre, imagen, descripcion, creadores, fechaLanzamiento, favorito },
   ref
 ) {
+  function onAddFavorito() {
+    handleFavorito(personaje);
+  }
   return (
     <div className="card">
       <Card sx={{ maxWidth: 345 }} ref={ref}>
@@ -54,6 +57,7 @@ const ActionAreaCard = React.forwardRef(function ActionAreaCard( //forwardRef es
               {descripcion}
             </Typography>
           </CardContent>
+          <Favorito onClick={onAddFavorito} />
           {/* Si fechaLanzamiento existe, se renderiza la fecha de lanzamiento del
           cómic en un elemento Typography. */}
           {fechaLanzamiento && (

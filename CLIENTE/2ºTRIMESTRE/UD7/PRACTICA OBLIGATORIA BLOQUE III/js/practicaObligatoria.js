@@ -6,9 +6,9 @@ frmComercial.comerciales.addEventListener("change", limpiarClientes);
 frmComercial.comerciales.addEventListener("change", cargarClientes);
 
 let frmControles = document.getElementById("frmControles");
-frmControles.categorias.addEventListener("change", cargarCategorias);
-frmControles.categorias.addEventListener("change", limpiarCategorias);
+
 frmControles.categorias.addEventListener("change", limpiarProductos);
+frmControles.categorias.addEventListener("change", cargarProductos);
 
 function cargaDatos() {
   cargarComerciales();
@@ -137,11 +137,13 @@ function cargaClientes(objetoClientes) {
   let clientesComercial =
     Object.values(objetoClientes)[frmComercial.comerciales.value];
 
+  let keyComercial =
+    Object.keys(objetoClientes)[frmComercial.comerciales.value];
   clientesComercial.forEach((cliente, i) => {
     let cuadroCliente = document.createElement("div");
-    cuadroCliente.innerHTML = Object.values(clientesComercial)[i];
+    cuadroCliente.innerHTML = cliente;
     cuadroCliente.value = i;
-    cuadroCliente.setAttribute("idComercial", Object.keys(objetoClientes));
+    cuadroCliente.setAttribute("idArrayClientes", keyComercial);
     cuadroCliente.setAttribute("id", i);
     frmComercial.parentNode.append(cuadroCliente);
     cuadroCliente.classList.add("cliente");
@@ -158,7 +160,6 @@ function cargaCategorias(objetoCategorias) {
     let option = document.createElement("option");
     option.index = indice;
     option.value = indice;
-    console.log(Object.keys(objetoCategorias)[indice]);
     option.setAttribute("id", Object.keys(objetoCategorias)[indice]);
     option.textContent = categoria;
     if (frmControles.categorias.options.length < categorias.length)
@@ -175,9 +176,12 @@ function cargaProductos(productos) {
   let productosSeleccionados = Object.values(productos).filter((producto) => {
     return producto.idCategoria == categoriaSeleccionada;
   });
-  productosSeleccionados.forEach((producto) => {
+  let keysProductos = Object.keys(productos).filter((producto) => {
+    return productos[producto].idCategoria == categoriaSeleccionada;
+  });
+  productosSeleccionados.forEach((producto, i) => {
     let option = document.createElement("option");
-    option.value = producto.idProducto;
+    option.value = keysProductos[i];
     option.textContent = producto.nombreProducto;
     frmControles.productos.add(option);
   });

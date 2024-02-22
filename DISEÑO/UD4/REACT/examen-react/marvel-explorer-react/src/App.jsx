@@ -35,7 +35,7 @@ function App() {
   const [countMal, setCountMal] = useState(0);
   const [favorito, setFavorito] = useState(false);
   const [favoritosData, setFavoritos] = useState([]);
-  const [personaje, setPersonaje] = useState(null);
+  const [personajeActual, setPersonajeActual] = useState(null);
   const [comic, setComic] = useState(null);
   /**
    * Obtiene los datos del personaje y actualiza los estados correspondientes.
@@ -59,8 +59,12 @@ function App() {
     setId(personajeData.id);
     setCardVisiblePersonaje(true);
     setCardVisibleComic(false);
-    setPersonaje(personaje);
-    if (favoritosData.includes(personajeData)) {
+    setPersonajeActual(personaje);
+    if (
+      favoritosData.includes((personajeData) =>
+        personajeData.name.includes(personaje.nombre)
+      )
+    ) {
       setFavorito(true);
     } else {
       setFavorito(false);
@@ -134,10 +138,6 @@ function App() {
     setCountBien(0);
     setCountMal(0);
   }
-  function handleFavorito() {
-    setFavorito(true);
-    setFavoritos([favoritosData, ...favoritosData]);
-  }
 
   //Efecto para hacer scroll a la tarjeta del personaje cuando cambia su visibilidad
   useEffect(() => {
@@ -164,6 +164,7 @@ function App() {
         onReset={handleClear}
         onCountMal={handleCountMal}
         onCountBien={handleCountBien}
+        onFavorito={setFavoritos}
       />
       <Counter mensaje="Numero de búsquedas exitosas" count={countBien} />
       <Counter mensaje="Número de búsquedas erróneas" count={countMal} />
@@ -184,7 +185,6 @@ function App() {
             id={id}
             favorito={favorito}
           />
-          <Favorito onFavorito={handleFavorito} />
         </>
       ) : (
         <></>
@@ -204,6 +204,7 @@ function App() {
             descripcion={sinopsis}
             creadores={creadores}
             fechaLanzamiento={fechaLanzamiento}
+            favorito={favorito}
           />
         </>
       ) : (
