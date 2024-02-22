@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE concesionario [
+<!ELEMENT concesionario (coche*)>
+<!ELEMENT coche (marca, modelo, (cilindrada|caballos), combustible, precio, anio?, color, interesado*, fecha_limite?)>
+<!ELEMENT marca (#PCDATA)>
+<!ELEMENT modelo (#PCDATA)>
+<!ELEMENT cilindrada (#PCDATA)>
+<!ELEMENT caballos (#PCDATA)>
+<!ELEMENT combustible (#PCDATA)>
+<!ELEMENT precio (#PCDATA)>
+<!ELEMENT anio (#PCDATA)>
+<!ELEMENT color (#PCDATA)>
+<!ELEMENT interesado (#PCDATA)>
+<!ELEMENT fecha_limite EMPTY>
+<!ATTLIST concesionario provincia CDATA #REQUIRED>
+<!ATTLIST coche matricula CDATA #REQUIRED>
+<!ATTLIST interesado DNI CDATA #REQUIRED>
+<!ATTLIST fecha_limite fecha CDATA #REQUIRED>
+]>
+<concesionario provincia="Madrid">
+    <coche matricula="1234ABC">
+        <marca>Seat</marca>
+        <modelo>Ibiza</modelo>
+        <cilindrada>1400</cilindrada>
+        <combustible>Gasolina</combustible>
+        <precio>10000</precio>
+        <anio>2015</anio>
+        <color>Blanco</color>
+        <interesado DNI="12345678A"/>
+        <interesado DNI="87654321B"/>
+        <fecha_limite fecha="2021-12-31"/>
+    </coche>
+    <coche matricula="5678DEF">
+        <marca>Renault</marca>
+        <modelo>Clio</modelo>
+        <caballos>90</caballos>
+        <combustible>Diesel</combustible>
+        <precio>8000</precio>
+        <anio>2017</anio>
+        <color>Azul</color>
+        <interesado DNI="12345678A"/>
+        <fecha_limite fecha="2021-12-31"/>
+    </coche>
+</concesionario>

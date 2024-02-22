@@ -1,0 +1,30 @@
+nombre {
+  display: flex;
+  font-size: larger;
+  font-weight: bold;
+  margin-top: 100px;
+}
+marca,
+modelo,
+precio,
+stock {
+  font-size: medium;
+  display: flex;
+}
+ciudad {
+  color: white;
+  background-color: rgb(0, 119, 255);
+  display: inline-flex;
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+}
+
+precio::before {
+  content: "Precio: ";
+  font-weight: bold;
+}
+stock::before {
+  content: "Stock: ";
+  font-weight: bold;
+}

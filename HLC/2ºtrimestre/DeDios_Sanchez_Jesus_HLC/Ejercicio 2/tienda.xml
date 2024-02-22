@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="estilos.css"?>
+<tienda_informatica>
+    <producto id="1">
+        <nombre>Laptop</nombre>
+        <marca>HP</marca>
+        <modelo>Spectre x360</modelo>
+        <precio>1200</precio>
+        <stock>15</stock>
+        <ciudades_disponibilidad>
+            <ciudad>Madrid</ciudad>
+            <ciudad>Barcelona</ciudad>
+            <ciudad>Valencia</ciudad>
+        </ciudades_disponibilidad>
+    </producto>
+    <producto id="2">
+        <nombre>Monitor</nombre>
+        <marca>Dell</marca>
+        <modelo>UltraSharp U2419H</modelo>
+        <precio>300</precio>
+        <stock>20</stock>
+        <ciudades_disponibilidad>
+            <ciudad>Barcelona</ciudad>
+            <ciudad>Sevilla</ciudad>
+            <ciudad>Valencia</ciudad>
+        </ciudades_disponibilidad>
+    </producto>
+    <producto id="3">
+        <nombre>Teclado</nombre>
+        <marca>Logitech</marca>
+        <modelo>K780</modelo>
+        <precio>70</precio>
+        <stock>30</stock>
+        <ciudades_disponibilidad>
+            <ciudad>Madrid</ciudad>
+            <ciudad>Sevilla</ciudad>
+        </ciudades_disponibilidad>
+    </producto>
+</tienda_informatica>

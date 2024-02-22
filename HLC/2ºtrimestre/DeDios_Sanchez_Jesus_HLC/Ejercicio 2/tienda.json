@@ -1,0 +1,43 @@
+{
+  "tienda_informatica": [
+    {
+      "producto": {
+        "id": "1",
+        "nombre": "Laptop",
+        "marca": "HP",
+        "modelo": "Spectre x360",
+        "precio": "1200",
+        "stock": "15",
+        "ciudades_disponibilidad": {
+          "ciudad": ["Madrid", "Barcelona", "Valencia"]
+        }
+      }
+    },
+    {
+      "producto": {
+        "id": "2",
+        "nombre": "Monitor",
+        "marca": "Dell",
+        "modelo": "UltraSharp U2419H",
+        "precio": "300",
+        "stock": "20",
+        "ciudades_disponibilidad": {
+          "ciudad": ["Barcelona", "Sevilla", "Valencia"]
+        }
+      }
+    },
+    {
+      "producto": {
+        "id": "3",
+        "nombre": "Teclado",
+        "marca": "Logitech",
+        "modelo": "K780",
+        "precio": "70",
+        "stock": "30",
+        "ciudades_disponibilidad": {
+          "ciudad": ["Madrid", "Sevilla"]
+        }
+      }
+    }
+  ]
+}
