@@ -6,6 +6,7 @@
   padding: 5px;
   float: left;
   text-align: center;
+  overflow: auto;
 }
 
 .cliente {
@@ -90,4 +91,12 @@ th {
 .boton {
   background-color: lightskyblue;
   margin-bottom: 5px;
+}
+
+.oculto {
+  display: none;
+}
+
+.visible {
+  display: block;
 }

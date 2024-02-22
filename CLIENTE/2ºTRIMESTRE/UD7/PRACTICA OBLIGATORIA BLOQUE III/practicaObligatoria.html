@@ -42,138 +42,110 @@
       <h1>CRUD</h1>
       <hr />
       <!-- FORMULARIOS COMERCIALES-->
-      <form
-        id="frmNuevoComercial"
-        name="frmNuevoComercial"
-        style="visibility: hidden"
-      >
-        <label><h4>Nuevo comercial:</h4></label>
-        <input type="text" id="txtNuevoComercial" /><br />
-        <input type="submit" value="Guardar" />
-        <hr />
-      </form>
+      <div id="gestionComerciales" class="oculto">
+        <form id="frmNuevoComercial" name="frmNuevoComercial">
+          <label><h4>Nuevo comercial:</h4></label>
+          <input type="text" id="txtNuevoComercial" /><br />
+          <input type="submit" value="Guardar" />
+          <hr />
+        </form>
 
-      <form
-        id="frmEditarComercial"
-        name="frmEditarComercial"
-        style="visibility: hidden"
-      >
-        <label><h4>Comercial a modificar:</h4></label>
-        <input type="text" id="txtModificarComercial" />
-        <label><h4>Nuevo nombre:</h4></label>
-        <input type="text" id="txtNuevoNombreComercial" /><br />
-        <input type="submit" value="Modificar" />
-        <hr />
-      </form>
+        <form id="frmEditarComercial" name="frmEditarComercial">
+          <label><h4>Comercial a modificar:</h4></label>
+          <select name="comercialesAEditar"></select>
+          <label><h4>Nuevo nombre:</h4></label>
+          <input type="text" id="txtNuevoNombreComercial" /><br />
+          <input type="submit" value="Modificar" />
+          <hr />
+        </form>
 
-      <form
-        id="frmBorrarComercial"
-        name="frmBorrarComercial"
-        style="visibility: hidden"
-      >
-        <label><h4>Comercial a borrar:</h4></label>
-        <input type="text" id="txtBorrarComercial" /><br /><br />
-        <input type="submit" value="Borrar" />
-      </form>
+        <form id="frmBorrarComercial" name="frmBorrarComercial">
+          <label><h4>Comercial a borrar:</h4></label>
+          <select name="comercialesABorrar"></select
+          ><br /><br />
+          <input type="submit" value="Borrar" />
+        </form>
+      </div>
       <!-- FORMULARIOS CLIENTES-->
-      <form
-        id="frmNuevoCliente"
-        name="frmNuevoCliente"
-        style="visibility: hidden"
-      >
-        <label><h4>Nuevo cliente:</h4></label>
-        <input type="text" id="txtNuevoCliente" /><br />
-        <input type="submit" value="Guardar" />
-        <hr />
-      </form>
+      <div id="gestionClientes" class="oculto">
+        <form id="frmNuevoCliente" name="frmNuevoCliente">
+          <label><h4>Nuevo cliente:</h4></label>
+          <input type="text" id="txtNuevoCliente" /><br />
+          <input type="submit" value="Guardar" />
+          <hr />
+        </form>
 
-      <form
-        id="frmEditarCliente"
-        name="frmEditarCliente"
-        style="visibility: hidden"
-      >
-        <label><h4>Cliente a modificar:</h4></label>
-        <input type="text" id="txtModificarCliente" />
-        <label><h4>Nuevo nombre:</h4></label>
-        <input type="text" id="txtNuevoNombreCliente" /><br />
-        <input type="submit" value="Modificar" />
-        <hr />
-      </form>
+        <form id="frmEditarCliente" name="frmEditarCliente">
+          <label><h4>Elija comercial</h4></label>
+          <select name="comercialesClientesAEditar"></select>
+          <label><h4>Cliente a modificar:</h4></label>
+          <select name="clientesAEditar"></select>
+          <label><h4>Nuevo nombre:</h4></label>
+          <input type="text" id="txtNuevoNombreCliente" /><br />
+          <input type="submit" value="Modificar" />
+          <hr />
+        </form>
 
-      <form
-        id="frmBorrarCliente"
-        name="frmBorrarCliente"
-        style="visibility: hidden"
-      >
-        <label><h4>Cliente a borrar:</h4></label>
-        <input type="text" id="txtBorrarCliente" /><br /><br />
-        <input type="submit" value="Borrar" />
-      </form>
+        <form id="frmBorrarCliente" name="frmBorrarCliente">
+          <label><h4>Elija comercial</h4></label>
+          <select name="comercialesClientesABorrar"></select>
+          <label><h4>Cliente a borrar:</h4></label>
+          <select name="clientesABorrar"></select>
+          <br /><br />
+          <input type="submit" value="Borrar" />
+        </form>
+      </div>
 
       <!-- FORMULARIOS CATEGORIAS-->
-      <form
-        id="frmNuevaCategoria"
-        name="frmNuevaCategoria"
-        style="visibility: hidden"
-      >
-        <label><h4>Nueva categoría:</h4></label>
-        <input type="text" id="txtNuevaCategoria" /><br />
-        <input type="submit" value="Guardar" />
-      </form>
-      <hr />
-      <form
-        id="frmEditarCategoria"
-        name="frmEditarCategoria"
-        style="visibility: hidden"
-      >
-        <label><h4>Categoría a modificar:</h4></label>
-        <input type="text" id="txtModificarCategoria" />
-        <label><h4>Nuevo nombre:</h4></label>
-        <input type="text" id="txtNuevoNombreCategoria" /><br />
-        <input type="submit" value="Modificar" />
-      </form>
-      <hr />
-      <form
-        id="frmBorrarCategoria"
-        name="frmBorrarCategoria"
-        style="visibility: hidden"
-      >
-        <label><h4>Categoría a borrar:</h4></label>
-        <input type="text" id="txtBorrarCategoria" /><br /><br />
-        <input type="submit" value="Borrar" />
-      </form>
+      <div id="gestionCategorias" class="oculto">
+        <form id="frmNuevaCategoria" name="frmNuevaCategoria">
+          <label><h4>Nueva categoría:</h4></label>
+          <input type="text" id="txtNuevaCategoria" /><br />
+          <input type="submit" value="Guardar" />
+        </form>
+        <hr />
+        <form id="frmEditarCategoria" name="frmEditarCategoria">
+          <label><h4>Categoría a modificar:</h4></label>
+          <select name="categoriasAEditar"></select>
+          <label><h4>Nuevo nombre:</h4></label>
+          <input type="text" id="txtNuevoNombreCategoria" /><br />
+          <input type="submit" value="Modificar" />
+        </form>
+        <hr />
+        <form id="frmBorrarCategoria" name="frmBorrarCategoria">
+          <label><h4>Categoría a borrar:</h4></label>
+          <select name="categoriasABorrar"></select>
+          <br /><br />
+          <input type="submit" value="Borrar" />
+        </form>
+      </div>
       <!-- FORMULARIOS PRODUCTOS-->
-      <form
-        id="frmNuevoProducto"
-        name="frmNuevoProducto"
-        style="visibility: hidden"
-      >
-        <label><h4>Nuevo producto:</h4></label>
-        <input type="text" id="txtNuevoProducto" /><br />
-        <input type="submit" value="Guardar" />
-      </form>
-      <hr />
-      <form
-        id="frmEditarProducto"
-        name="frmEditarProducto"
-        style="visibility: hidden"
-      >
-        <label><h4>Producto a modificar:</h4></label>
-        <input type="text" id="txtModificarProducto" />
-        <label><h4>Nuevo nombre:</h4></label>
-        <input type="text" id="txtNuevoNombreProducto" /><br />
-        <input type="submit" value="Modificar" />
-      </form>
-      <hr />
-      <form
-        id="frmBorrarProducto"
-        name="frmBorrarProducto"
-        style="visibility: hidden"
-      >
-        <label><h4>Producto a borrar:</h4></label>
-        <input type="text" id="txtBorrarProducto" /><br /><br />
-        <input type="submit" value="Borrar" />
-      </form>
+      <div id="gestionProductos" class="oculto">
+        <form id="frmNuevoProducto" name="frmNuevoProducto">
+          <label><h4>Nuevo producto:</h4></label>
+          <input type="text" id="txtNuevoProducto" /><br />
+          <input type="submit" value="Guardar" />
+        </form>
+        <hr />
+        <form id="frmEditarProducto" name="frmEditarProducto">
+          <label><h4>Elija Categoría:</h4></label>
+          <select name="categoriasProductosAEditar"></select>
+          <label><h4>Producto a modificar:</h4></label>
+          <select name="productosAEditar"></select>
+          <label><h4>Nuevo nombre:</h4></label>
+          <input type="text" id="txtNuevoNombreProducto" /><br />
+          <input type="submit" value="Modificar" />
+        </form>
+        <hr />
+        <form id="frmBorrarProducto" name="frmBorrarProducto">
+          <label><h4>Elija Categoría:</h4></label>
+          <select name="categoriasProductosABorrar"></select>
+          <label><h4>Producto a borrar:</h4></label>
+          <select name="productosABorrar"></select>
+          <br /><br />
+          <input type="submit" value="Borrar" />
+        </form>
+      </div>
     </div>
     <script src="./js/clases.js"></script>
     <script src="./js/practicaObligatoria.js"></script>
