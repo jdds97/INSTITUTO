@@ -1,10 +1,12 @@
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import SearchBar from "./SearchBar.jsx";
-import Card from "./Card.jsx";
+import SearchBar from "./Components/SearchBar.jsx";
+import Card from "./Components/Card.jsx";
 import { useState, useEffect, useRef } from "react";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import Counter from "./Components/Counter.jsx";
+import Favorito from "./Components/Favorito.jsx";
 /**
  * Componente principal de la aplicación.
  *
@@ -29,29 +31,40 @@ function App() {
   // y manipularlo directamente  (en este caso, para hacer scroll)
   const cardRefPersonaje = useRef(null);
   const cardRefComic = useRef(null);
-
+  const [countBien, setCountBien] = useState(0);
+  const [countMal, setCountMal] = useState(0);
+  const [favorito, setFavorito] = useState(false);
+  const [favoritosData, setFavoritos] = useState([]);
+  const [personaje, setPersonaje] = useState(null);
+  const [comic, setComic] = useState(null);
   /**
    * Obtiene los datos del personaje y actualiza los estados correspondientes.
    *
    * @param {object} personaje Los datos del personaje.
    */
-  function obtenerDatosPersonaje(personaje) {
+  function obtenerDatosPersonaje(personajeData) {
     //Si no hay personaje, no hay nombre o no hay imagen, no hace nada
-    if (!personaje || !personaje.name || !personaje.thumbnail) {
+    if (!personajeData || !personajeData.name || !personajeData.thumbnail) {
       return;
     }
-    setNombrePersonaje(personaje.name);
+    setNombrePersonaje(personajeData.name);
     let imagenUrl =
-      personaje.thumbnail.path + "." + personaje.thumbnail.extension;
+      personajeData.thumbnail.path + "." + personajeData.thumbnail.extension;
     setImagen(imagenUrl);
-    if (personaje.description) {
-      setDescripcion(personaje.description);
+    if (personajeData.description) {
+      setDescripcion(personajeData.description);
     } else {
       setDescripcion("El personaje no tiene descripcion");
     }
-    setId(personaje.id);
+    setId(personajeData.id);
     setCardVisiblePersonaje(true);
     setCardVisibleComic(false);
+    setPersonaje(personaje);
+    if (favoritosData.includes(personajeData)) {
+      setFavorito(true);
+    } else {
+      setFavorito(false);
+    }
   }
 
   /**
@@ -59,27 +72,47 @@ function App() {
    *
    * @param {object} comic Los datos del cómic.
    */
-  function obtenerDatosComic(comic) {
+  function obtenerDatosComic(comicData) {
     //Si no hay comic, no hay título, no hay imagen o no hay creadores, no hace nada
-    if (!comic || !comic.title || !comic.thumbnail || !comic.creators) {
+    if (
+      !comicData ||
+      !comicData.title ||
+      !comicData.thumbnail ||
+      !comicData.creators
+    ) {
       return;
     }
-    let imagenUrl = comic.thumbnail.path + "." + comic.thumbnail.extension;
-    let creadores = comic.creators.items.map((creador) => {
+    let imagenUrl =
+      comicData.thumbnail.path + "." + comicData.thumbnail.extension;
+    let creadores = comicData.creators.items.map((creador) => {
       return creador.name;
     });
     setNombreComic(comic.title);
-    if (comic.description === null) {
+    if (comicData.description === null) {
       setSinopsis("El comic no tiene sinopsis");
     } else {
-      setSinopsis(comic.description);
+      setSinopsis(comicData.description);
     }
     setCreadores(creadores);
     setImagenComic(imagenUrl);
-
-    setFechaLanzamiento(comic.dates[0].date);
+    setComic(comic);
+    setFechaLanzamiento(comicData.dates[0].date);
     setCardVisibleComic(true);
     setCardVisiblePersonaje(false);
+    handleCountBien();
+
+    if (favoritosData.includes(comic)) {
+      setFavorito(true);
+    } else {
+      setFavorito(false);
+    }
+  }
+
+  function handleCountBien() {
+    setCountBien(countBien + 1);
+  }
+  function handleCountMal() {
+    setCountMal(countMal + 1);
   }
 
   /**
@@ -98,6 +131,12 @@ function App() {
   function handleClear() {
     setCardVisiblePersonaje(false);
     setCardVisibleComic(false);
+    setCountBien(0);
+    setCountMal(0);
+  }
+  function handleFavorito() {
+    setFavorito(true);
+    setFavoritos([favoritosData, ...favoritosData]);
   }
 
   //Efecto para hacer scroll a la tarjeta del personaje cuando cambia su visibilidad
@@ -120,7 +159,15 @@ function App() {
       <a href="https://react.dev" target="_blank">
         <img src={reactLogo} className="logo react" alt="React logo" />
       </a>
-      <SearchBar onSearch={handleSearch} onReset={handleClear} />
+      <SearchBar
+        onSearch={handleSearch}
+        onReset={handleClear}
+        onCountMal={handleCountMal}
+        onCountBien={handleCountBien}
+      />
+      <Counter mensaje="Numero de búsquedas exitosas" count={countBien} />
+      <Counter mensaje="Número de búsquedas erróneas" count={countMal} />
+
       {/*  Si la tarjeta del personaje es visible, muestra la alerta y la tarjeta */}
       {cardVisiblePersonaje ? (
         <>
@@ -135,7 +182,9 @@ function App() {
             imagen={imagen}
             descripcion={descripcion}
             id={id}
+            favorito={favorito}
           />
+          <Favorito onFavorito={handleFavorito} />
         </>
       ) : (
         <></>
@@ -155,6 +204,7 @@ function App() {
             descripcion={sinopsis}
             creadores={creadores}
             fechaLanzamiento={fechaLanzamiento}
+            favorito={favorito}
           />
         </>
       ) : (
