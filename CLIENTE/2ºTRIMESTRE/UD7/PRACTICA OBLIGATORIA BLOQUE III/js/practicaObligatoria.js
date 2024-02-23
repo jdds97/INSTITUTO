@@ -12,11 +12,7 @@ frmControles.categorias.addEventListener("change", limpiarProductos);
 frmControles.categorias.addEventListener("change", cargarProductos);
 
 // Carga de datos iniciales al cargar la página y poner el valor del comercial a 0.
-document.addEventListener("DOMContentLoaded", () => {
-  frmComercial.value = 0;
-
-  setTimeout(800, cargaDatos());
-});
+document.addEventListener("DOMContentLoaded", cargaDatos);
 
 let btnGestionCategorias = document.getElementById("btnGestionCategorias");
 btnGestionCategorias.addEventListener("click", () => {
@@ -120,13 +116,13 @@ function cargaDatos() {
   cargarProductos();
 }
 
-function cargarComerciales() {
+function cargarComerciales(valorComercial) {
   fetch(
     "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/comerciales.json"
   )
     .then((response) => response.json())
     .then((data) => {
-      cargaComerciales(data);
+      cargaComerciales(data, valorComercial);
     });
 }
 
@@ -160,7 +156,7 @@ function cargarProductos() {
     });
 }
 
-// function actualizarDatos(entrada, respuesta, frm, event) {
+// function actualizarDatos(entrada, respuesta, event) {
 //   event.preventDefault();
 //   let datos = event.target.value;
 //   let url = `https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/${entrada}.json`;
@@ -183,7 +179,7 @@ function cargarProductos() {
  */
 function cargaComerciales(objetoComerciales) {
   let comerciales = Object.values(objetoComerciales);
-  console.log(frmEditarComercial);
+
   comerciales.forEach((comercial, i) => {
     let option = document.createElement("option");
     option.value = i;
@@ -206,6 +202,7 @@ function cargaClientes(objetoClientes) {
 
   let keyComercial =
     Object.keys(objetoClientes)[frmComercial.comerciales.value];
+  
   clientesComercial.forEach((cliente, i) => {
     let cuadroCliente = document.createElement("div");
     let option = document.createElement("option");
@@ -220,7 +217,7 @@ function cargaClientes(objetoClientes) {
     frmComercial.parentNode.append(cuadroCliente);
     cuadroCliente.classList.add("cliente");
     cuadroCliente.classList.add("pagado");
-    frmEditarCliente.clientesAEditar.add(option);
+    frmEditarCliente.clientesAEditar.add(option.cloneNode(true));
     frmBorrarCliente.clientesABorrar.add(option.cloneNode(true));
   });
 }
@@ -288,12 +285,25 @@ function limpiarCategorias() {
   frmControles.categorias
     .querySelectorAll("option")
     .forEach((categoria) => categoria.remove());
+
+  frmEditarCategoria.categoriasAEditar
+    .querySelectorAll("option")
+    .forEach((categoria) => categoria.remove());
+  frmBorrarCategoria.categoriasABorrar
+    .querySelectorAll("option")
+    .forEach((categoria) => categoria.remove());
 }
 /**
  * Limpia los productos del frm.
  */
 function limpiarProductos() {
   frmControles.productos
+    .querySelectorAll("option")
+    .forEach((producto) => producto.remove());
+  frmEditarProducto.productosAEditar
+    .querySelectorAll("option")
+    .forEach((producto) => producto.remove());
+  frmBorrarProducto.productosABorrar
     .querySelectorAll("option")
     .forEach((producto) => producto.remove());
 }
