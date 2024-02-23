@@ -42,7 +42,7 @@
       <h1>CRUD</h1>
       <hr />
       <!-- FORMULARIOS COMERCIALES-->
-      <div id="gestionComerciales" class="oculto">
+      <div id="gestionComerciales" class="oculto" data-entrada="comerciales">
         <form
           id="frmNuevoComercial"
           name="frmNuevoComercial"
@@ -54,7 +54,11 @@
           <hr />
         </form>
 
-        <form id="frmEditarComercial" name="frmEditarComercial">
+        <form
+          id="frmEditarComercial"
+          name="frmEditarComercial"
+          data-respuesta="PATCH"
+        >
           <label><h4>Comercial a modificar:</h4></label>
           <select name="comercialesAEditar"></select>
           <label><h4>Nuevo nombre:</h4></label>
@@ -63,7 +67,11 @@
           <hr />
         </form>
 
-        <form id="frmBorrarComercial" name="frmBorrarComercial">
+        <form
+          id="frmBorrarComercial"
+          name="frmBorrarComercial"
+          data-respuesta="DELETE"
+        >
           <label><h4>Comercial a borrar:</h4></label>
           <select name="comercialesABorrar"></select
           ><br /><br />
@@ -71,8 +79,13 @@
         </form>
       </div>
       <!-- FORMULARIOS CLIENTES-->
-      <div id="gestionClientes" class="oculto">
-        <form id="frmNuevoCliente" name="frmNuevoCliente" data-respuesta="POST">
+      <div id="gestionClientes" class="oculto" data-entrada="clientes">
+        <form
+          id="frmNuevoCliente"
+          name="frmNuevoCliente"
+          =""
+          data-respuesta="POST"
+        >
           <label><h4>Nuevo cliente:</h4></label>
           <input type="text" id="txtNuevoCliente" /><br />
           <input type="submit" value="Guardar" />
@@ -156,6 +169,7 @@
       </div>
     </div>
     <script src="./js/clases.js"></script>
-    <script src="./js/practicaObligatoria.js"></script>
+    <script type="module" src="./js/funciones.js"></script>
+    <script type="module" src="./js/api.js"></script>
   </body>
 </html>

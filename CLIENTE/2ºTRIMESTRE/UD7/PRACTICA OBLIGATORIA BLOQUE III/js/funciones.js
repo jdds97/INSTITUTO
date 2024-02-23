@@ -1,36 +1,55 @@
+import * as api from "./api.js";
 /*
  * Datos iniciales
  */
-// Francotirador de frms READ
+// Carga de datos iniciales al poner el valor del comercial a 0.
+document.addEventListener("DOMContentLoaded", () => {
+  frmComercial.comerciales.value = 0;
+  cargaDatos();
+});
+// #region Eventos de cambio de valores
 let frmComercial = document.getElementById("frmComercial");
 frmComercial.comerciales.addEventListener("change", limpiarClientes);
-frmComercial.comerciales.addEventListener("change", cargarClientes);
+frmComercial.comerciales.addEventListener("change", async () =>
+  cargaClientes(await api.cargarClientes())
+);
 let frms = document.getElementById("formularios");
 let frmControles = document.getElementById("frmControles");
 
 frmControles.categorias.addEventListener("change", limpiarProductos);
-frmControles.categorias.addEventListener("change", cargarProductos);
-
-// Carga de datos iniciales al cargar la página y poner el valor del comercial a 0.
-document.addEventListener("DOMContentLoaded", cargaDatos);
-
+frmControles.categorias.addEventListener("change", async () =>
+  cargaProductos(await api.cargarProductos())
+);
+// #endregion
+export async function cargaDatos() {
+  let comerciales = await api.cargarComerciales();
+  console.log(comerciales);
+  cargaComerciales(comerciales);
+  let clientes = await api.cargarClientes();
+  cargaClientes(clientes);
+  let categorias = await api.cargarCategorias();
+  cargaCategorias(categorias);
+  let productos = await api.cargarProductos();
+  cargaProductos(productos);
+}
+// #region Eventos de botones Formularios
 let btnGestionCategorias = document.getElementById("btnGestionCategorias");
 btnGestionCategorias.addEventListener("click", () => {
-  mostrarfrm("gestionCategorias");
+  mostrarForm("gestionCategorias");
 });
 let btnGestionProductos = document.getElementById("btnGestionProductos");
 btnGestionProductos.addEventListener("click", () => {
-  mostrarfrm("gestionProductos");
+  mostrarForm("gestionProductos");
 });
 let btnGestionClientes = document.getElementById("btnGestionClientes");
 btnGestionClientes.addEventListener("click", () => {
-  mostrarfrm("gestionClientes");
+  mostrarForm("gestionClientes");
 });
 let btnGestionComerciales = document.getElementById("btnGestionComerciales");
 btnGestionComerciales.addEventListener("click", () => {
-  mostrarfrm("gestionComerciales");
+  mostrarForm("gestionComerciales");
 });
-function mostrarfrm(frmId) {
+function mostrarForm(frmId) {
   // Oculta todos los divs de los frms
   let divsfrms = frms.querySelectorAll("div");
   divsfrms.forEach((div) => {
@@ -41,168 +60,104 @@ function mostrarfrm(frmId) {
   let divfrm = document.getElementById(frmId);
   divfrm.classList.remove("oculto");
 }
+// #endregion
+// region  Formularios
 let frmNuevaCategoria = document.getElementById("frmNuevaCategoria");
-// frmNuevaCategoria.addEventListener(
-//   "submit",
-//   actualizarDatos("categorias", "POST")
-// );
+frmNuevaCategoria.addEventListener("submit", (event) =>
+  actualizarDatos("categorias", "POST", event)
+);
 let frmEditarCategoria = document.getElementById("frmEditarCategoria");
-// frmEditarCategoria.addEventListener(
-//   "submit",
-//   actualizarDatos("categorias", "PUT")
-
+frmEditarCategoria.addEventListener("submit", (event) =>
+  actualizarDatos("categorias", "PUT", event)
+);
 let frmBorrarCategoria = document.getElementById("frmBorrarCategoria");
-// frmBorrarCategoria.addEventListener(
-//   "submit",
-//   actualizarDatos("categorias", "DELETE")
-// );
+frmBorrarCategoria.addEventListener("submit", (event) =>
+  actualizarDatos("categorias", "DELETE", event)
+);
+
 let frmNuevoProducto = document.getElementById("frmNuevoProducto");
-// frmNuevoProducto.addEventListener(
-//   "submit",
-//   actualizarDatos("productos", "POST")
-// );
+frmNuevoProducto.addEventListener("submit", (event) =>
+  actualizarDatos("productos", "POST", event)
+);
+
 let frmEditarProducto = document.getElementById("frmEditarProducto");
-// frmEditarProducto.addEventListener(
-//   "submit",
-//   actualizarDatos("productos", "PUT")
-// );
+frmEditarProducto.addEventListener("submit", (event) =>
+  actualizarDatos("productos", "PUT", event)
+);
 frmEditarProducto.categoriasProductosAEditar.addEventListener(
   "change",
   limpiarProductos
 );
 frmEditarProducto.categoriasProductosAEditar.addEventListener(
   "change",
-  cargarProductos
+  cargaProductos(api.cargarProductos)
 );
 let frmBorrarProducto = document.getElementById("frmBorrarProducto");
-// frmBorrarProducto.addEventListener(
-//   "submit",
-//   actualizarDatos("productos", "DELETE")
-// );
+frmBorrarProducto.addEventListener(
+  "submit",
+  async (event) => await api.actualizarDatos("productos", "DELETE", event)
+);
 let frmNuevoCliente = document.getElementById("frmNuevoCliente");
-// frmNuevoCliente.addEventListener(
-//   "submit",
-//   actualizarDatos("clientes", "POST")
-// );
+frmNuevoCliente.addEventListener(
+  "submit",
+  async (event) => await api.actualizarDatos("clientes", "POST", event)
+);
 let frmEditarCliente = document.getElementById("frmEditarCliente");
-// frmEditarCliente.addEventListener(
-//   "submit",
-//   actualizarDatos("clientes", "PUT")
-// );
+frmEditarCliente.addEventListener(
+  "submit",
+  async (event) => await api.actualizarDatos("clientes", event)
+);
 let frmBorrarCliente = document.getElementById("frmBorrarCliente");
-// frmBorrarCliente.addEventListener(
-//   "submit",
-//   actualizarDatos("clientes", "DELETE")
-// );
+frmBorrarCliente.addEventListener(
+  "submit",
+  async (event) => await api.actualizarDatos("clientes", "DELETE", event)
+);
 let frmNuevoComercial = document.getElementById("frmNuevoComercial");
-// frmNuevoComercial.addEventListener(
-//   "submit",
-//   actualizarDatos("comerciales", "POST")
-// );
+frmNuevoComercial.addEventListener(
+  "submit",
+  async (event) => await api.actualizarDatos(event)
+);
 let frmEditarComercial = document.getElementById("frmEditarComercial");
-// frmEditarComercial.addEventListener(
-//   "submit",
-//   actualizarDatos("comerciales", "PUT")
-// );
+frmEditarComercial.addEventListener(
+  "submit",
+  async (event) => await api.actualizarDatos("comerciales", "PATCH", event)
+);
 let frmBorrarComercial = document.getElementById("frmBorrarComercial");
-// frmBorrarComercial.addEventListener(
-//   "submit",
-//   actualizarDatos("comerciales", "DELETE")
-// );
-function cargaDatos() {
-  cargarComerciales();
-  cargarClientes();
-  cargarCategorias();
-  cargarProductos();
-}
+frmBorrarComercial.addEventListener(
+  "submit",
+  async (event) => await api.actualizarDatos("comerciales", "DELETE", event)
+);
+// #endregion
+// #region Funciones de carga de datos
 
-function cargarComerciales(valorComercial) {
-  fetch(
-    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/comerciales.json"
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      cargaComerciales(data, valorComercial);
-    });
-}
-
-function cargarClientes() {
-  fetch(
-    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/clientes.json"
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      cargaClientes(data);
-    });
-}
-
-function cargarCategorias() {
-  fetch(
-    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/categorias.json"
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      cargaCategorias(data);
-    });
-}
-
-function cargarProductos() {
-  fetch(
-    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/productos.json"
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      cargaProductos(data);
-    });
-}
-
-// function actualizarDatos(entrada, respuesta, event) {
-//   event.preventDefault();
-//   let datos = event.target.value;
-//   let url = `https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/${entrada}.json`;
-//   fetch(url, {
-//     method: `${respuesta}`, //PATH O DELETE
-//     headers: {
-//       "Content-Type": "application/json;charset=utf-8",
-//     },
-//     body: JSON.stringify(datos),
-//   });
-//   setTimeout(recuperarDatos, 800);
-// }
-
-/*
-/**
- * Funciones de carga de datos
- */
 /**
  * Carga los comerciales en el frm .
  */
-function cargaComerciales(objetoComerciales) {
+async function cargaComerciales(objetoComerciales) {
   let comerciales = Object.values(objetoComerciales);
-
   comerciales.forEach((comercial, i) => {
     let option = document.createElement("option");
     option.value = i;
     option.setAttribute("id", Object.keys(objetoComerciales)[i]);
     option.text = comercial;
     frmComercial.comerciales.add(option);
-    frmEditarComercial.comercialesAEditar.add(option.cloneNode(true));
-    frmBorrarComercial.comercialesABorrar.add(option.cloneNode(true));
-    frmEditarCliente.comercialesClientesAEditar.add(option.cloneNode(true));
-    frmBorrarCliente.comercialesClientesABorrar.add(option.cloneNode(true));
+    // frmEditarComercial.comercialesAEditar.add(option);
+    // frmBorrarComercial.comercialesABorrar.add(option);
+    // frmEditarCliente.comercialesClientesAEditar.add(option);
+    // frmBorrarCliente.comercialesClientesABorrar.add(option.cloneNode(true));
   });
 }
 
 /**
  * Carga los clientes del comercial seleccionado en el cuadro de pedido.
  */
-function cargaClientes(objetoClientes) {
+async function cargaClientes(objetoClientes) {
   let clientesComercial =
     Object.values(objetoClientes)[frmComercial.comerciales.value];
-
+  console.log(objetoClientes[0]);
   let keyComercial =
     Object.keys(objetoClientes)[frmComercial.comerciales.value];
-  
+
   clientesComercial.forEach((cliente, i) => {
     let cuadroCliente = document.createElement("div");
     let option = document.createElement("option");
@@ -217,7 +172,7 @@ function cargaClientes(objetoClientes) {
     frmComercial.parentNode.append(cuadroCliente);
     cuadroCliente.classList.add("cliente");
     cuadroCliente.classList.add("pagado");
-    frmEditarCliente.clientesAEditar.add(option.cloneNode(true));
+    frmEditarCliente.clientesAEditar.add(option);
     frmBorrarCliente.clientesABorrar.add(option.cloneNode(true));
   });
 }
@@ -229,7 +184,6 @@ function cargaCategorias(objetoCategorias) {
   let categorias = Object.values(objetoCategorias);
   categorias.forEach((categoria, indice) => {
     let option = document.createElement("option");
-    option.index = indice;
     option.value = indice;
     option.setAttribute("id", Object.keys(objetoCategorias)[indice]);
     option.textContent = categoria;
@@ -263,6 +217,8 @@ function cargaProductos(productos) {
     frmBorrarProducto.productosABorrar.add(option.cloneNode(true));
   });
 }
+// #endregion
+// #region Funciones de limpieza de datos
 /**
  * Limpia los comerciales del frm.
  */
@@ -307,3 +263,4 @@ function limpiarProductos() {
     .querySelectorAll("option")
     .forEach((producto) => producto.remove());
 }
+// #endregion
