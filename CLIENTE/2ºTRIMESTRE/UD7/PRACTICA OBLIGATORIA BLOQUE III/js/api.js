@@ -1,89 +1,97 @@
+import * as funciones from "./funciones.js";
+
 export async function cargarComerciales() {
-  const response = await fetch(
-    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/comerciales.json"
-  );
-  const data = await response.json();
-  return data;
+  return fetch(
+    "https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/comerciales.json"
+  )
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
 }
 
 export async function cargarClientes() {
-  const response = await fetch(
-    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/clientes.json"
-  );
-  const data = await response.json();
-  return data;
+  return fetch(
+    "https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/clientes.json"
+  )
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
 }
 
 export async function cargarCategorias() {
-  const response = await fetch(
-    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/categorias.json"
-  );
-  const data = await response.json();
-  return data;
+  return fetch(
+    "https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/categorias.json"
+  )
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
 }
 
 export async function cargarProductos() {
-  const response = await fetch(
-    "https://proyectopracticaobligatoria-default-rtdb.europe-west1.firebasedatabase.app/productos.json"
-  );
-  const data = await response.json();
-  return data;
+  return fetch(
+    "https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/productos.json"
+  )
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
 }
 
 export async function actualizarDatos(event) {
   event.preventDefault();
-  console.log(event.target.dataset.respuesta);
-  console.log(event.target.parentElement.dataset.entrada);
+
   let respuesta = event.target.dataset.respuesta;
   let entrada = event.target.parentElement.dataset.entrada;
 
-  // Verificar si el formulario contiene un select
-  const selectElement1 = event.target.querySelectorAll("select")[0];
-  const selectElement2 = event.target.querySelectorAll("select")[1];
-  const valorSelect1 = selectElement1 ? selectElement1.value : undefined;
-  const valorSelect2 = selectElement2 ? selectElement2.value : undefined;
-  let datoAModificar;
-  let datoNuevo;
+  const selectElements = event.target.querySelectorAll("select");
+  const selectElement =
+    selectElements.length > 1 ? selectElements[1] : selectElements[0];
+  const idDatoAModificar = selectElement.id
+    ? selectElement.selectedOptions[0].id
+    : undefined;
 
+  const valorDatoAModificar = selectElement.valor
+    ? selectElement.selectedOptions[0].valor
+    : undefined;
+  let funcionLimpiar = `limpiar${entrada}`;
+  let funcionCargar = `cargar${entrada}`;
   // Obtener el valor del input de texto
   const inputTextElement = event.target.querySelector('input[type="text"]');
-  if (inputTextElement) {
-    datoNuevo = inputTextElement.value;
-  }
-
+  let datoNuevo = inputTextElement.value;
   let datos;
 
-  // Si hay un valor de select, lo usamos como dato a modificar
-  if (valorSelect1 !== undefined && valorSelect1 !== null) {
-    datoAModificar = valorSelect1;
-  } else if (valorSelect2 !== undefined && valorSelect2 !== null) {
-    datoAModificar = valorSelect2;
-  }
-
-  // Si tanto el dato a modificar como el dato nuevo no están vacíos, creamos un objeto con ambos
-  if (datoAModificar && datoNuevo) {
+  if (idDatoAModificar && valorDatoAModificar) {
+    entrada = entrada + "/" + idDatoAModificar;
     datos = {
-      [datoAModificar]: datoNuevo,
+      [valorDatoAModificar]: datoNuevo,
     };
-  }
-  // Si solo hay un dato a modificar, lo asignamos al objeto de datos
-  else if (datoAModificar) {
-    datos = datoAModificar;
-  }
-  // Si solo hay un dato nuevo, lo asignamos al objeto de datos
-  else if (datoNuevo) {
+  } else if (idDatoAModificar) {
+    entrada = entrada + "/" + idDatoAModificar;
+    datos = {
+      nombreProducto: datoNuevo,
+    };
+  } else {
     datos = datoNuevo;
   }
-
   // Si hay datos, realizamos la solicitud
   if (datos) {
+    console.log("Haciendo la solicitud...");
     let url = `https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/${entrada}.json`;
-    await fetch(url, {
+    console.log(url);
+    fetch(url, {
       method: `${respuesta}`,
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(datos),
-    });
+    }).catch((error) => console.log(error));
   }
+  //Quiero que la primera letra de la entrada se convierta en mayuscula y que quite la barra del final de la palabra
+  entrada = entrada.charAt(0).toUpperCase();
+
+  // Esperamos un segundo para cargar los datos actualizados
+  setTimeout(() => {
+    if (typeof funciones.funcionLimpiar === "function") {
+      funciones.funcionLimpiar();
+    }
+
+    if (typeof funciones.funcionCargar === "function") {
+      funciones.funcionCargar();
+    }
+  }, 1000);
 }

@@ -80,12 +80,9 @@
       </div>
       <!-- FORMULARIOS CLIENTES-->
       <div id="gestionClientes" class="oculto" data-entrada="clientes">
-        <form
-          id="frmNuevoCliente"
-          name="frmNuevoCliente"
-          =""
-          data-respuesta="POST"
-        >
+        <form id="frmNuevoCliente" name="frmNuevoCliente" data-respuesta="POST">
+          <label><h4>Elija comercial</h4></label>
+          <select name="comercialesClientesANuevo"></select>
           <label><h4>Nuevo cliente:</h4></label>
           <input type="text" id="txtNuevoCliente" /><br />
           <input type="submit" value="Guardar" />
@@ -107,7 +104,11 @@
           <hr />
         </form>
 
-        <form id="frmBorrarCliente" name="frmBorrarCliente">
+        <form
+          id="frmBorrarCliente"
+          name="frmBorrarCliente"
+          data-respuesta="DELETE"
+        >
           <label><h4>Elija comercial</h4></label>
           <select name="comercialesClientesABorrar"></select>
           <label><h4>Cliente a borrar:</h4></label>
@@ -118,14 +119,22 @@
       </div>
 
       <!-- FORMULARIOS CATEGORIAS-->
-      <div id="gestionCategorias" class="oculto">
-        <form id="frmNuevaCategoria" name="frmNuevaCategoria">
+      <div id="gestionCategorias" class="oculto" data-entrada="categorias">
+        <form
+          id="frmNuevaCategoria"
+          name="frmNuevaCategoria"
+          data-respuesta="POST"
+        >
           <label><h4>Nueva categoría:</h4></label>
           <input type="text" id="txtNuevaCategoria" /><br />
           <input type="submit" value="Guardar" />
         </form>
         <hr />
-        <form id="frmEditarCategoria" name="frmEditarCategoria">
+        <form
+          id="frmEditarCategoria"
+          name="frmEditarCategoria"
+          data-respuesta="PATCH"
+        >
           <label><h4>Categoría a modificar:</h4></label>
           <select name="categoriasAEditar"></select>
           <label><h4>Nuevo nombre:</h4></label>
@@ -133,7 +142,11 @@
           <input type="submit" value="Modificar" />
         </form>
         <hr />
-        <form id="frmBorrarCategoria" name="frmBorrarCategoria">
+        <form
+          id="frmBorrarCategoria"
+          name="frmBorrarCategoria"
+          data-respuesta="DELETE"
+        >
           <label><h4>Categoría a borrar:</h4></label>
           <select name="categoriasABorrar"></select>
           <br /><br />
@@ -141,14 +154,24 @@
         </form>
       </div>
       <!-- FORMULARIOS PRODUCTOS-->
-      <div id="gestionProductos" class="oculto">
-        <form id="frmNuevoProducto" name="frmNuevoProducto">
+      <div id="gestionProductos" class="oculto" data-entrada="productos">
+        <form
+          id="frmNuevoProducto"
+          name="frmNuevoProducto"
+          data-respuesta="POST"
+        >
+          <label><h4>Elija Categoría:</h4></label>
+          <select name="categoriasProductosANuevo"></select>
           <label><h4>Nuevo producto:</h4></label>
           <input type="text" id="txtNuevoProducto" /><br />
           <input type="submit" value="Guardar" />
         </form>
         <hr />
-        <form id="frmEditarProducto" name="frmEditarProducto">
+        <form
+          id="frmEditarProducto"
+          name="frmEditarProducto"
+          data-respuesta="PATCH"
+        >
           <label><h4>Elija Categoría:</h4></label>
           <select name="categoriasProductosAEditar"></select>
           <label><h4>Producto a modificar:</h4></label>
@@ -158,7 +181,11 @@
           <input type="submit" value="Modificar" />
         </form>
         <hr />
-        <form id="frmBorrarProducto" name="frmBorrarProducto">
+        <form
+          id="frmBorrarProducto"
+          name="frmBorrarProducto"
+          data-respuesta="DELETE"
+        >
           <label><h4>Elija Categoría:</h4></label>
           <select name="categoriasProductosABorrar"></select>
           <label><h4>Producto a borrar:</h4></label>

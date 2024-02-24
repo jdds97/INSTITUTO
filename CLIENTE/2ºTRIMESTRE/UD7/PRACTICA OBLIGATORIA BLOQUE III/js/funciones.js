@@ -20,10 +20,15 @@ frmControles.categorias.addEventListener("change", limpiarProductos);
 frmControles.categorias.addEventListener("change", async () =>
   cargaProductos(await api.cargarProductos())
 );
+let formularios = document.getElementById("formularios");
+formularios.addEventListener("change", limpiarClientes);
+formularios.addEventListener("change", async () =>
+  cargaClientes(await api.cargarClientes())
+);
+
 // #endregion
 export async function cargaDatos() {
   let comerciales = await api.cargarComerciales();
-  console.log(comerciales);
   cargaComerciales(comerciales);
   let clientes = await api.cargarClientes();
   cargaClientes(clientes);
@@ -60,74 +65,12 @@ function mostrarForm(frmId) {
   let divfrm = document.getElementById(frmId);
   divfrm.classList.remove("oculto");
 }
-// #endregion
-// region  Formularios
-let frmNuevaCategoria = document.getElementById("frmNuevaCategoria");
-frmNuevaCategoria.addEventListener("submit", (event) =>
-  actualizarDatos("categorias", "POST", event)
-);
-let frmEditarCategoria = document.getElementById("frmEditarCategoria");
-frmEditarCategoria.addEventListener("submit", (event) =>
-  actualizarDatos("categorias", "PUT", event)
-);
-let frmBorrarCategoria = document.getElementById("frmBorrarCategoria");
-frmBorrarCategoria.addEventListener("submit", (event) =>
-  actualizarDatos("categorias", "DELETE", event)
-);
+formularios.addEventListener("submit", async (event) => {
+  await api.actualizarDatos(event);
+});
 
-let frmNuevoProducto = document.getElementById("frmNuevoProducto");
-frmNuevoProducto.addEventListener("submit", (event) =>
-  actualizarDatos("productos", "POST", event)
-);
-
-let frmEditarProducto = document.getElementById("frmEditarProducto");
-frmEditarProducto.addEventListener("submit", (event) =>
-  actualizarDatos("productos", "PUT", event)
-);
-frmEditarProducto.categoriasProductosAEditar.addEventListener(
-  "change",
-  limpiarProductos
-);
-frmEditarProducto.categoriasProductosAEditar.addEventListener(
-  "change",
-  cargaProductos(api.cargarProductos)
-);
-let frmBorrarProducto = document.getElementById("frmBorrarProducto");
-frmBorrarProducto.addEventListener(
-  "submit",
-  async (event) => await api.actualizarDatos("productos", "DELETE", event)
-);
-let frmNuevoCliente = document.getElementById("frmNuevoCliente");
-frmNuevoCliente.addEventListener(
-  "submit",
-  async (event) => await api.actualizarDatos("clientes", "POST", event)
-);
-let frmEditarCliente = document.getElementById("frmEditarCliente");
-frmEditarCliente.addEventListener(
-  "submit",
-  async (event) => await api.actualizarDatos("clientes", event)
-);
-let frmBorrarCliente = document.getElementById("frmBorrarCliente");
-frmBorrarCliente.addEventListener(
-  "submit",
-  async (event) => await api.actualizarDatos("clientes", "DELETE", event)
-);
-let frmNuevoComercial = document.getElementById("frmNuevoComercial");
-frmNuevoComercial.addEventListener(
-  "submit",
-  async (event) => await api.actualizarDatos(event)
-);
-let frmEditarComercial = document.getElementById("frmEditarComercial");
-frmEditarComercial.addEventListener(
-  "submit",
-  async (event) => await api.actualizarDatos("comerciales", "PATCH", event)
-);
-let frmBorrarComercial = document.getElementById("frmBorrarComercial");
-frmBorrarComercial.addEventListener(
-  "submit",
-  async (event) => await api.actualizarDatos("comerciales", "DELETE", event)
-);
 // #endregion
+
 // #region Funciones de carga de datos
 
 /**
@@ -139,12 +82,14 @@ async function cargaComerciales(objetoComerciales) {
     let option = document.createElement("option");
     option.value = i;
     option.setAttribute("id", Object.keys(objetoComerciales)[i]);
+
     option.text = comercial;
     frmComercial.comerciales.add(option);
-    // frmEditarComercial.comercialesAEditar.add(option);
-    // frmBorrarComercial.comercialesABorrar.add(option);
-    // frmEditarCliente.comercialesClientesAEditar.add(option);
-    // frmBorrarCliente.comercialesClientesABorrar.add(option.cloneNode(true));
+    frmEditarComercial.comercialesAEditar.add(option.cloneNode(true));
+    frmBorrarComercial.comercialesABorrar.add(option.cloneNode(true));
+    frmNuevoCliente.comercialesClientesANuevo.add(option.cloneNode(true));
+    frmEditarCliente.comercialesClientesAEditar.add(option.cloneNode(true));
+    frmBorrarCliente.comercialesClientesABorrar.add(option.cloneNode(true));
   });
 }
 
@@ -157,22 +102,42 @@ async function cargaClientes(objetoClientes) {
   console.log(objetoClientes[0]);
   let keyComercial =
     Object.keys(objetoClientes)[frmComercial.comerciales.value];
-
+  let keyComercialEdit =
+    Object.keys(objetoClientes)[
+      frmNuevoCliente.comercialesClientesANuevo.value
+    ];
   clientesComercial.forEach((cliente, i) => {
     let cuadroCliente = document.createElement("div");
     let option = document.createElement("option");
     option.value = i;
-    option.setAttribute("idArrayClientes", keyComercial);
+    option.setAttribute("id", keyComercial);
     option.text = cliente;
-    option.setAttribute("id", i);
     cuadroCliente.innerHTML = cliente;
     cuadroCliente.value = i;
-    cuadroCliente.setAttribute("idArrayClientes", keyComercial);
-    cuadroCliente.setAttribute("id", i);
+    cuadroCliente.setAttribute("id", keyComercial);
+    cuadroCliente.setAttribute("valor", i);
     frmComercial.parentNode.append(cuadroCliente);
     cuadroCliente.classList.add("cliente");
     cuadroCliente.classList.add("pagado");
-    frmEditarCliente.clientesAEditar.add(option);
+
+    frmEditarCliente.clientesAEditar.add(option.cloneNode(true));
+    frmNuevoCliente.comercialesClientesANuevo.selectedOptions[0].setAttribute(
+      "id",
+      keyComercialEdit
+    );
+    frmNuevoCliente.comercialesClientesANuevo.selectedOptions[0].setAttribute(
+      "valor",
+      clientesComercial.length + 1
+    );
+    frmBorrarCliente.comercialesClientesABorrar.selectedOptions[0].setAttribute(
+      "id",
+      keyComercialEdit
+    );
+    frmBorrarCliente.comercialesClientesABorrar.selectedOptions[0].setAttribute(
+      "valor",
+      clientesComercial.length + 1
+    );
+
     frmBorrarCliente.clientesABorrar.add(option.cloneNode(true));
   });
 }
@@ -210,7 +175,7 @@ function cargaProductos(productos) {
   });
   productosSeleccionados.forEach((producto, i) => {
     let option = document.createElement("option");
-    option.value = keysProductos[i];
+    option.setAttribute("id", keysProductos[i]);
     option.textContent = producto.nombreProducto;
     frmControles.productos.add(option);
     frmEditarProducto.productosAEditar.add(option.cloneNode(true));
@@ -262,5 +227,11 @@ function limpiarProductos() {
   frmBorrarProducto.productosABorrar
     .querySelectorAll("option")
     .forEach((producto) => producto.remove());
+}
+function limpiarDatos() {
+  limpiarCategorias();
+  limpiarProductos();
+  limpiarComerciales();
+  limpiarClientes();
 }
 // #endregion
