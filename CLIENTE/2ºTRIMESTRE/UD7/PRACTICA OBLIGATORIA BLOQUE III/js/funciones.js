@@ -28,6 +28,7 @@ formularios.addEventListener("change", async () =>
 
 // #endregion
 export async function cargaDatos() {
+  console.log("Cargando datos...");
   let comerciales = await api.cargarComerciales();
   cargaComerciales(comerciales);
   let clientes = await api.cargarClientes();
@@ -99,6 +100,7 @@ async function cargaComerciales(objetoComerciales) {
 async function cargaClientes(objetoClientes) {
   let clientesComercial =
     Object.values(objetoClientes)[frmComercial.comerciales.value];
+  console.log(clientesComercial);
   console.log(objetoClientes[0]);
   let keyComercial =
     Object.keys(objetoClientes)[frmComercial.comerciales.value];
@@ -121,24 +123,33 @@ async function cargaClientes(objetoClientes) {
     cuadroCliente.classList.add("pagado");
 
     frmEditarCliente.clientesAEditar.add(option.cloneNode(true));
-    frmNuevoCliente.comercialesClientesANuevo.selectedOptions[0].setAttribute(
-      "id",
-      keyComercialEdit
-    );
-    frmNuevoCliente.comercialesClientesANuevo.selectedOptions[0].setAttribute(
-      "valor",
-      clientesComercial.length + 1
-    );
-    frmBorrarCliente.comercialesClientesABorrar.selectedOptions[0].setAttribute(
-      "id",
-      keyComercialEdit
-    );
-    frmBorrarCliente.comercialesClientesABorrar.selectedOptions[0].setAttribute(
-      "valor",
-      clientesComercial.length + 1
-    );
-
     frmBorrarCliente.clientesABorrar.add(option.cloneNode(true));
+    frmEditarCliente.clientesAEditar.selectedOptions[0].setAttribute(
+      "id",
+      keyComercial
+    );
+    frmEditarCliente.clientesAEditar[i].setAttribute("valor", i);
+    frmBorrarCliente.clientesABorrar[i].setAttribute("valor", i);
+    frmNuevoCliente.comercialesClientesANuevo.selectedOptions[0].setAttribute(
+      "id",
+      keyComercialEdit
+    );
+    frmNuevoCliente.comercialesClientesANuevo.selectedOptions[0].setAttribute(
+      "valor",
+      clientesComercial.length + 1
+    );
+    frmBorrarCliente.comercialesClientesABorrar.selectedOptions[0].setAttribute(
+      "id",
+      keyComercialEdit
+    );
+    frmBorrarCliente.comercialesClientesABorrar.selectedOptions[0].setAttribute(
+      "valor",
+      clientesComercial.length + 1
+    );
+    frmBorrarCliente.clientesABorrar.selectedOptions[0].setAttribute(
+      "id",
+      keyComercialEdit
+    );
   });
 }
 
@@ -180,6 +191,27 @@ function cargaProductos(productos) {
     frmControles.productos.add(option);
     frmEditarProducto.productosAEditar.add(option.cloneNode(true));
     frmBorrarProducto.productosABorrar.add(option.cloneNode(true));
+    frmEditarProducto.productosAEditar.selectedOptions[0].setAttribute(
+      "id",
+      keysProductos[i]
+    );
+    frmBorrarProducto.productosABorrar.selectedOptions[0].setAttribute(
+      "id",
+      keysProductos[i]
+    );
+    frmBorrarProducto.productosABorrar.selectedOptions[0].setAttribute(
+      "valor",
+      keysProductos[i]
+    );
+
+    frmEditarProducto.productosAEditar.selectedOptions[0].setAttribute(
+      "id",
+      keysProductos[i]
+    );
+    frmBorrarProducto.productosABorrar.selectedOptions[0].setAttribute(
+      "id",
+      keysProductos[i]
+    );
   });
 }
 // #endregion

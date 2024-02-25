@@ -37,35 +37,61 @@ export async function actualizarDatos(event) {
 
   let respuesta = event.target.dataset.respuesta;
   let entrada = event.target.parentElement.dataset.entrada;
-
   const selectElements = event.target.querySelectorAll("select");
-  const selectElement =
-    selectElements.length > 1 ? selectElements[1] : selectElements[0];
-  const idDatoAModificar = selectElement.id
-    ? selectElement.selectedOptions[0].id
-    : undefined;
+  let idDatoAModificar;
+  let valorDatoAModificar;
 
-  const valorDatoAModificar = selectElement.valor
-    ? selectElement.selectedOptions[0].valor
-    : undefined;
+  if (selectElements.length > 0) {
+    const selectElement =
+      selectElements.length > 1 ? selectElements[1] : selectElements[0];
+    idDatoAModificar = selectElement.selectedOptions[0].id
+      ? selectElement.selectedOptions[0].id
+      : undefined;
+
+    valorDatoAModificar = selectElement.selectedOptions[0].getAttribute("valor")
+      ? selectElement.selectedOptions[0].getAttribute("valor")
+      : undefined;
+    console.log(
+      "VALUE DE VALOR" +
+        selectElement.selectedOptions[0].getAttribute("valor").valueOf()
+    );
+  } else {
+    console.log("No se encontraron elementos select");
+  }
+
   let funcionLimpiar = `limpiar${entrada}`;
   let funcionCargar = `cargar${entrada}`;
   // Obtener el valor del input de texto
   const inputTextElement = event.target.querySelector('input[type="text"]');
-  let datoNuevo = inputTextElement.value;
+  let datoNuevo =
+    inputTextElement && inputTextElement.value !== null
+      ? inputTextElement.value
+      : undefined;
   let datos;
-
+  //CLIENTES
+  // Si hay id de Cliente y el valor
   if (idDatoAModificar && valorDatoAModificar) {
-    entrada = entrada + "/" + idDatoAModificar;
+    console.log("Modificando cliente");
+    entrada = entrada + "/" + idDatoAModificar + "/" + valorDatoAModificar;
     datos = {
       [valorDatoAModificar]: datoNuevo,
     };
+    //PRODUCTOS
+    // Si hay id de Producto cogemos el id del producto y lo guardamos el nombreProducto con el dato nuevo, los guardamos en un objeto
   } else if (idDatoAModificar) {
+    console.log("Modificando producto");
+    console.log(datoNuevo);
+    console.log(idDatoAModificar);
+    console.log(valorDatoAModificar);
     entrada = entrada + "/" + idDatoAModificar;
     datos = {
       nombreProducto: datoNuevo,
     };
   } else {
+    console.log("Nuevo dato");
+    console.log(datoNuevo);
+    console.log(idDatoAModificar);
+    console.log(valorDatoAModificar);
     datos = datoNuevo;
   }
   // Si hay datos, realizamos la solicitud
