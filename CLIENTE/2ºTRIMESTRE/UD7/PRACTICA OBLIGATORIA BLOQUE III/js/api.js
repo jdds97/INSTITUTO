@@ -30,7 +30,7 @@ export async function cargarProductos() {
     .catch((error) => console.log(error));
 }
 
-export async function actualizarDatos(event) {
+export async function actualizaraDatos(event) {
   event.preventDefault();
 
   let respuesta = event.target.dataset.respuesta;
@@ -98,7 +98,7 @@ export async function actualizarDatos(event) {
     }).catch((error) => console.log(error));
   }
 }
-export async function actualizarDosDatos(event) {
+export async function actualizarDatos(event) {
   event.preventDefault();
 
   let respuesta = event.target.dataset.respuesta;
@@ -130,17 +130,18 @@ export async function actualizarDosDatos(event) {
   let datos;
   //CLIENTES
   // Si hay id de Cliente y el valor
-  if (idDatoAModificar && valorDatoAModificar) {
+  if (idDatoAModificar && valorDatoAModificar && inputTextElement) {
     console.log("Modificando cliente");
-    entrada = entrada + "/" + idDatoAModificar + "/" + valorDatoAModificar;
+    entrada = entrada + "/" + idDatoAModificar;
     datos = {
       [valorDatoAModificar]: datoNuevo,
     };
     //PRODUCTOS
     // Si hay id de Producto cogemos el id del producto y lo guardamos el nombreProducto con el dato nuevo, los guardamos en un objeto
+  } else if (idDatoAModificar && idDatoAModificar) {
+    entrada = entrada + "/" + idDatoAModificar + "/" + valorDatoAModificar;
+    datos[valorDatoAModificar] = datoNuevo;
   } else if (idDatoAModificar) {
-    console.log("Modificando producto");
-
     entrada = entrada + "/" + idDatoAModificar;
     datos = {
       nombreProducto: datoNuevo,

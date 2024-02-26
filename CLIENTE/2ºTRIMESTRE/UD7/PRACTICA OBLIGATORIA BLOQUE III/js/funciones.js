@@ -40,10 +40,11 @@ formulariosGestion
   .addEventListener("change", async () =>
     cargaProductos(await api.cargarProductos())
   );
-formulariosGestion.addEventListener("submit", async (event) => {
+document.addEventListener("submit", async (event) => {
+  debugger;
   await api.actualizarDatos(event);
-  limpiarDatos();
-  setTimeout(1000, cargaDatos());
+  limpiarDatos(event);
+  await cargaDatos(event);
 });
 
 // #endregion
@@ -120,21 +121,23 @@ async function cargaComerciales(objetoComerciales) {
  */
 async function cargaClientes(objetoClientes, event) {
   let valorComercial;
+  let evento;
+
   if (event) {
-    console.log(event.target.form.id);
-    debugger;
-    switch (event.target.form.id) {
-      case undefined:
-        valorComercial = frmComercial.comerciales.value;
-        break;
+    evento = event.target.parentElement.id || event.target.form.id;
+    switch (evento) {
       case "frmNuevoCliente":
-        valorComercial = frmNuevoCliente.comercialesClientesANuevo.value;
+        //Este return se hace para que no se carguen de nuevo clientes en los demás formularios
+        valorComercial = frmComercial.comerciales.value;
         break;
       case "frmEditarCliente":
         valorComercial = frmEditarCliente.comercialesClientesAEditar.value;
         break;
       case "frmBorrarCliente":
         valorComercial = frmBorrarCliente.comercialesClientesABorrar.value;
+        break;
+      default:
+        valorComercial = frmComercial.comerciales.value;
         break;
     }
   } else {
@@ -149,45 +152,47 @@ async function cargaClientes(objetoClientes, event) {
     option.value = i;
     option.setAttribute("id", keyComercial);
     option.text = cliente;
-    cuadroCliente.innerHTML = cliente;
-    cuadroCliente.value = i;
-    cuadroCliente.setAttribute("id", keyComercial);
-    cuadroCliente.setAttribute("valor", i);
-    cuadroCliente.classList.add("cliente");
-    cuadroCliente.classList.add("pagado");
-    frmComercial.parentNode.append(cuadroCliente);
-
-    frmEditarCliente.clientesAEditar.add(option);
-    frmBorrarCliente.clientesABorrar.add(option.cloneNode(true));
-    // Añade los clientes a los formularios de gestión de clientes
-    // frmEditarCliente.clientesAEditar.add(option.cloneNode(true));
-    // frmBorrarCliente.clientesABorrar.add(option.cloneNode(true));
-    //   frmEditarCliente.clientesAEditar.selectedOptions[0].setAttribute(
-    //     "id",
-    //     keyComercial
-    //   );
-    //   frmEditarCliente.clientesAEditar[i].setAttribute("valor", i);
-    //   frmBorrarCliente.clientesABorrar[i].setAttribute("valor", i);
-    //   frmNuevoCliente.comercialesClientesANuevo.selectedOptions[0].setAttribute(
-    //     "id",
-    //     keyComercialEdit
-    //   );
-    //   frmNuevoCliente.comercialesClientesANuevo.selectedOptions[0].setAttribute(
-    //     "valor",
-    //     clientesComercial.length + 1
-    //   );
-    //   frmBorrarCliente.comercialesClientesABorrar.selectedOptions[0].setAttribute(
-    //     "id",
-    //     keyComercialEdit
-    //   );
-    //   frmBorrarCliente.comercialesClientesABorrar.selectedOptions[0].setAttribute(
-    //     "valor",
-    //     clientesComercial.length + 1
-    //   );
-    //   frmBorrarCliente.clientesABorrar.selectedOptions[0].setAttribute(
-    //     "id",
-    //     keyComercialEdit
-    //   );
+    frmNuevoCliente.comercialesClientesANuevo.selectedOptions[0].setAttribute(
+      "id",
+      keyComercial
+    );
+    frmNuevoCliente.comercialesClientesANuevo.selectedOptions[0].setAttribute(
+      "valor",
+      i++ + 1
+    );
+    frmEditarCliente.comercialesClientesAEditar.selectedOptions[0].setAttribute(
+      "id",
+      keyComercial
+    );
+    if (event != undefined) {
+      switch (evento) {
+        case "frmComercial":
+          cuadroCliente.innerHTML = cliente;
+          cuadroCliente.value = i;
+          cuadroCliente.setAttribute("id", keyComercial);
+          cuadroCliente.setAttribute("valor", i);
+          cuadroCliente.classList.add("cliente");
+          cuadroCliente.classList.add("pagado");
+          frmComercial.parentNode.append(cuadroCliente);
+          break;
+        case "frmEditarCliente":
+          frmEditarCliente.clientesAEditar.add(option);
+          break;
+        case "frmBorrarCliente":
+          frmBorrarCliente.clientesABorrar.add(option);
+          break;
+      }
+    } else {
+      cuadroCliente.innerHTML = cliente;
+      cuadroCliente.value = i;
+      cuadroCliente.setAttribute("id", keyComercial);
+      cuadroCliente.setAttribute("valor", i);
+      cuadroCliente.classList.add("cliente");
+      cuadroCliente.classList.add("pagado");
+      frmComercial.parentNode.append(cuadroCliente);
+      frmEditarCliente.clientesAEditar.add(option);
+      frmBorrarCliente.clientesABorrar.add(option.cloneNode(true));
+    }
   });
 }
 
@@ -268,33 +273,48 @@ function limpiarComerciales() {
   frmEditarCliente.comercialesClientesAEditar
     .querySelectorAll("option")
     .forEach((comercial) => comercial.remove());
+  frmBorrarCliente.comercialesClientesABorrar
+    .querySelectorAll("option")
+    .forEach((comercial) => comercial.remove());
+  frmEditarComercial.comercialesAEditar
+    .querySelectorAll("option")
+    .forEach((comercial) => comercial.remove());
+  frmBorrarComercial.comercialesABorrar
+    .querySelectorAll("option")
+    .forEach((comercial) => comercial.remove());
 }
 /**
  * Limpia el pedido y el cliente anterior.
  */
 function limpiarClientes(event) {
   console.log("Limpiando clientes");
-  switch (event.target.form.id) {
-    case "frmComercial":
-      let clientes = document.querySelectorAll(".cliente");
-      clientes.forEach((cliente) => cliente.remove());
-      break;
-    case "frmNuevoCliente":
-      frmNuevoCliente.clientesClientesANuevo
+  if (event.target.form.id) {
+    switch (event.target.form.id) {
+      case "frmComercial":
+        let clientes = document.querySelectorAll(".cliente");
+        clientes.forEach((cliente) => cliente.remove());
+        break;
 
-        .querySelectorAll("option")
-        .forEach((cliente) => cliente.remove());
-      break;
-    case "frmEditarCliente":
-      frmEditarCliente.clientesAEditar
-        .querySelectorAll("option")
-        .forEach((cliente) => cliente.remove());
-      break;
-    case "frmBorrarCliente":
-      frmBorrarCliente.clientesABorrar
-        .querySelectorAll("option")
-        .forEach((cliente) => cliente.remove());
-      break;
+      case "frmEditarCliente":
+        frmEditarCliente.clientesAEditar
+          .querySelectorAll("option")
+          .forEach((cliente) => cliente.remove());
+        break;
+      case "frmBorrarCliente":
+        frmBorrarCliente.clientesABorrar
+          .querySelectorAll("option")
+          .forEach((cliente) => cliente.remove());
+        break;
+    }
+  } else {
+    let clientes = document.querySelectorAll(".cliente");
+    clientes.forEach((cliente) => cliente.remove());
+    frmEditarCliente.clientesAEditar
+      .querySelectorAll("option")
+      .forEach((cliente) => cliente.remove());
+    frmBorrarCliente.clientesABorrar
+      .querySelectorAll("option")
+      .forEach((cliente) => cliente.remove());
   }
 }
 
@@ -329,7 +349,23 @@ function limpiarCategorias() {
  */
 function limpiarProductos(event) {
   console.log("Limpiando productos");
-  switch (event.target.form.id) {
+
+  switch (event.target.id) {
+    case "frmControles":
+      frmControles.productos
+        .querySelectorAll("option")
+        .forEach((producto) => producto.remove());
+      break;
+    case "frmEditarProducto":
+      frmEditarProducto.productosAEditar
+        .querySelectorAll("option")
+        .forEach((producto) => producto.remove());
+      break;
+    case "frmBorrarProducto":
+      frmBorrarProducto.productosABorrar
+        .querySelectorAll("option")
+        .forEach((producto) => producto.remove());
+      break;
   }
   frmControles.productos
     .querySelectorAll("option")
@@ -341,11 +377,11 @@ function limpiarProductos(event) {
     .querySelectorAll("option")
     .forEach((producto) => producto.remove());
 }
-function limpiarDatos() {
+function limpiarDatos(event) {
   console.log("Limpiando datos");
   limpiarCategorias();
-  limpiarProductos();
+  limpiarProductos(event);
   limpiarComerciales();
-  limpiarClientes();
+  limpiarClientes(event);
 }
 // #endregion
