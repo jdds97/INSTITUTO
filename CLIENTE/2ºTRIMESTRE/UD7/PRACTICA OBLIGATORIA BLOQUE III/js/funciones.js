@@ -11,12 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // #endregion
 // #region Eventos de cambio de valores
-document.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  await api.actualizarDatos(event);
-  limpiarDatos();
-  await cargaDatos();
-});
+
 let frmComercial = document.getElementById("frmComercial");
 frmComercial.comerciales.addEventListener("change", limpiarClientes);
 frmComercial.comerciales.addEventListener("change", async () =>
@@ -46,6 +41,12 @@ formulariosGestion
   .addEventListener("change", async () =>
     cargaProductos(await api.cargarProductos())
   );
+formulariosGestion.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  await api.actualizarDatos(event);
+  limpiarDatos();
+  setTimeout(cargaDatos, 100);
+});
 
 // #endregion
 // #region Eventos de selección de cliente
@@ -120,8 +121,9 @@ function mostrarForm(frmId) {
  */
 async function cargaComerciales(objetoComerciales) {
   let comerciales = Object.values(objetoComerciales);
+
   comerciales.forEach((comercial, i) => {
-    let option = document.createElement("option");
+    const option = document.createElement("option");
     option.value = i;
     option.setAttribute("id", Object.keys(objetoComerciales)[i]);
     option.text = comercial;
@@ -133,27 +135,48 @@ async function cargaComerciales(objetoComerciales) {
  * Carga los clientes del comercial seleccionado en el cuadro de pedido.
  */
 async function cargaClientes(objetoClientes) {
-  let clientesComercial =
-    Object.values(objetoClientes)[frmComercial.comerciales.value];
-  let keyComercial =
-    Object.keys(objetoClientes)[frmComercial.comerciales.value];
+  let comercialSeleccionado = frmComercial.comerciales.selectedOptions[0];
+  comercialSeleccionado.setAttribute(
+    "idComercial",
+    Object.keys(objetoClientes)[comercialSeleccionado.value] //-Nqj2Fot88r20MVZipj6
+  );
+  //Aqui ya tengo los clientes de ese comercial ==key
+  console.log(
+    "Key comercial " + comercialSeleccionado.getAttribute("idComercial")
+  ); //-Nqj2Fot88r20MVZipj6
+  let clientesComercial = Object.values(
+    objetoClientes[comercialSeleccionado.getAttribute("idComercial")]
+  );
+  let keyComercial = comercialSeleccionado.getAttribute("idComercial");
+
+  if (clientesComercial === undefined) {
+    clientesComercial = [];
+  }
+  console.log("Key comercial clientes " + keyComercial);
 
   clientesComercial.forEach((cliente, i) => {
-    let cuadroCliente = document.createElement("div");
-    cuadroCliente.innerHTML = cliente;
-    cuadroCliente.value = i;
-    cuadroCliente.setAttribute("id", keyComercial);
-    cuadroCliente.setAttribute("valor", i);
-    cuadroCliente.classList.add("cliente");
-    cuadroCliente.classList.add("pagado");
-    cuadroCliente.addEventListener("click", clienteSeleccionadoForm);
-    frmComercial.parentNode.append(cuadroCliente);
+    if (
+      cliente !== null &&
+      comercialSeleccionado.getAttribute("idComercial") === keyComercial
+    ) {
+      let cuadroCliente = document.createElement("div");
+
+      cuadroCliente.innerHTML = cliente;
+      cuadroCliente.value = i;
+      cuadroCliente.setAttribute("id", keyComercial);
+      cuadroCliente.setAttribute("valor", i);
+      cuadroCliente.classList.add("cliente");
+      cuadroCliente.classList.add("pagado");
+      cuadroCliente.addEventListener("click", clienteSeleccionadoForm);
+      frmComercial.parentNode.append(cuadroCliente);
+    }
   });
   formulariosGestion
     .querySelectorAll(".comercialActual")
     .forEach((comercial) => {
       comercial.id = frmComercial.comerciales.selectedOptions[0].id;
       comercial.innerHTML = frmComercial.comerciales.selectedOptions[0].text;
+      comercial.setAttribute("valor", keyComercial);
     });
 
   formulariosGestion
@@ -201,6 +224,11 @@ function cargaProductos(productos) {
   let keysProductos = Object.keys(productos).filter((producto) => {
     return productos[producto].idCategoria == categoriaSeleccionada;
   });
+  if (productosSeleccionados.length === 0) {
+    productosSeleccionados = [
+      { nombreProducto: "No hay productos en esta categoría" },
+    ];
+  }
   productosSeleccionados.forEach((producto, i) => {
     let option = document.createElement("option");
     option.setAttribute("id", keysProductos[i]);
@@ -211,10 +239,10 @@ function cargaProductos(productos) {
       .forEach((categoria) => {
         categoria.id = frmControles.categorias.selectedOptions[0].id;
         categoria.innerHTML = frmControles.categorias.selectedOptions[0].text;
-        categoriaProducto.innerHTML =
-          frmControles.categorias.selectedOptions[0].text;
-        producto.id = frmControles.categorias.selectedOptions[0].id;
       });
+    categoriaProducto.innerHTML =
+      frmControles.categorias.selectedOptions[0].text;
+    producto.id = frmControles.categorias.selectedOptions[0].id;
   });
 }
 // #endregion
@@ -224,9 +252,14 @@ function cargaProductos(productos) {
  */
 function limpiarComerciales() {
   console.log("Limpiando comerciales");
-  frmComercial.comerciales
-    .querySelectorAll("option")
-    .forEach((comercial) => comercial.remove());
+  let selectElement = frmComercial.comerciales;
+  let valorSeleccionado = selectElement.value;
+
+  selectElement.querySelectorAll("option").forEach((comercial) => {
+    if (comercial.value !== valorSeleccionado) {
+      comercial.remove();
+    }
+  });
 }
 /**
  * Limpia el pedido y el cliente anterior.
@@ -235,6 +268,9 @@ function limpiarClientes() {
   console.log("Limpiando clientes");
   let clientes = document.querySelectorAll(".cliente");
   clientes.forEach((cliente) => cliente.remove());
+  formulariosGestion
+    .querySelectorAll(".clienteActual")
+    .forEach((cliente) => (cliente.innerHTML = ""));
 }
 /**
  * Limpia las categorías del frm.
@@ -262,10 +298,10 @@ function limpiarTexto() {
 function limpiarDatos() {
   console.log("Limpiando datos");
   limpiarTexto();
-  limpiarCategorias();
-  limpiarProductos();
   limpiarComerciales();
   limpiarClientes();
+  limpiarCategorias();
+  limpiarProductos();
 }
 
 // #endregion

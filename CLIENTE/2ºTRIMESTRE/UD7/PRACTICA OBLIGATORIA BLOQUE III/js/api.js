@@ -99,6 +99,61 @@ export async function actualizaraDatos(event) {
   }
 }
 export async function actualizarDatos(event) {
+  event.preventDefault();
+  let respuesta = event.target.dataset.respuesta;
+  let entrada = event.target.parentElement.dataset.entrada;
+  let nuevaEntrada = event.target.dataset.nuevaentrada;
+  let valorDatoAModificar;
+  let datos,
+    datos2 = {};
+  const inputTextElement = event.target.querySelector('input[type="text"]');
+  let datoNuevo =
+    inputTextElement && inputTextElement.value !== null
+      ? inputTextElement.value
+      : undefined;
+
+  // Si hay datos, realizamos la solicitud
+  if (datos || (datos && nuevaEntrada)) {
+    console.log("Haciendo la solicitud...");
+    let url = `https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/${entrada}.json`;
+    datos = datoNuevo;
+    fetch(url, {
+      method: `${respuesta}`,
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(datos),
+    }).catch((error) => console.log(error));
+  } else if (nuevaEntrada) {
+    if (respuesta === "POST") {
+      entrada = nuevaEntrada;
+      datos2 = {
+        [0]: `Primer ${nuevaEntrada.slice(0, -1)}`,
+      };
+    } else {
+      valorDatoAModificar = event.target
+        .querySelector("span")
+        .getAttribute("valor");
+      entrada = nuevaEntrada + "/" + valorDatoAModificar;
+      datos2 = {
+        [valorDatoAModificar]: 0,
+      };
+    }
+
+    let url = `https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/${entrada}.json`;
+    console.log(datos2);
+    console.log(url);
+    fetch(url, {
+      method: `${respuesta}`,
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(datos2),
+    }).catch((error) => console.log(error));
+  }
+}
+
+export async function actualizarDatosa(event) {
   let respuesta = event.target.dataset.respuesta;
   let entrada = event.target.parentElement.dataset.entrada;
   let datos;
@@ -119,17 +174,25 @@ export async function actualizarDatos(event) {
       : undefined;
   if (idDatoAModificar && valorDatoAModificar && inputTextElement) {
     entrada = entrada + "/" + idDatoAModificar;
-    console.log("Modificando comercial nuevo cliente");
+    console.log(
+      "Modificando comercial nuevo cliente ,categoria nuevo producto"
+    );
     datos = {
       [valorDatoAModificar]: datoNuevo,
     };
     console.log(datos);
     // Si hay id de Cliente y el valor
   } else if (idDatoAModificar && inputTextElement) {
-    console.log("Modificando cliente");
-    entrada = entrada + "/" + idDatoAModificar;
+    console.log("Modificando cliente o categoria");
+
     datos = {
       [idDatoAModificar]: datoNuevo,
+    };
+  } else if (idDatoAModificar && valorDatoAModificar) {
+    console.log("Eliminar dato");
+    entrada = entrada + "/" + idDatoAModificar + "/" + valorDatoAModificar;
+    datos = {
+      [valorDatoAModificar]: datoNuevo,
     };
   } else if (idDatoAModificar) {
     console.log("Eliminar dato");
