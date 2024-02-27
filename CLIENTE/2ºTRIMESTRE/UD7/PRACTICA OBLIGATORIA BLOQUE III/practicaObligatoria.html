@@ -74,24 +74,19 @@
           data-nuevaEntrada="clientes"
         >
           <label><h4>Comercial a borrar:</h4></label>
-          <h3><span class="comercialActual" id=""></span></h3>
+          <h3><span class="comercialActual borrarComercial" id=""></span></h3>
           <input type="submit" value="Borrar" />
         </form>
       </div>
       <!-- FORMULARIOS CLIENTES-->
-      <div
-        id="gestionClientes"
-        class="oculto"
-        data-entrada="clientes"
-        data-entrada=""
-      >
+      <div id="gestionClientes" class="oculto" data-entrada="clientes">
         <form
           id="frmNuevoCliente"
           name="frmNuevoCliente"
           data-respuesta="PATCH"
         >
           <label><h4>Nuevo cliente para :</h4></label>
-          <h3><span class="comercialActualClienteNuevo" id=""></span></h3>
+          <h3><span class="comercialActual nuevoCliente" id=""></span></h3>
 
           <input type="text" id="txtNuevoCliente" /><br />
           <input type="submit" value="Guardar" />
@@ -104,9 +99,9 @@
           data-respuesta="PATCH"
         >
           <label><h4>Comercial:</h4></label>
-          <h3><span class="comercialActualCliente" id=""></span></h3>
+          <h3 class="comercialActual editarCliente"></h3>
           <label><h4>Cliente a modificar:</h4></label>
-          <h3 class="clienteActual"></h3>
+          <h3><span class="clienteActual" id=""></span></h3>
           <input type="text" id="txtNuevoNombreCliente" /><br />
           <input type="submit" value="Modificar" />
           <hr />
@@ -118,9 +113,9 @@
           data-respuesta="DELETE"
         >
           <label><h4>Comercial</h4></label>
-          <h3><span class="comercialActualCliente" id=""></span></h3>
+          <h3 class="comercialActual"></h3>
           <label><h4>Cliente a borrar:</h4></label>
-          <h3 class="clienteActual"></h3>
+          <h3><span class="clienteActual" id=""></span></h3>
           <br /><br />
           <input type="submit" value="Borrar" />
         </form>

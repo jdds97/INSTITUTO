@@ -29,7 +29,19 @@ export async function cargarProductos() {
     .then((response) => response.json())
     .catch((error) => console.log(error));
 }
-
+export async function handleComercial(event) {
+  event.preventDefault();
+  let respuesta = event.target.dataset.respuesta; //POST=
+  let entrada = event.target.parentElement.dataset.entrada;
+  let idDatoAModificar;
+  let valorDatoAModificar;
+  let datos;
+  const inputTextElement = event.target.querySelector('input[type="text"]');
+  let datoNuevo =
+    inputTextElement && inputTextElement.value !== null
+      ? inputTextElement.value
+      : undefined;
+}
 export async function actualizaraDatos(event) {
   event.preventDefault();
 
@@ -100,57 +112,67 @@ export async function actualizaraDatos(event) {
 }
 export async function actualizarDatos(event) {
   event.preventDefault();
-  let respuesta = event.target.dataset.respuesta;
-  let entrada = event.target.parentElement.dataset.entrada;
-  let nuevaEntrada = event.target.dataset.nuevaentrada;
-  let valorDatoAModificar;
-  let datos,
-    datos2 = {};
+  const respuesta = event.target.dataset.respuesta;
+  const nuevaEntrada = event.target.dataset.nuevaentrada;
   const inputTextElement = event.target.querySelector('input[type="text"]');
-  let datoNuevo =
-    inputTextElement && inputTextElement.value !== null
-      ? inputTextElement.value
-      : undefined;
-
-  // Si hay datos, realizamos la solicitud
-  if (datos || (datos && nuevaEntrada)) {
-    console.log("Haciendo la solicitud...");
-    let url = `https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/${entrada}.json`;
-    datos = datoNuevo;
-    fetch(url, {
-      method: `${respuesta}`,
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(datos),
-    }).catch((error) => console.log(error));
-  } else if (nuevaEntrada) {
-    if (respuesta === "POST") {
-      entrada = nuevaEntrada;
-      datos2 = {
-        [0]: `Primer ${nuevaEntrada.slice(0, -1)}`,
+  const datoNuevo = inputTextElement?.value;
+  let entrada = event.target.parentElement.dataset.entrada;
+  let valorDatoAModificar;
+  let datos = {};
+  let spanElement = event.target.querySelector("span");
+  if (entrada) {
+    if (spanElement && spanElement.id) {
+      if (spanElement.getAttribute("valor")) {
+        if (respuesta !== "DELETE") {
+          valorDatoAModificar = spanElement.getAttribute("valor");
+          entrada = `${entrada}/${spanElement.id}/${valorDatoAModificar}`;
+        }
+        entrada = `${entrada}/${spanElement.id}`;
+      } else {
+        valorDatoAModificar = spanElement.id;
+      }
+      datos = {
+        [valorDatoAModificar]: datoNuevo !== undefined ? datoNuevo : "",
       };
     } else {
-      valorDatoAModificar = event.target
-        .querySelector("span")
-        .getAttribute("valor");
-      entrada = nuevaEntrada + "/" + valorDatoAModificar;
-      datos2 = {
-        [valorDatoAModificar]: 0,
-      };
+      datos = datoNuevo;
     }
-
-    let url = `https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/${entrada}.json`;
-    console.log(datos2);
-    console.log(url);
-    fetch(url, {
-      method: `${respuesta}`,
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(datos2),
-    }).catch((error) => console.log(error));
+    console.log(entrada);
+    console.log(datos);
+    console.log(respuesta);
+    enviarSolicitud(entrada, datos, respuesta);
   }
+  if (nuevaEntrada) {
+    const valorDatoAModificar =
+      respuesta === "POST"
+        ? 0
+        : event.target.querySelector("span").getAttribute("valor");
+
+    const subEntrada =
+      respuesta === "POST"
+        ? nuevaEntrada
+        : `${nuevaEntrada}/${valorDatoAModificar}`;
+    datos =
+      respuesta === "POST"
+        ? { [0]: `Primer ${nuevaEntrada.slice(0, -1)}` }
+        : { [valorDatoAModificar]: "" };
+    console.log(subEntrada);
+    console.log(datos);
+    console.log(respuesta);
+    enviarSolicitud(subEntrada, datos, respuesta);
+  }
+}
+
+function enviarSolicitud(entrada, datos, respuesta) {
+  const url = `https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/${entrada}.json`;
+  console.log(url);
+  fetch(url, {
+    method: respuesta,
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify(datos),
+  }).catch((error) => console.log(error));
 }
 
 export async function actualizarDatosa(event) {

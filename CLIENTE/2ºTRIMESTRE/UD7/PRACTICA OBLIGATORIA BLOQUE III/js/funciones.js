@@ -56,9 +56,11 @@ function clienteSeleccionadoForm(event) {
     .forEach((cliente) => cliente.classList.remove("pendiente"));
   clienteSeleccionado = event.target.value;
 
-  formulariosGestion
-    .querySelectorAll(".clienteActual")
-    .forEach((cliente) => (cliente.innerHTML = event.target.innerHTML));
+  formulariosGestion.querySelectorAll(".clienteActual").forEach((cliente) => {
+    cliente.innerHTML = event.target.innerHTML;
+    cliente.id = event.target.id;
+    cliente.setAttribute("valor", event.target.value);
+  });
 
   event.target.classList.add("pendiente");
 }
@@ -121,7 +123,6 @@ function mostrarForm(frmId) {
  */
 async function cargaComerciales(objetoComerciales) {
   let comerciales = Object.values(objetoComerciales);
-
   comerciales.forEach((comercial, i) => {
     const option = document.createElement("option");
     option.value = i;
@@ -174,18 +175,31 @@ async function cargaClientes(objetoClientes) {
   formulariosGestion
     .querySelectorAll(".comercialActual")
     .forEach((comercial) => {
-      comercial.id = frmComercial.comerciales.selectedOptions[0].id;
+      if (comercial.tagName === "SPAN") {
+        comercial.id = frmComercial.comerciales.selectedOptions[0].id;
+
+        if (comercial.classList.contains("nuevoCliente")) {
+          comercial.id = keyComercial;
+          comercial.setAttribute("valor", clientesComercial.length);
+        }
+        if (
+          comercial.classList.contains("editarCliente") ||
+          comercial.classList.contains("borrarComercial")
+        ) {
+          comercial.setAttribute("valor", keyComercial);
+        }
+      }
+
       comercial.innerHTML = frmComercial.comerciales.selectedOptions[0].text;
-      comercial.setAttribute("valor", keyComercial);
     });
 
-  formulariosGestion
-    .querySelectorAll(".comercialActualCliente")
-    .forEach((comercial) => {
-      comercial.id = keyComercial;
-      comercial.innerHTML = frmComercial.comerciales.selectedOptions[0].text;
-      comercial.setAttribute("valor", clienteSeleccionado);
-    });
+  // formulariosGestion
+  //   .querySelectorAll(".comercialActualCliente")
+  //   .forEach((comercial) => {
+  //     comercial.id = keyComercial;
+  //     comercial.innerHTML = frmComercial.comerciales.selectedOptions[0].text;
+  //     comercial.setAttribute("valor", clienteSeleccionado);
+  //   });
   formulariosGestion
     .querySelectorAll(".comercialActualClienteNuevo")
     .forEach((comercial) => {
