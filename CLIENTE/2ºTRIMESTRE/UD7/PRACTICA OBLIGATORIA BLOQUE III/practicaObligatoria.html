@@ -60,8 +60,7 @@
           data-respuesta="PATCH"
         >
           <label><h4>Comercial a modificar:</h4></label>
-          <select name="comercialesAEditar"></select>
-          <label><h4>Nuevo nombre:</h4></label>
+          <h3><span class="comercialActual" id=""></span></h3>
           <input type="text" id="txtNuevoNombreComercial" /><br />
           <input type="submit" value="Modificar" />
           <hr />
@@ -73,8 +72,7 @@
           data-respuesta="DELETE"
         >
           <label><h4>Comercial a borrar:</h4></label>
-          <select name="comercialesABorrar"></select
-          ><br /><br />
+          <h3><span class="comercialActual" id=""></span></h3>
           <input type="submit" value="Borrar" />
         </form>
       </div>
@@ -85,9 +83,9 @@
           name="frmNuevoCliente"
           data-respuesta="PATCH"
         >
-          <label><h4>Elija comercial</h4></label>
-          <select name="comercialesClientesANuevo"></select>
-          <label><h4>Nuevo cliente:</h4></label>
+          <label><h4>Nuevo cliente para :</h4></label>
+          <h3><span class="comercialActualClienteNuevo" id=""></span></h3>
+
           <input type="text" id="txtNuevoCliente" /><br />
           <input type="submit" value="Guardar" />
           <hr />
@@ -98,11 +96,10 @@
           name="frmEditarCliente"
           data-respuesta="PATCH"
         >
-          <label><h4>Elija comercial</h4></label>
-          <select name="comercialesClientesAEditar"></select>
+          <label><h4>Comercial:</h4></label>
+          <h3><span class="comercialActualCliente" id=""></span></h3>
           <label><h4>Cliente a modificar:</h4></label>
-          <select name="clientesAEditar"></select>
-          <label><h4>Nuevo nombre:</h4></label>
+          <h3 class="clienteActual"></h3>
           <input type="text" id="txtNuevoNombreCliente" /><br />
           <input type="submit" value="Modificar" />
           <hr />
@@ -113,10 +110,10 @@
           name="frmBorrarCliente"
           data-respuesta="DELETE"
         >
-          <label><h4>Elija comercial</h4></label>
-          <select name="comercialesClientesABorrar"></select>
+          <label><h4>Comercial</h4></label>
+          <h3><span class="comercialActualCliente" id=""></span></h3>
           <label><h4>Cliente a borrar:</h4></label>
-          <select name="clientesABorrar"></select>
+          <h3 class="clienteActual"></h3>
           <br /><br />
           <input type="submit" value="Borrar" />
         </form>
@@ -140,8 +137,7 @@
           data-respuesta="PATCH"
         >
           <label><h4>Categoría a modificar:</h4></label>
-          <select name="categoriasAEditar"></select>
-          <label><h4>Nuevo nombre:</h4></label>
+          <h3><span class="categoriaActual"></span></h3>
           <input type="text" id="txtNuevoNombreCategoria" /><br />
           <input type="submit" value="Modificar" />
         </form>
@@ -152,8 +148,8 @@
           data-respuesta="DELETE"
         >
           <label><h4>Categoría a borrar:</h4></label>
-          <select name="categoriasABorrar"></select>
-          <br /><br />
+          <h3><span class="categoriaActual"></span></h3>
+
           <input type="submit" value="Borrar" />
         </form>
       </div>
@@ -165,8 +161,6 @@
           data-respuesta="POST"
         >
           <label><h4>Elija Categoría:</h4></label>
-          <select name="categoriasProductosANuevo"></select>
-          <label><h4>Nuevo producto:</h4></label>
           <input type="text" id="txtNuevoProducto" /><br />
           <input type="submit" value="Guardar" />
         </form>
@@ -177,10 +171,7 @@
           data-respuesta="PATCH"
         >
           <label><h4>Elija Categoría:</h4></label>
-          <select name="categoriasProductosAEditar"></select>
           <label><h4>Producto a modificar:</h4></label>
-          <select name="productosAEditar"></select>
-          <label><h4>Nuevo nombre:</h4></label>
           <input type="text" id="txtNuevoNombreProducto" /><br />
           <input type="submit" value="Modificar" />
         </form>
@@ -191,9 +182,7 @@
           data-respuesta="DELETE"
         >
           <label><h4>Elija Categoría:</h4></label>
-          <select name="categoriasProductosABorrar"></select>
           <label><h4>Producto a borrar:</h4></label>
-          <select name="productosABorrar"></select>
           <br /><br />
           <input type="submit" value="Borrar" />
         </form>
