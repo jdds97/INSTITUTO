@@ -6,7 +6,6 @@ import * as api from "./api.js";
  */
 // Carga de datos iniciales al poner el valor del comercial a 0.
 document.addEventListener("DOMContentLoaded", () => {
-  frmComercial.comerciales.value = 0;
   cargaDatos();
 });
 // #endregion
@@ -17,7 +16,7 @@ frmComercial.comerciales.addEventListener("change", limpiarClientes);
 frmComercial.comerciales.addEventListener("change", async () =>
   cargaClientes(await api.cargarClientes())
 );
-let clienteSeleccionado;
+let clienteSeleccionado = 0;
 let frmControles = document.getElementById("frmControles");
 frmControles.categorias.addEventListener("change", limpiarProductos);
 frmControles.categorias.addEventListener("change", async () =>
@@ -64,12 +63,10 @@ function clienteSeleccionadoForm(event) {
 
   event.target.classList.add("pendiente");
 }
-// #endregion
 
 // #endregion
 // #region Carga de datos iniciales
 async function cargaDatos() {
-  console.log("Cargando datos");
   let comerciales = await api.cargarComerciales();
   cargaComerciales(comerciales);
   let clientes = await api.cargarClientes();
@@ -115,9 +112,7 @@ function mostrarForm(frmId) {
 }
 
 // #endregion
-
 // #region Funciones de carga de datos
-
 /**
  * Carga los comerciales en el frm .
  */
@@ -139,12 +134,9 @@ async function cargaClientes(objetoClientes) {
   let comercialSeleccionado = frmComercial.comerciales.selectedOptions[0];
   comercialSeleccionado.setAttribute(
     "idComercial",
-    Object.keys(objetoClientes)[comercialSeleccionado.value] //-Nqj2Fot88r20MVZipj6
+    Object.keys(objetoClientes)[comercialSeleccionado.value]
   );
-  //Aqui ya tengo los clientes de ese comercial ==key
-  console.log(
-    "Key comercial " + comercialSeleccionado.getAttribute("idComercial")
-  ); //-Nqj2Fot88r20MVZipj6
+
   let clientesComercial = Object.values(
     objetoClientes[comercialSeleccionado.getAttribute("idComercial")]
   );
@@ -153,7 +145,6 @@ async function cargaClientes(objetoClientes) {
   if (clientesComercial === undefined) {
     clientesComercial = [];
   }
-  console.log("Key comercial clientes " + keyComercial);
 
   clientesComercial.forEach((cliente, i) => {
     if (
@@ -191,24 +182,6 @@ async function cargaClientes(objetoClientes) {
       }
 
       comercial.innerHTML = frmComercial.comerciales.selectedOptions[0].text;
-    });
-
-  // formulariosGestion
-  //   .querySelectorAll(".comercialActualCliente")
-  //   .forEach((comercial) => {
-  //     comercial.id = keyComercial;
-  //     comercial.innerHTML = frmComercial.comerciales.selectedOptions[0].text;
-  //     comercial.setAttribute("valor", clienteSeleccionado);
-  //   });
-  formulariosGestion
-    .querySelectorAll(".comercialActualClienteNuevo")
-    .forEach((comercial) => {
-      comercial.id = keyComercial;
-      comercial.innerHTML = frmComercial.comerciales.selectedOptions[0].text;
-      comercial.setAttribute(
-        "valor",
-        document.querySelectorAll(".cliente").length
-      );
     });
 }
 
@@ -253,6 +226,7 @@ function cargaProductos(productos) {
       .forEach((categoria) => {
         categoria.id = frmControles.categorias.selectedOptions[0].id;
         categoria.innerHTML = frmControles.categorias.selectedOptions[0].text;
+        categoria.setAttribute("valor", frmControles.categorias.value);
       });
     categoriaProducto.innerHTML =
       frmControles.categorias.selectedOptions[0].text;
@@ -265,7 +239,6 @@ function cargaProductos(productos) {
  * Limpia los comerciales del frm.
  */
 function limpiarComerciales() {
-  console.log("Limpiando comerciales");
   let selectElement = frmComercial.comerciales;
   let valorSeleccionado = selectElement.value;
 
@@ -279,7 +252,6 @@ function limpiarComerciales() {
  * Limpia el pedido y el cliente anterior.
  */
 function limpiarClientes() {
-  console.log("Limpiando clientes");
   let clientes = document.querySelectorAll(".cliente");
   clientes.forEach((cliente) => cliente.remove());
   formulariosGestion
@@ -290,7 +262,6 @@ function limpiarClientes() {
  * Limpia las categorías del frm.
  */
 function limpiarCategorias() {
-  console.log("Limpiando categorias");
   frmControles.categorias
     .querySelectorAll("option")
     .forEach((categoria) => categoria.remove());
@@ -299,18 +270,15 @@ function limpiarCategorias() {
  * Limpia los productos del frm.
  */
 function limpiarProductos() {
-  console.log("Limpiando productos");
   frmControles.productos
     .querySelectorAll("option")
     .forEach((producto) => producto.remove());
 }
 function limpiarTexto() {
-  console.log("Limpiando texto");
   let texto = document.querySelectorAll("input[type=text]");
   texto.forEach((texto) => (texto.value = ""));
 }
 function limpiarDatos() {
-  console.log("Limpiando datos");
   limpiarTexto();
   limpiarComerciales();
   limpiarClientes();

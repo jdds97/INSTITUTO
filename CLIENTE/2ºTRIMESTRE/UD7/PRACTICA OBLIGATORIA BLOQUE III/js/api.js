@@ -123,11 +123,15 @@ export async function actualizarDatos(event) {
   if (entrada) {
     if (spanElement && spanElement.id) {
       if (spanElement.getAttribute("valor")) {
-        if (respuesta !== "DELETE") {
-          valorDatoAModificar = spanElement.getAttribute("valor");
+        valorDatoAModificar = spanElement.getAttribute("valor");
+        if (
+          spanElement.classList.contains("clienteActual") &&
+          respuesta === "DELETE"
+        ) {
           entrada = `${entrada}/${spanElement.id}/${valorDatoAModificar}`;
+        } else if (spanElement.classList.contains("categoriaActual")) {
+          entrada = `${entrada}/${spanElement.id}`;
         }
-        entrada = `${entrada}/${spanElement.id}`;
       } else {
         valorDatoAModificar = spanElement.id;
       }
@@ -137,9 +141,7 @@ export async function actualizarDatos(event) {
     } else {
       datos = datoNuevo;
     }
-    console.log(entrada);
-    console.log(datos);
-    console.log(respuesta);
+
     enviarSolicitud(entrada, datos, respuesta);
   }
   if (nuevaEntrada) {
