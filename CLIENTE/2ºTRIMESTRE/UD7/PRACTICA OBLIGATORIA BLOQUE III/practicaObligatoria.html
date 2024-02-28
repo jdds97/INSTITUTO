@@ -41,6 +41,7 @@
     <div id="formulariosGestion" class="panel">
       <h1>CRUD</h1>
       <hr />
+      <!-- CADA DATA ENTRADA VA A SER PARA ENTRAR EN CADA SECCIÓN DEL FIREBASE-->
       <!-- FORMULARIOS COMERCIALES-->
       <div id="gestionComerciales" class="oculto" data-entrada="comerciales">
         <form
@@ -48,7 +49,7 @@
           name="frmNuevoComercial"
           data-respuesta="POST"
           data-nuevaEntrada="clientes"
-        >
+        > <!-- AQUI SE PONE LA NUEVA ENTRADA QUE SE VA A CREAR AL CREAR UN NUEVO COMERCIAL SE CREA UN ARRAY DE CLIENTES NUEVO-->
           <label><h4>Nuevo comercial:</h4></label>
           <input type="text" id="txtNuevoComercial" /><br />
           <input type="submit" value="Guardar" />
@@ -61,7 +62,7 @@
           data-respuesta="PATCH"
         >
           <label><h4>Comercial a modificar:</h4></label>
-          <h3><span class="comercialActual" id=""></span></h3>
+          <h3><span class="comercialActual " id=""></span></h3>
           <input type="text" id="txtNuevoNombreComercial" /><br />
           <input type="submit" value="Modificar" />
           <hr />
@@ -72,9 +73,9 @@
           name="frmBorrarComercial"
           data-respuesta="DELETE"
           data-nuevaEntrada="clientes"
-        >
+        > <!-- AQUI SE PONE LA NUEVA ENTRADA QUE SE VA A CREAR AL BORRAR UN  COMERCIAL SE BORRAR ARRAY DE CLIENTES NUEVO-->
           <label><h4>Comercial a borrar:</h4></label>
-          <h3><span class="comercialActual borrarComercial" id=""></span></h3>
+          <h3><span class="comercialActual borrarClientes" id=""></span></h3>
           <input type="submit" value="Borrar" />
         </form>
       </div>
@@ -86,7 +87,7 @@
           data-respuesta="PATCH"
         >
           <label><h4>Nuevo cliente para :</h4></label>
-          <h3><span class="comercialActual nuevoCliente" id=""></span></h3>
+          <h3><span class="nuevoCliente" id=""></span></h3>
 
           <input type="text" id="txtNuevoCliente" /><br />
           <input type="submit" value="Guardar" />
@@ -99,7 +100,7 @@
           data-respuesta="PATCH"
         >
           <label><h4>Comercial:</h4></label>
-          <h3 class="comercialActual editarCliente"></h3>
+          <h3 class="comercialActual"></h3>
           <label><h4>Cliente a modificar:</h4></label>
           <h3><span class="clienteActual" id=""></span></h3>
           <input type="text" id="txtNuevoNombreCliente" /><br />
@@ -113,7 +114,7 @@
           data-respuesta="DELETE"
         >
           <label><h4>Comercial</h4></label>
-          <h3 class="comercialActual"></h3>
+          <h3 class="comercialActual "></h3>
           <label><h4>Cliente a borrar:</h4></label>
           <h3><span class="clienteActual" id=""></span></h3>
           <br /><br />
@@ -161,8 +162,10 @@
           name="frmNuevoProducto"
           data-respuesta="POST"
         >
-          <label><h4>Elija Categoría:</h4></label>
+          <label><h4> Categoría:</h4></label>
+          <h3><span class="nuevoProducto"><span></h3>
           <input type="text" id="txtNuevoProducto" /><br />
+          <input type="number" id="txtNuevoPrecioProducto" min="0" step="0.01"/><br />
           <input type="submit" value="Guardar" />
         </form>
         <hr />
@@ -171,9 +174,14 @@
           name="frmEditarProducto"
           data-respuesta="PATCH"
         >
-          <label><h4>Elija Categoría:</h4></label>
+          <label><h4>Categoría:</h4></label>
+          <h3 class="categoriaActual"></h3>
           <label><h4>Producto a modificar:</h4></label>
+          <h3><span class="productoActual"></span></h3>
+          <label><h4>Nuevo nombre:</h4></label>
           <input type="text" id="txtNuevoNombreProducto" /><br />
+          <label><h4>Nuevo precio:</h4></label>
+          <input type="number" id="txtNuevoPrecioProducto" min="0"/><br />
           <input type="submit" value="Modificar" />
         </form>
         <hr />
@@ -182,8 +190,10 @@
           name="frmBorrarProducto"
           data-respuesta="DELETE"
         >
-          <label><h4>Elija Categoría:</h4></label>
+          <label><h4>Categoría:</h4></label>
+          <h3 class="categoriaActual"></h3>
           <label><h4>Producto a borrar:</h4></label>
+          <h3><span class="productoActual"></span></h3>
           <br /><br />
           <input type="submit" value="Borrar" />
         </form>

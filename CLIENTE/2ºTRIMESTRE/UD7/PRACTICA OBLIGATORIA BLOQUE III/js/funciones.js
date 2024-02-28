@@ -4,7 +4,7 @@ import * as api from "./api.js";
 /*
  * Datos iniciales
  */
-// Carga de datos iniciales al poner el valor del comercial a 0.
+// Carga de datos iniciales al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
   cargaDatos();
 });
@@ -16,12 +16,15 @@ frmComercial.comerciales.addEventListener("change", limpiarClientes);
 frmComercial.comerciales.addEventListener("change", async () =>
   cargaClientes(await api.cargarClientes())
 );
+let todasKeys;
 let clienteSeleccionado = 0;
 let frmControles = document.getElementById("frmControles");
 frmControles.categorias.addEventListener("change", limpiarProductos);
 frmControles.categorias.addEventListener("change", async () =>
   cargaProductos(await api.cargarProductos())
 );
+frmControles.productos.addEventListener("change", limpiarProductosGestion);
+frmControles.productos.addEventListener("change", cargarProductosGestion);
 
 let formulariosGestion = document.getElementById("formulariosGestion");
 formulariosGestion
@@ -49,6 +52,11 @@ formulariosGestion.addEventListener("submit", async (event) => {
 
 // #endregion
 // #region Eventos de selección de cliente
+/**
+ * Selecciona el cliente en el formulario de pedido.
+ * @param {Event} event El evento de selección de cliente.
+ * @returns {void}
+ */
 function clienteSeleccionadoForm(event) {
   document
     .querySelectorAll(".cliente")
@@ -94,7 +102,11 @@ let btnGestionComerciales = document.getElementById("btnGestionComerciales");
 btnGestionComerciales.addEventListener("click", () => {
   mostrarForm("gestionComerciales");
 });
-
+/**
+ * Muestra el formulario correspondiente al botón pulsado.
+ * @param {string} frmId El id del formulario a mostrar.
+ * @returns {void}
+ */
 function mostrarForm(frmId) {
   // Oculta todos los divs de los frms
   document
@@ -163,30 +175,30 @@ async function cargaClientes(objetoClientes) {
       frmComercial.parentNode.append(cuadroCliente);
     }
   });
+  // Carga de clientes en el formulario de gestión de clientes y comerciales actuales
   formulariosGestion
     .querySelectorAll(".comercialActual")
     .forEach((comercial) => {
-      if (comercial.tagName === "SPAN") {
-        comercial.id = frmComercial.comerciales.selectedOptions[0].id;
-
-        if (comercial.classList.contains("nuevoCliente")) {
-          comercial.id = keyComercial;
-          comercial.setAttribute("valor", clientesComercial.length);
-        }
-        if (
-          comercial.classList.contains("editarCliente") ||
-          comercial.classList.contains("borrarComercial")
-        ) {
-          comercial.setAttribute("valor", keyComercial);
-        }
-      }
-
       comercial.innerHTML = frmComercial.comerciales.selectedOptions[0].text;
+      comercial.id = frmComercial.comerciales.selectedOptions[0].id;
+      if (comercial.classList.contains("borrarClientes")) {
+        comercial.setAttribute(
+          "valor",
+          frmComercial.comerciales.selectedOptions[0].getAttribute(
+            "idComercial"
+          )
+        );
+      }
     });
+  formulariosGestion.querySelectorAll(".nuevoCliente").forEach((comercial) => {
+    comercial.innerHTML = frmComercial.comerciales.selectedOptions[0].text;
+    comercial.id = keyComercial;
+    comercial.setAttribute("valor", clientesComercial.length);
+  });
 }
 
 /**
- * Carga las categorías en el frm.
+ * Carga las categorías en el formulario.
  */
 function cargaCategorias(objetoCategorias) {
   let categorias = Object.values(objetoCategorias);
@@ -200,10 +212,11 @@ function cargaCategorias(objetoCategorias) {
 }
 
 /**
- * Carga los productos de la categoría seleccionada en el frm.
+ * Carga los productos de la categoría seleccionada en el formulario.
  */
 
 function cargaProductos(productos) {
+  todasKeys = Object.keys(productos);
   let categoriaSeleccionada = frmControles.categorias.value;
   let productosSeleccionados = Object.values(productos).filter((producto) => {
     return producto.idCategoria == categoriaSeleccionada;
@@ -221,16 +234,27 @@ function cargaProductos(productos) {
     option.setAttribute("id", keysProductos[i]);
     option.textContent = producto.nombreProducto;
     frmControles.productos.add(option);
-    formulariosGestion
-      .querySelectorAll(".categoriaActual")
-      .forEach((categoria) => {
-        categoria.id = frmControles.categorias.selectedOptions[0].id;
-        categoria.innerHTML = frmControles.categorias.selectedOptions[0].text;
-        categoria.setAttribute("valor", frmControles.categorias.value);
-      });
-    categoriaProducto.innerHTML =
-      frmControles.categorias.selectedOptions[0].text;
-    producto.id = frmControles.categorias.selectedOptions[0].id;
+  });
+  cargarProductosGestion();
+}
+/**
+ * Carga los productos de la categoría seleccionada en el formulario de gestión.
+ */
+function cargarProductosGestion() {
+  formulariosGestion
+    .querySelectorAll(".categoriaActual")
+    .forEach((categoria) => {
+      categoria.innerHTML = frmControles.categorias.selectedOptions[0].text;
+      categoria.id = frmControles.categorias.selectedOptions[0].id;
+    });
+  formulariosGestion.querySelectorAll(".nuevoProducto").forEach((categoria) => {
+    categoria.innerHTML = frmControles.categorias.selectedOptions[0].text;
+    categoria.setAttribute("valor", todasKeys.length + 1);
+    categoria.id = frmControles.categorias.value;
+  });
+  formulariosGestion.querySelectorAll(".productoActual").forEach((producto) => {
+    producto.innerHTML = frmControles.productos.selectedOptions[0].text;
+    producto.id = frmControles.productos.selectedOptions[0].id;
   });
 }
 // #endregion
@@ -243,9 +267,7 @@ function limpiarComerciales() {
   let valorSeleccionado = selectElement.value;
 
   selectElement.querySelectorAll("option").forEach((comercial) => {
-    if (comercial.value !== valorSeleccionado) {
-      comercial.remove();
-    }
+    comercial.remove();
   });
 }
 /**
@@ -273,11 +295,30 @@ function limpiarProductos() {
   frmControles.productos
     .querySelectorAll("option")
     .forEach((producto) => producto.remove());
+  formulariosGestion
+    .querySelectorAll(".productoActual")
+    .forEach((producto) => (producto.innerHTML = ""));
 }
+/**
+ * Limpia los productos del formulario de gestión de productos.
+ */
+function limpiarProductosGestion() {
+  formulariosGestion
+    .querySelectorAll(".productoActual")
+    .forEach((producto) => (producto.innerHTML = ""));
+}
+/**
+ * Limpia los datos de texto o números de los formularios.
+ */
 function limpiarTexto() {
   let texto = document.querySelectorAll("input[type=text]");
   texto.forEach((texto) => (texto.value = ""));
+  let numero = document.querySelectorAll("input[type=number]");
+  numero.forEach((numero) => (numero.value = ""));
 }
+/**
+ * Limpia los datos de todos los formularios.
+ */
 function limpiarDatos() {
   limpiarTexto();
   limpiarComerciales();
