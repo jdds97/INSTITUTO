@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div id="formulariosGestion" class="panel">
+      <h1>CRUD</h1>
+      <hr />
+      <div id="gestionEquipos" class="oculto" data-entrada="equipos">
+        <!-- Formulario para insertar un nuevo equipo -->
+        <form id="frmNuevoEquipo" name="frmNuevoEquipo" data-respuesta="POST">
+          <label><h4>Nuevo Equipo:</h4></label>
+          <label for="txtEquipoLocal">Equipo Local:</label>
+          <input type="text" id="txtEquipoLocal" name="equipoLocal" /><br />
+          <label for="txtEquipoVisitante">Equipo Visitante:</label>
+          <input
+            type="text"
+            id="txtEquipoVisitante"
+            name="equipoVisitante"
+          /><br />
+          <label for="txtGolesLocal">Goles Local:</label>
+          <input
+            type="number"
+            id="txtGolesLocal"
+            name="golesLocal"
+            min="0"
+          /><br />
+          <label for="txtGolesVisitante">Goles Visitante:</label>
+          <input
+            type="number"
+            id="txtGolesVisitante"
+            name="golesVisitante"
+            min="0"
+          /><br />
+          <input type="submit" value="Guardar" />
+        </form>
+        <hr />
+        <!-- Formulario para editar un equipo -->
+        <form
+          id="frmEditarEquipo"
+          name="frmEditarEquipo"
+          data-respuesta="PATCH"
+        >
+          <label><h4>Editar Equipo:</h4></label>
+          <label for="txtEquipoLocalEditar">Equipo Local:</label>
+          <input
+            type="text"
+            id="txtEquipoLocalEditar"
+            name="equipoLocal"
+          /><br />
+          <label for="txtEquipoVisitanteEditar">Equipo Visitante:</label>
+          <input
+            type="text"
+            id="txtEquipoVisitanteEditar"
+            name="equipoVisitante"
+          /><br />
+          <label for="txtGolesLocalEditar">Goles Local:</label>
+          <input
+            type="number"
+            id="txtGolesLocalEditar"
+            name="golesLocal"
+            min="0"
+          /><br />
+          <label for="txtGolesVisitanteEditar">Goles Visitante:</label>
+          <input
+            type="number"
+            id="txtGolesVisitanteEditar"
+            name="golesVisitante"
+            min="0"
+          /><br />
+          <input type="submit" value="Modificar" />
+        </form>
+        <hr />
+        <!-- Formulario para eliminar un equipo -->
+        <form
+          id="frmBorrarEquipo"
+          name="frmBorrarEquipo"
+          data-respuesta="DELETE"
+        >
+          <label><h4>Eliminar Equipo:</h4></label>
+          <label for="txtEquipoLocalEliminar">Equipo Local:</label>
+          <input
+            type="text"
+            id="txtEquipoLocalEliminar"
+            name="equipoLocal"
+          /><br />
+          <label for="txtEquipoVisitanteEliminar">Equipo Visitante:</label>
+          <input
+            type="text"
+            id="txtEquipoVisitanteEliminar"
+            name="equipoVisitante"
+          /><br />
+          <input type="submit" value="Eliminar" />
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="crud.js"></script>
+</html>
