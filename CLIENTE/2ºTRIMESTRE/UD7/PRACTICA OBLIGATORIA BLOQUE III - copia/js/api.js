@@ -100,20 +100,19 @@ export async function actualizarDatos(event) {
     // Si el atributo respuesta es POST, se trata de añadir un nuevo array de clientes y si es DELETE, se trata de eliminarlo
     const valorDatoAModificar =
       respuesta === "POST" ? 0 : spanElement?.getAttribute("valor");
-    nuevaEntrada = getEntrada(
-      nuevaEntrada,
-      spanElement,
-      respuesta,
-      valorDatoAModificar
-    );
     //Vamos a obtener la entrada de la url con el id del elemento a modificar o su valor dependiendo de la respuesta
     //Este código no aprovecho el getEntrada porque tendría que modificar el getEntrada y no quiero añadir más condiciones a ese método
-
+    const subEntrada =
+      respuesta === "POST"
+        ? nuevaEntrada
+        : `${nuevaEntrada}/${valorDatoAModificar}`;
     //Vamos a obtener los datos a modificar en la base de datos dependiendo del elemento que se esté modificando
-
-    datos = getDatos(nuevaEntrada, spanElement, respuesta, valorDatoAModificar);
+    datos =
+      respuesta === "POST"
+        ? { [0]: `Primer ${nuevaEntrada.slice(0, -1)}` }
+        : { [valorDatoAModificar]: "" };
     // Enviamos la solicitud a la API con la entrada y los datos correspondientes a la solicitud
-    enviarSolicitud(nuevaEntrada, datos, respuesta);
+    enviarSolicitud(subEntrada, datos, respuesta);
   }
 }
 /**
@@ -137,7 +136,7 @@ function getEntrada(
     spanElement.classList.contains("comercialActual") ||
     spanElement.classList.contains("categoriaActual") ||
     spanElement.classList.contains("nuevoCliente") ||
-    (entrada === "clientes" && idDatoAModificar && valorDatoAModificar === null)
+    spanElement.classList.contains("nuevoProducto")
   ) {
     // Si la respuesta es DELETE o el elemento es un nuevo cliente, se trata de eliminar un cliente o un producto ,entonces cambiamos la entrada
     if (
@@ -203,13 +202,6 @@ function getDatos(
       };
     }
   } else {
-    if (
-      spanElement.classList.contains("nuevoCliente") &&
-      respuesta === "POST"
-    ) {
-      valorDatoAModificar = 0;
-      datoNuevo = "Nuevo Cliente";
-    }
     return {
       // Si el elemento es un nuevo cliente o un cliente existente, se trata de un cliente que ya existe en la base de datos
       [valorDatoAModificar]: datoNuevo !== undefined ? datoNuevo : "",

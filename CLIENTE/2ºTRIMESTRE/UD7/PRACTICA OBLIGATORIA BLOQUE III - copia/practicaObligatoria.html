@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/practicaObligatoria.css" />
+    <title>Práctica Obligatoria</title>
+  </head>
+  <body>
+    <h1>Gestor Comercial</h1>
+    <div id="clientes" class="panel">
+      <h1>Clientes</h1>
+      <form id="frmComercial" name="frmComercial">
+        <label><h4>Comercial:</h4></label>
+        <select name="comerciales"></select>
+      </form>
+    </div>
+    <div id="controles" class="panel">
+      <h1>Controles</h1>
+      <form id="frmControles" name="frmControles">
+        <label><h4>Categoría:</h4></label>
+        <select name="categorias"></select
+        ><br />
+        <label><h4>Productos:</h4></label>
+        <select name="productos"></select
+        ><br />
+      </form>
+      <br /><br /><br />
+      <hr />
+      <br />
+      <button id="btnGestionCategorias" class="tecla">
+        Gestión Categorías
+      </button>
+      <button id="btnGestionProductos" class="tecla">Gestión Productos</button>
+      <button id="btnGestionComerciales" class="tecla">
+        Gestión Comerciales
+      </button>
+      <button id="btnGestionClientes" class="tecla">Gestión Clientes</button>
+    </div>
+    <div id="formulariosGestion" class="panel">
+      <h1>CRUD</h1>
+      <hr />
+      <!-- CADA DATA ENTRADA VA A SER PARA ENTRAR EN CADA SECCIÓN DEL FIREBASE-->
+      <!-- FORMULARIOS COMERCIALES-->
+      <div id="gestionComerciales" class="oculto" data-entrada="comerciales">
+        <form
+          id="frmNuevoComercial"
+          name="frmNuevoComercial"
+          data-respuesta="POST"
+          data-nuevaEntrada="clientes"
+        > <!-- AQUI SE PONE LA NUEVA ENTRADA QUE SE VA A CREAR AL CREAR UN NUEVO COMERCIAL SE CREA UN ARRAY DE CLIENTES NUEVO-->
+          <label><h4>Nuevo comercial:</h4></label>
+          <input type="text" id="txtNuevoComercial" /><br />
+          <input type="submit" value="Guardar" />
+          <hr />
+        </form>
+
+        <form
+          id="frmEditarComercial"
+          name="frmEditarComercial"
+          data-respuesta="PATCH"
+        >
+          <label><h4>Comercial a modificar:</h4></label>
+          <h3><span class="comercialActual " id=""></span></h3>
+          <input type="text" id="txtNuevoNombreComercial" /><br />
+          <input type="submit" value="Modificar" />
+          <hr />
+        </form>
+
+        <form
+          id="frmBorrarComercial"
+          name="frmBorrarComercial"
+          data-respuesta="DELETE"
+          data-nuevaEntrada="clientes"
+        > <!-- AQUI SE PONE LA NUEVA ENTRADA QUE SE VA A CREAR AL BORRAR UN  COMERCIAL SE BORRAR ARRAY DE CLIENTES NUEVO-->
+          <label><h4>Comercial a borrar:</h4></label>
+          <h3><span class="comercialActual borrarClientes" id=""></span></h3>
+          <input type="submit" value="Borrar" />
+        </form>
+      </div>
+      <!-- FORMULARIOS CLIENTES-->
+      <div id="gestionClientes" class="oculto" data-entrada="clientes">
+        <form
+          id="frmNuevoCliente"
+          name="frmNuevoCliente"
+          data-respuesta="PATCH"
+        >
+          <label><h4>Nuevo cliente para :</h4></label>
+          <h3><span class="nuevoCliente" id=""></span></h3>
+
+          <input type="text" id="txtNuevoCliente" /><br />
+          <input type="submit" value="Guardar" />
+          <hr />
+        </form>
+
+        <form
+          id="frmEditarCliente"
+          name="frmEditarCliente"
+          data-respuesta="PATCH"
+        >
+          <label><h4>Comercial:</h4></label>
+          <h3 class="comercialActual"></h3>
+          <label><h4>Cliente a modificar:</h4></label>
+          <h3><span class="clienteActual" id=""></span></h3>
+          <input type="text" id="txtNuevoNombreCliente" /><br />
+          <input type="submit" value="Modificar" />
+          <hr />
+        </form>
+
+        <form
+          id="frmBorrarCliente"
+          name="frmBorrarCliente"
+          data-respuesta="DELETE"
+        >
+          <label><h4>Comercial</h4></label>
+          <h3 class="comercialActual "></h3>
+          <label><h4>Cliente a borrar:</h4></label>
+          <h3><span class="clienteActual" id=""></span></h3>
+          <br /><br />
+          <input type="submit" value="Borrar" />
+        </form>
+      </div>
+
+      <!-- FORMULARIOS CATEGORIAS-->
+      <div id="gestionCategorias" class="oculto" data-entrada="categorias">
+        <form
+          id="frmNuevaCategoria"
+          name="frmNuevaCategoria"
+          data-respuesta="POST"
+        >
+          <label><h4>Nueva categoría:</h4></label>
+          <input type="text" id="txtNuevaCategoria" /><br />
+          <input type="submit" value="Guardar" />
+        </form>
+        <hr />
+        <form
+          id="frmEditarCategoria"
+          name="frmEditarCategoria"
+          data-respuesta="PATCH"
+        >
+          <label><h4>Categoría a modificar:</h4></label>
+          <h3><span class="categoriaActual"></span></h3>
+          <input type="text" id="txtNuevoNombreCategoria" /><br />
+          <input type="submit" value="Modificar" />
+        </form>
+        <hr />
+        <form
+          id="frmBorrarCategoria"
+          name="frmBorrarCategoria"
+          data-respuesta="DELETE"
+        >
+          <label><h4>Categoría a borrar:</h4></label>
+          <h3><span class="categoriaActual"></span></h3>
+          <input type="submit" value="Borrar" />
+        </form>
+      </div>
+      <!-- FORMULARIOS PRODUCTOS-->
+      <div id="gestionProductos" class="oculto" data-entrada="productos">
+        <form
+          id="frmNuevoProducto"
+          name="frmNuevoProducto"
+          data-respuesta="POST"
+        >
+          <label><h4> Categoría:</h4></label>
+          <h3><span class="nuevoProducto"><span></h3>
+          <input type="text" id="txtNuevoProducto" /><br />
+          <input type="number" id="txtNuevoPrecioProducto" min="0" step="0.01"/><br />
+          <input type="submit" value="Guardar" />
+        </form>
+        <hr />
+        <form
+          id="frmEditarProducto"
+          name="frmEditarProducto"
+          data-respuesta="PATCH"
+        >
+          <label><h4>Categoría:</h4></label>
+          <h3 class="categoriaActual"></h3>
+          <label><h4>Producto a modificar:</h4></label>
+          <h3><span class="productoActual"></span></h3>
+          <label><h4>Nuevo nombre:</h4></label>
+          <input type="text" id="txtNuevoNombreProducto" /><br />
+          <label><h4>Nuevo precio:</h4></label>
+          <input type="number" id="txtNuevoPrecioProducto" min="0"/><br />
+          <input type="submit" value="Modificar" />
+        </form>
+        <hr />
+        <form
+          id="frmBorrarProducto"
+          name="frmBorrarProducto"
+          data-respuesta="DELETE"
+        >
+          <label><h4>Categoría:</h4></label>
+          <h3 class="categoriaActual"></h3>
+          <label><h4>Producto a borrar:</h4></label>
+          <h3><span class="productoActual"></span></h3>
+          <br /><br />
+          <input type="submit" value="Borrar" />
+        </form>
+      </div>
+    </div>
+    <script src="./js/clases.js"></script>
+    <script type="module" src="./js/funciones.js"></script>
+    <script type="module" src="./js/api.js"></script>
+  </body>
+</html>
