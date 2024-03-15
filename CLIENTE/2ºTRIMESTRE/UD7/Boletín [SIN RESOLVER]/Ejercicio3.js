@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", atacarApiGET);
 function atacarApiGET() {
   let url =
     "https://proyectojsfinal-c3299-default-rtdb.europe-west1.firebasedatabase.app/coches.json";
-  fetch(url)
+  fetch(partidos)
     .then((response) => response.json())
     .then(mostrarCoches);
 }

@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "Marvel-Regular";
+  src: url("../fonts/Marvel-Regular.ttf") format("truetype");
+}
+:root {
+  font-family: "Marvel-Regular", Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif !important;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-image: url("../assets/fondo.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.logoMarvel {
+  font-family: "Marvel-Regular", sans-serif !important;
+  font-size: 200px !important;
+  color: #ed1d24;
+}
+
+.tituloBuscador {
+  font-family: "Marvel-Regular", sans-serif !important;
+  font-size: 100px !important;
+  color: aliceblue;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}

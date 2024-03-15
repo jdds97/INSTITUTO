@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div id="formulariosGestion" class="panel">
+      <h1>CRUD</h1>
+      <hr />
+      <div id="gestionVuelos">
+        <!-- Formulario para insertar un nuevo equipo -->
+        <form id="frmNuevoVuelo" name="frmNuevoVuelo" data-respuesta="POST">
+          <label for="txtAerolinea">Aerolinea:</label>
+          <input type="text" id="txtAerolinea" name="aerolinea" /><br />
+          <label for="txtAerolinea">Destino:</label>
+          <input type="text" id="txtDestino" name="destino" /><br />
+          <label for="txtDuracion">Duracion</label>
+          <input type="text" id="txtDuracion" name="duracion" /><br />
+          <label for="txtOrigen">Origen</label>
+          <input type="text" id="txtOrigen" name="origen" /><br />
+          <input type="submit" value="Guardar" />
+        </form>
+        <hr />
+        <!-- Formulario para editar un equipo -->
+        <form
+          id="frmEditarEquipo"
+          name="frmEditarEquipo"
+          data-respuesta="PATCH"
+        >
+          <label><h4>Editar Vuelo:</h4></label>
+          <label for="txtAerolinea">Aerolinea:</label>
+          <input type="text" id="txtAerolinea" name="aerolinea" /><br />
+          <label for="txtAerolinea">Destino:</label>
+          <input type="text" id="txtDestino" name="destino" /><br />
+          <label for="txtDuracion">Duracion</label>
+          <input type="text" id="txtDuracion" name="duracion" /><br />
+          <label for="txtOrigen">Origen</label>
+          <input type="text" id="txtOrigen" name="origen" /><br />
+
+          <input type="submit" value="Modificar" />
+        </form>
+        <hr />
+        <!-- Formulario para eliminar un equipo -->
+        <form id="frmBorrarVuelo" name="frmBorrarVuelo" data-respuesta="DELETE">
+          <label><h4>Eliminar Vuelo:</h4></label>
+          <label for="txtAerolinea">Aerolinea:</label>
+          <input type="text" id="txtAerolinea" name="aerolinea" /><br />
+          <label for="txtAerolinea">Destino:</label>
+          <input type="text" id="txtDestino" name="destino" /><br />
+          <label for="txtDuracion">Duracion</label>
+          <input type="text" id="txtDuracion" name="duracion" /><br />
+          <label for="txtOrigen">Origen</label>
+          <input type="text" id="txtOrigen" name="origen" /><br />
+          <input type="submit" value="Eliminar" />
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="ejercicio1.js"></script>
+</html>

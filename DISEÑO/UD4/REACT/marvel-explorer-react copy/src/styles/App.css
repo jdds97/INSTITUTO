@@ -1,0 +1,30 @@
+/* Estilos para el contenedor principal */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem; /* Reducido el padding */
+  text-align: center;
+}
+
+/* Estilos para el logo animado */
+.logo {
+  animation: logo-spin infinite 20s linear;
+  margin: 0 auto;
+}
+
+/* Estilos de animación para el logo */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilos para el contenedor del input y botones */
+.button-container {
+  font-family: "Marvel-Regular", sans-serif !important;
+  font-size: x-large !important;
+  color: white !important;
+}
